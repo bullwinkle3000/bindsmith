@@ -1,5 +1,5 @@
-src/
 __pycache__/
 *.pyc
 .venv/
+# generated device skeletons are a build artifact, not curated data
 data/devices/generated.json
