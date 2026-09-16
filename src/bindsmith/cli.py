@@ -18,6 +18,7 @@ from . import __version__
 from .parser import parse_binds, load_all_binds, Preset
 from .writer import write
 from .devices import load_devices, generate_from_button_map
+from .ingest import ingest_buttonmaps, GENERIC_ID
 from .port import port
 from .audit import audit
 
@@ -50,6 +51,9 @@ def cmd_audit(args: argparse.Namespace) -> None:
     devices = load_devices(DATA_DIR / "devices")
     if args.device:
         devices = {d: devices[d] for d in args.device if d in devices}
+    # the generic fallback is a classifier, not a real bound device
+    devices = {d: v for d, v in devices.items() if d != GENERIC_ID} \
+        if not args.device else devices
     report = audit(preset, devices)
     print(report.render())
 
@@ -78,6 +82,19 @@ def cmd_port(args: argparse.Namespace) -> None:
         for u in result.unmapped[:20]:
             print(f"  [UNMAPPED] {u['action']:<28} {u['device']} {u['key']}")
     print(f"wrote {out}")
+
+
+def cmd_ingest(args: argparse.Namespace) -> None:
+    data_dir = Path(args.data) if args.data else DATA_DIR / "devices"
+    summary = ingest_buttonmaps(Path(args.buttonmaps), data_dir)
+    print(f"data dir: {data_dir}")
+    for section in ("created", "updated", "skipped"):
+        if summary[section]:
+            print(f"{section} ({len(summary[section])}):")
+            for s in summary[section]:
+                print(f"  {s}")
+    print(f"done: {len(summary['created'])} created, "
+          f"{len(summary['updated'])} updated, {len(summary['skipped'])} skipped")
 
 
 def cmd_gen_devices(args: argparse.Namespace) -> None:
@@ -129,11 +146,18 @@ def main(argv: list[str] | None = None) -> int:
                    help="comma list of: role, index (default both)")
     t.set_defaults(fn=cmd_port)
 
-    g = sub.add_parser("gen-devices",
-                       help="build device skeletons from ED DeviceButtonMaps")
+    g = sub.add_parser("ingest",
+                       help="merge device descriptors from a .buttonMap directory "
+                            "(e.g. EliteCustomButtonNames)")
     g.add_argument("buttonmaps")
-    g.add_argument("--out")
-    g.set_defaults(fn=cmd_gen_devices)
+    g.add_argument("--data", help="data/devices dir (default: repo data/devices)")
+    g.set_defaults(fn=cmd_ingest)
+
+    g2 = sub.add_parser("gen-devices",
+                       help="build device skeletons from ED DeviceButtonMaps")
+    g2.add_argument("buttonmaps")
+    g2.add_argument("--out")
+    g2.set_defaults(fn=cmd_gen_devices)
 
     args = ap.parse_args(argv)
     args.fn(args)

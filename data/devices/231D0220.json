@@ -1,0 +1,778 @@
+{
+  "id": "231D:0220",
+  "name": "VKB Gladiator NXT EVO Space Combat Grip Premium (Right) + GNX FSM-GA module [VendorID: 231D, ProductID: 0220]\n\n\tThis is based on the awesome work already done 231D0200.buttonMap (thx) but corrected for changed\n\tintroduced by FSM-GA module. I've tried to adhere to notation used on the official binding templates\n\tfrom VKB which can be found here https://www.vkbcontrollers.com/pages/downloads\n\n\tNote that productID changes depending on which modules are connected to the GNX (base) bus.\n\tThis means that your bindings may break if you add or remove modules to your VKB setup.\n\tSCG seems to become a part of the GNX it self and does not function as a separate module.",
+  "vendor": "VKB Sim",
+  "kind": "throttle",
+  "controls": [
+    {
+      "key": "Joy_RXAxis",
+      "label": "SCGR THUMBSTICK X",
+      "type": "axis",
+      "axis": "RX",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_RYAxis",
+      "label": "SCGR THUMBSTICK Y",
+      "type": "axis",
+      "axis": "RY",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_RZAxis",
+      "label": "SCGR [x52prorz]",
+      "type": "axis",
+      "axis": "RZ",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_UAxis",
+      "label": "SCGR UAxis",
+      "type": "axis",
+      "axis": "U",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_VAxis",
+      "label": "SCGR VAxis",
+      "type": "axis",
+      "axis": "V",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_XAxis",
+      "label": "SCGR [x52prox]",
+      "type": "axis",
+      "axis": "X",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_YAxis",
+      "label": "SCGR [x52proy]",
+      "type": "axis",
+      "axis": "Y",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_POV1Up",
+      "label": "SCGR A1 [ps4PadU]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_POV1Right",
+      "label": "SCGR A1 [ps4PadR]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_POV1Down",
+      "label": "SCGR A1 [ps4PadD]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_POV1Left",
+      "label": "SCGR A1 [ps4PadL]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_POV2Up",
+      "label": "SCGR A4 [ps4PadU]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_POV2Right",
+      "label": "SCGR A4 [ps4PadR]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_POV2Down",
+      "label": "SCGR A4 [ps4PadD]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_POV2Left",
+      "label": "SCGR A4 [ps4PadL]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_POV3Up",
+      "label": "SCGR A3 [ps4PadU]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_POV3Right",
+      "label": "SCGR A3 [ps4PadR]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_POV3Down",
+      "label": "SCGR A3 [ps4PadD]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_POV3Left",
+      "label": "SCGR A3 [ps4PadL]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_POV4Up",
+      "label": "SCGR C1 [ps4PadU]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_POV4Right",
+      "label": "SCGR C1 [ps4PadR]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_POV4Down",
+      "label": "SCGR C1 [ps4PadD]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_POV4Left",
+      "label": "SCGR C1 [ps4PadL]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_1",
+      "label": "SCGR FIRE 1",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_2",
+      "label": "SCGR FIRE 2",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_3",
+      "label": "SCGR A2 (thumb red)",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_4",
+      "label": "SCGR B1 (right side)",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_5",
+      "label": "SCGR D1 (pinky)",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_6",
+      "label": "SCGR A3 [ps4PadU]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_7",
+      "label": "SCGR A3 [ps4PadR]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_8",
+      "label": "SCGR A3 [ps4PadD]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_9",
+      "label": "SCGR A3 [ps4PadL]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_10",
+      "label": "SCGR A3 (push)",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_11",
+      "label": "SCGR A4 [ps4PadU]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_12",
+      "label": "SCGR A4 [ps4PadR]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_13",
+      "label": "SCGR A4 [ps4PadD]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_14",
+      "label": "SCGR A4 [ps4PadL]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_15",
+      "label": "SCGR A4 (push)",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_16",
+      "label": "SCGR C1 [ps4PadU]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_17",
+      "label": "SCGR C1 [ps4PadR]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_18",
+      "label": "SCGR C1 [ps4PadD]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_19",
+      "label": "SCGR C1 [ps4PadL]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_20",
+      "label": "SCGR C1 PUSH",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_21",
+      "label": "SCGR RAPIDFIRE PUSH",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_22",
+      "label": "SCGR RAPIDFIRE PULL",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_23",
+      "label": "SCGR En1 [ps4PadU]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_24",
+      "label": "SCGR En1 [ps4PadD]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_25",
+      "label": "SCGR En2 [ps4PadU]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_26",
+      "label": "SCGR En2 [ps4PadD]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_27",
+      "label": "SCGR F1",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_28",
+      "label": "SCGR F2",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_29",
+      "label": "SCGR F3",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_ZAxis",
+      "label": "SCGR THROTTLE",
+      "type": "axis",
+      "axis": "Z",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_41",
+      "label": "FSM HDG",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_42",
+      "label": "FSM TRK",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_43",
+      "label": "FSM NAV",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_44",
+      "label": "FSM APR",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_45",
+      "label": "FSM ALT",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_46",
+      "label": "FSM LVL",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_47",
+      "label": "FSM VNAV",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_48",
+      "label": "FSM IAS",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_49",
+      "label": "FSM AP",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_50",
+      "label": "FSM FD",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_51",
+      "label": "FSM YD",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_52",
+      "label": "FSM VS",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_53",
+      "label": "FSM AVIONIC",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_54",
+      "label": "FSM LANDING LIGHTS",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_55",
+      "label": "FSM STROBE",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_56",
+      "label": "FSM NAV LIGHTS",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_57",
+      "label": "FSM HDG/TRK CCW",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_58",
+      "label": "FSM HDG/TRK CW",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_59",
+      "label": "FSM ALT SEL CCW",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_60",
+      "label": "FSM ALT SEL CW",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_61",
+      "label": "FSM VS DN [ps4PadU]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_62",
+      "label": "FSM VS UP [ps4PadD]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_63",
+      "label": "FSM HDG/TRK PUSH",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_64",
+      "label": "FSM ALT SEL PUSH",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    }
+  ]
+}

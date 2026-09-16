@@ -1,0 +1,228 @@
+{
+  "id": "CHProThrottle1",
+  "name": "CH Products Pro Throttle USB\nFriendly name: CHProThrottle1\nUSB VID:068E PID:00F1",
+  "vendor": "CH Products",
+  "kind": "throttle",
+  "controls": [
+    {
+      "key": "Joy_1",
+      "label": "CH Throttle - Castle right",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_2",
+      "label": "CH Throttle - Castle down",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_3",
+      "label": "CH Throttle - Castle left",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_4",
+      "label": "CH Throttle - Castle up",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_5",
+      "label": "CH Throttle - Saddle right",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_6",
+      "label": "CH Throttle - Saddle down",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_7",
+      "label": "CH Throttle - Saddle left",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_8",
+      "label": "CH Throttle - Saddle up",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_9",
+      "label": "CH Throttle - Cross down",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_10",
+      "label": "CH Throttle - Cross right",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_11",
+      "label": "CH Throttle - Cross up",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_12",
+      "label": "CH Throttle - Cross left",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_14",
+      "label": "CH Throttle - Right button",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_15",
+      "label": "CH Throttle - Center button",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_16",
+      "label": "CH Throttle - Left button",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_POV1Right",
+      "label": "CH Throttle - Cone right",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_POV1Down",
+      "label": "CH Throttle - Cone down",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_POV1Left",
+      "label": "CH Throttle - Cone left",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_POV1Up",
+      "label": "CH Throttle - Cone up",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_XAxis",
+      "label": "CH Throttle - Mini stick horizontal",
+      "type": "axis",
+      "axis": "X",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_YAxis",
+      "label": "CH Throttle - Mini stick vertical",
+      "type": "axis",
+      "axis": "Y",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_ZAxis",
+      "label": "CH Throttle [hts4ThrottleY]",
+      "type": "axis",
+      "axis": "Z",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    }
+  ]
+}

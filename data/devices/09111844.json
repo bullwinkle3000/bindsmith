@@ -1,0 +1,38 @@
+{
+  "id": "0911:1844",
+  "name": "Footcontrol USB [VendorID: 0911, ProductID: 1844]\n\n\tThis is generic 3 button footcontrol I had lying around. These are typically is used for dictation works, \n\tbut now I finally found good use for it with Elite Dangerous; currently using it for FA toggle\n\tand cargo scoop; had the third button bound to silent running at one time, but I did misclick a couple of times\n\twith not to good result, ie. its not good to disable shields during combat :D",
+  "vendor": "",
+  "kind": "unknown",
+  "controls": [
+    {
+      "key": "Joy_1",
+      "label": "FOOT LEFT",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_2",
+      "label": "FOOT RIGHT",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_3",
+      "label": "FOOT MIDDLE",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    }
+  ]
+}

@@ -1,302 +1,42 @@
 {
-  "id": "231D:0200",
-  "name": "VKB Gladiator NXT R",
+  "id": "231D:0138",
+  "name": "VKB STECS Space Throttle Grip Standard (Left)",
   "vendor": "VKB Sim",
-  "kind": "joystick",
+  "kind": "throttle",
   "controls": [
     {
-      "key": "Joy_XAxis",
-      "label": "RGNX Stick X",
-      "type": "axis",
-      "axis": "X",
-      "role": "roll",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_YAxis",
-      "label": "RGNX Stick Y",
-      "type": "axis",
-      "axis": "Y",
-      "role": "pitch",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_RZAxis",
-      "label": "RGNX Stick RZ",
-      "type": "axis",
-      "axis": "RZ",
-      "role": "yaw",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_RXAxis",
-      "label": "RGNX Thumbstick X",
-      "type": "axis",
-      "axis": "RX",
-      "role": "",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_RYAxis",
-      "label": "RGNX Thumbstick Y",
-      "type": "axis",
-      "axis": "RY",
-      "role": "",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_ZAxis",
-      "label": "RGNX Throttle",
-      "type": "axis",
-      "axis": "Z",
-      "role": "throttle",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_UAxis",
-      "label": "RGNX U",
-      "type": "axis",
-      "axis": "U",
-      "role": "tune",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_VAxis",
-      "label": "RGNX V",
-      "type": "axis",
-      "axis": "V",
-      "role": "",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_POV1Up",
-      "label": "Hat A1 Up",
-      "type": "pov",
-      "axis": "",
-      "role": "menu_up",
-      "group": 1,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_POV1Down",
-      "label": "Hat A1 Down",
-      "type": "pov",
-      "axis": "",
-      "role": "menu_down",
-      "group": 1,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_POV1Left",
-      "label": "Hat A1 Left",
-      "type": "pov",
-      "axis": "",
-      "role": "menu_left",
-      "group": 1,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_POV1Right",
-      "label": "Hat A1 Right",
-      "type": "pov",
-      "axis": "",
-      "role": "menu_right",
-      "group": 1,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_POV2Up",
-      "label": "Hat A4 Up",
-      "type": "pov",
-      "axis": "",
-      "role": "menu_up",
-      "group": 2,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_POV2Down",
-      "label": "Hat A4 Down",
-      "type": "pov",
-      "axis": "",
-      "role": "menu_down",
-      "group": 2,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_POV2Left",
-      "label": "Hat A4 Left",
-      "type": "pov",
-      "axis": "",
-      "role": "menu_left",
-      "group": 2,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_POV2Right",
-      "label": "Hat A4 Right",
-      "type": "pov",
-      "axis": "",
-      "role": "menu_right",
-      "group": 2,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_POV3Up",
-      "label": "Hat A3 Up",
-      "type": "pov",
-      "axis": "",
-      "role": "menu_up",
-      "group": 3,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_POV3Down",
-      "label": "Hat A3 Down",
-      "type": "pov",
-      "axis": "",
-      "role": "menu_down",
-      "group": 3,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_POV3Left",
-      "label": "Hat A3 Left",
-      "type": "pov",
-      "axis": "",
-      "role": "menu_left",
-      "group": 3,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_POV3Right",
-      "label": "Hat A3 Right",
-      "type": "pov",
-      "axis": "",
-      "role": "menu_right",
-      "group": 3,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_POV4Up",
-      "label": "Hat C1 Up",
-      "type": "pov",
-      "axis": "",
-      "role": "menu_up",
-      "group": 4,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_POV4Down",
-      "label": "Hat C1 Down",
-      "type": "pov",
-      "axis": "",
-      "role": "menu_down",
-      "group": 4,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_POV4Left",
-      "label": "Hat C1 Left",
-      "type": "pov",
-      "axis": "",
-      "role": "menu_left",
-      "group": 4,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_POV4Right",
-      "label": "Hat C1 Right",
-      "type": "pov",
-      "axis": "",
-      "role": "menu_right",
-      "group": 4,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
       "key": "Joy_1",
-      "label": "Fire 1",
+      "label": "STECS - Base Sys",
       "type": "button",
       "axis": "",
-      "role": "fire_primary",
+      "role": "",
       "group": 0,
       "deadzone": 0.0,
       "inverted": false
     },
     {
       "key": "Joy_2",
-      "label": "Fire 2",
+      "label": "STECS - Base Start",
       "type": "button",
       "axis": "",
-      "role": "fire_secondary",
+      "role": "",
       "group": 0,
       "deadzone": 0.0,
       "inverted": false
     },
     {
       "key": "Joy_3",
-      "label": "A2 thumb",
+      "label": "STECS - Base Mode 1",
       "type": "button",
       "axis": "",
-      "role": "thrust_up",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_21",
-      "label": "Push Brake",
-      "type": "button",
-      "axis": "",
-      "role": "brake",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_22",
-      "label": "Pull Brake",
-      "type": "button",
-      "axis": "",
-      "role": "gear",
+      "role": "",
       "group": 0,
       "deadzone": 0.0,
       "inverted": false
     },
     {
       "key": "Joy_4",
-      "label": "RGNX B1 (right side)",
+      "label": "STECS - Base Mode 2",
       "type": "button",
       "axis": "",
       "role": "",
@@ -306,7 +46,7 @@
     },
     {
       "key": "Joy_5",
-      "label": "RGNX D1 (pinky)",
+      "label": "STECS - Base Mode 3",
       "type": "button",
       "axis": "",
       "role": "",
@@ -316,7 +56,7 @@
     },
     {
       "key": "Joy_6",
-      "label": "RGNX A3 [ps4PadU]",
+      "label": "STECS - Base Mode 4",
       "type": "button",
       "axis": "",
       "role": "",
@@ -326,7 +66,7 @@
     },
     {
       "key": "Joy_7",
-      "label": "RGNX A3 [ps4PadR]",
+      "label": "STECS - Base Mode 5",
       "type": "button",
       "axis": "",
       "role": "",
@@ -336,7 +76,7 @@
     },
     {
       "key": "Joy_8",
-      "label": "RGNX A3 [ps4PadD]",
+      "label": "STECS - B1",
       "type": "button",
       "axis": "",
       "role": "",
@@ -346,7 +86,7 @@
     },
     {
       "key": "Joy_9",
-      "label": "RGNX A3 [ps4PadL]",
+      "label": "STECS - Trigger",
       "type": "button",
       "axis": "",
       "role": "",
@@ -356,7 +96,7 @@
     },
     {
       "key": "Joy_10",
-      "label": "RGNX A3 Click",
+      "label": "STECS - B2",
       "type": "button",
       "axis": "",
       "role": "",
@@ -366,7 +106,7 @@
     },
     {
       "key": "Joy_11",
-      "label": "RGNX A4 [ps4PadU]",
+      "label": "STECS - Speed Push",
       "type": "button",
       "axis": "",
       "role": "",
@@ -376,7 +116,7 @@
     },
     {
       "key": "Joy_12",
-      "label": "RGNX A4 [ps4PadR]",
+      "label": "STECS - Speed Up",
       "type": "button",
       "axis": "",
       "role": "",
@@ -386,7 +126,7 @@
     },
     {
       "key": "Joy_13",
-      "label": "RGNX A4 [ps4PadD]",
+      "label": "STECS - Speed Down",
       "type": "button",
       "axis": "",
       "role": "",
@@ -396,7 +136,7 @@
     },
     {
       "key": "Joy_14",
-      "label": "RGNX A4 [ps4PadL]",
+      "label": "STECS - Index Push",
       "type": "button",
       "axis": "",
       "role": "",
@@ -406,7 +146,7 @@
     },
     {
       "key": "Joy_15",
-      "label": "RGNX A4 Click",
+      "label": "STECS - HAT1 Push",
       "type": "button",
       "axis": "",
       "role": "",
@@ -416,7 +156,7 @@
     },
     {
       "key": "Joy_16",
-      "label": "RGNX C1 [ps4PadU]",
+      "label": "STECS - Index Fore",
       "type": "button",
       "axis": "",
       "role": "",
@@ -426,7 +166,7 @@
     },
     {
       "key": "Joy_17",
-      "label": "RGNX C1 [ps4PadR]",
+      "label": "STECS - Index Back",
       "type": "button",
       "axis": "",
       "role": "",
@@ -436,7 +176,7 @@
     },
     {
       "key": "Joy_18",
-      "label": "RGNX C1 [ps4PadD]",
+      "label": "STECS - Index Left",
       "type": "button",
       "axis": "",
       "role": "",
@@ -446,7 +186,7 @@
     },
     {
       "key": "Joy_19",
-      "label": "RGNX C1 [ps4PadL]",
+      "label": "STECS - Index Right",
       "type": "button",
       "axis": "",
       "role": "",
@@ -456,7 +196,27 @@
     },
     {
       "key": "Joy_20",
-      "label": "RGNX C1 Click",
+      "label": "STECS - HAT1 Back",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_21",
+      "label": "STECS - HAT1 Fore",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_22",
+      "label": "STECS - HAT1 Down",
       "type": "button",
       "axis": "",
       "role": "",
@@ -466,7 +226,7 @@
     },
     {
       "key": "Joy_23",
-      "label": "RGNX En1 [ps4PadU]",
+      "label": "STECS - HAT1 Up",
       "type": "button",
       "axis": "",
       "role": "",
@@ -476,7 +236,7 @@
     },
     {
       "key": "Joy_24",
-      "label": "RGNX En1 [ps4PadD]",
+      "label": "STECS - H1 Down",
       "type": "button",
       "axis": "",
       "role": "",
@@ -486,7 +246,7 @@
     },
     {
       "key": "Joy_25",
-      "label": "RGNX En2 [ps4PadU]",
+      "label": "STECS - H1 Up",
       "type": "button",
       "axis": "",
       "role": "",
@@ -496,7 +256,7 @@
     },
     {
       "key": "Joy_26",
-      "label": "RGNX En2 [ps4PadD]",
+      "label": "STECS - H1 Push",
       "type": "button",
       "axis": "",
       "role": "",
@@ -506,7 +266,7 @@
     },
     {
       "key": "Joy_27",
-      "label": "RGNX F1",
+      "label": "STECS - H2 Back",
       "type": "button",
       "axis": "",
       "role": "",
@@ -516,7 +276,7 @@
     },
     {
       "key": "Joy_28",
-      "label": "RGNX F2",
+      "label": "STECS - H2 Fore",
       "type": "button",
       "axis": "",
       "role": "",
@@ -526,7 +286,7 @@
     },
     {
       "key": "Joy_29",
-      "label": "RGNX F3",
+      "label": "STECS - H2 Push",
       "type": "button",
       "axis": "",
       "role": "",
@@ -536,7 +296,7 @@
     },
     {
       "key": "Joy_30",
-      "label": "RGNX 30",
+      "label": "STECS - STEM A1",
       "type": "button",
       "axis": "",
       "role": "",
@@ -546,9 +306,279 @@
     },
     {
       "key": "Joy_31",
-      "label": "RGNX C1 Long Press",
+      "label": "STECS - STEM A2",
       "type": "button",
       "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_32",
+      "label": "STECS - STEM C1",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_33",
+      "label": "STECS - STEM B1",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_34",
+      "label": "STECS - STEM B2",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_35",
+      "label": "STECS - STEM B3",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_36",
+      "label": "STECS - STEM B4",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_37",
+      "label": "STECS - STEM B5",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_38",
+      "label": "STECS - STEM Sw1 Up",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_39",
+      "label": "STECS - STEM Sw1 Mid",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_40",
+      "label": "STECS - STEM Sw1 Down",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_41",
+      "label": "STECS - STEM Sw2 Up",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_42",
+      "label": "STECS - STEM Sw2 Mid",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_43",
+      "label": "STECS - STEM Sw2 Down",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_44",
+      "label": "STECS - STEM Tgl Up",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_45",
+      "label": "STECS - STEM Tgl Down",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_46",
+      "label": "STECS - STEM Enc1 CCW",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_47",
+      "label": "STECS - STEM Enc1 CW",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_48",
+      "label": "STECS - STEM Enc2 CCW",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_49",
+      "label": "STECS - STEM Enc2 CW",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_50",
+      "label": "STECS - STEM Enc1 Push",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_51",
+      "label": "STECS - STEM Enc2 Push",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_52",
+      "label": "STECS - STEM Flap Up",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_53",
+      "label": "STECS - STEM Flap Down",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_XAxis",
+      "label": "STECS - [x52prox]",
+      "type": "axis",
+      "axis": "X",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_YAxis",
+      "label": "STECS - [x52proy]",
+      "type": "axis",
+      "axis": "Y",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_ZAxis",
+      "label": "STECS - [x52z]",
+      "type": "axis",
+      "axis": "Z",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_RXAxis",
+      "label": "STECS - Space Brake",
+      "type": "axis",
+      "axis": "RX",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_RYAxis",
+      "label": "STECS - Laser Power",
+      "type": "axis",
+      "axis": "RY",
       "role": "",
       "group": 0,
       "deadzone": 0.0,

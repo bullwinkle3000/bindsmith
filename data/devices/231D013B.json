@@ -1,42 +1,12 @@
 {
-  "id": "231D:0200",
-  "name": "VKB Gladiator NXT R",
+  "id": "231D:013B",
+  "name": "VKB STECS Space Throttle Grip Mini Plus (Right)",
   "vendor": "VKB Sim",
-  "kind": "joystick",
+  "kind": "throttle",
   "controls": [
     {
-      "key": "Joy_XAxis",
-      "label": "RGNX Stick X",
-      "type": "axis",
-      "axis": "X",
-      "role": "roll",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_YAxis",
-      "label": "RGNX Stick Y",
-      "type": "axis",
-      "axis": "Y",
-      "role": "pitch",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_RZAxis",
-      "label": "RGNX Stick RZ",
-      "type": "axis",
-      "axis": "RZ",
-      "role": "yaw",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
       "key": "Joy_RXAxis",
-      "label": "RGNX Thumbstick X",
+      "label": "RSTECS SpaceBrake",
       "type": "axis",
       "axis": "RX",
       "role": "",
@@ -46,7 +16,7 @@
     },
     {
       "key": "Joy_RYAxis",
-      "label": "RGNX Thumbstick Y",
+      "label": "RSTECS Laser Power",
       "type": "axis",
       "axis": "RY",
       "role": "",
@@ -55,248 +25,68 @@
       "inverted": false
     },
     {
-      "key": "Joy_ZAxis",
-      "label": "RGNX Throttle",
+      "key": "Joy_XAxis",
+      "label": "RSTECS [x52prox]",
       "type": "axis",
-      "axis": "Z",
-      "role": "throttle",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_UAxis",
-      "label": "RGNX U",
-      "type": "axis",
-      "axis": "U",
-      "role": "tune",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_VAxis",
-      "label": "RGNX V",
-      "type": "axis",
-      "axis": "V",
+      "axis": "X",
       "role": "",
       "group": 0,
       "deadzone": 0.0,
       "inverted": false
     },
     {
-      "key": "Joy_POV1Up",
-      "label": "Hat A1 Up",
-      "type": "pov",
-      "axis": "",
-      "role": "menu_up",
-      "group": 1,
+      "key": "Joy_YAxis",
+      "label": "RSTECS [x52proy]",
+      "type": "axis",
+      "axis": "Y",
+      "role": "",
+      "group": 0,
       "deadzone": 0.0,
       "inverted": false
     },
     {
-      "key": "Joy_POV1Down",
-      "label": "Hat A1 Down",
-      "type": "pov",
-      "axis": "",
-      "role": "menu_down",
-      "group": 1,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_POV1Left",
-      "label": "Hat A1 Left",
-      "type": "pov",
-      "axis": "",
-      "role": "menu_left",
-      "group": 1,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_POV1Right",
-      "label": "Hat A1 Right",
-      "type": "pov",
-      "axis": "",
-      "role": "menu_right",
-      "group": 1,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_POV2Up",
-      "label": "Hat A4 Up",
-      "type": "pov",
-      "axis": "",
-      "role": "menu_up",
-      "group": 2,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_POV2Down",
-      "label": "Hat A4 Down",
-      "type": "pov",
-      "axis": "",
-      "role": "menu_down",
-      "group": 2,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_POV2Left",
-      "label": "Hat A4 Left",
-      "type": "pov",
-      "axis": "",
-      "role": "menu_left",
-      "group": 2,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_POV2Right",
-      "label": "Hat A4 Right",
-      "type": "pov",
-      "axis": "",
-      "role": "menu_right",
-      "group": 2,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_POV3Up",
-      "label": "Hat A3 Up",
-      "type": "pov",
-      "axis": "",
-      "role": "menu_up",
-      "group": 3,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_POV3Down",
-      "label": "Hat A3 Down",
-      "type": "pov",
-      "axis": "",
-      "role": "menu_down",
-      "group": 3,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_POV3Left",
-      "label": "Hat A3 Left",
-      "type": "pov",
-      "axis": "",
-      "role": "menu_left",
-      "group": 3,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_POV3Right",
-      "label": "Hat A3 Right",
-      "type": "pov",
-      "axis": "",
-      "role": "menu_right",
-      "group": 3,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_POV4Up",
-      "label": "Hat C1 Up",
-      "type": "pov",
-      "axis": "",
-      "role": "menu_up",
-      "group": 4,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_POV4Down",
-      "label": "Hat C1 Down",
-      "type": "pov",
-      "axis": "",
-      "role": "menu_down",
-      "group": 4,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_POV4Left",
-      "label": "Hat C1 Left",
-      "type": "pov",
-      "axis": "",
-      "role": "menu_left",
-      "group": 4,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_POV4Right",
-      "label": "Hat C1 Right",
-      "type": "pov",
-      "axis": "",
-      "role": "menu_right",
-      "group": 4,
+      "key": "Joy_ZAxis",
+      "label": "RSTECS Throttle",
+      "type": "axis",
+      "axis": "Z",
+      "role": "",
+      "group": 0,
       "deadzone": 0.0,
       "inverted": false
     },
     {
       "key": "Joy_1",
-      "label": "Fire 1",
+      "label": "RSTECS Sys",
       "type": "button",
       "axis": "",
-      "role": "fire_primary",
+      "role": "",
       "group": 0,
       "deadzone": 0.0,
       "inverted": false
     },
     {
       "key": "Joy_2",
-      "label": "Fire 2",
+      "label": "RSTECS Start",
       "type": "button",
       "axis": "",
-      "role": "fire_secondary",
+      "role": "",
       "group": 0,
       "deadzone": 0.0,
       "inverted": false
     },
     {
       "key": "Joy_3",
-      "label": "A2 thumb",
+      "label": "RSTECS Mode 1",
       "type": "button",
       "axis": "",
-      "role": "thrust_up",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_21",
-      "label": "Push Brake",
-      "type": "button",
-      "axis": "",
-      "role": "brake",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_22",
-      "label": "Pull Brake",
-      "type": "button",
-      "axis": "",
-      "role": "gear",
+      "role": "",
       "group": 0,
       "deadzone": 0.0,
       "inverted": false
     },
     {
       "key": "Joy_4",
-      "label": "RGNX B1 (right side)",
+      "label": "RSTECS Mode 2",
       "type": "button",
       "axis": "",
       "role": "",
@@ -306,7 +96,7 @@
     },
     {
       "key": "Joy_5",
-      "label": "RGNX D1 (pinky)",
+      "label": "RSTECS Mode 3",
       "type": "button",
       "axis": "",
       "role": "",
@@ -316,7 +106,7 @@
     },
     {
       "key": "Joy_6",
-      "label": "RGNX A3 [ps4PadU]",
+      "label": "RSTECS Mode 4",
       "type": "button",
       "axis": "",
       "role": "",
@@ -326,7 +116,7 @@
     },
     {
       "key": "Joy_7",
-      "label": "RGNX A3 [ps4PadR]",
+      "label": "RSTECS Mode 5",
       "type": "button",
       "axis": "",
       "role": "",
@@ -336,7 +126,7 @@
     },
     {
       "key": "Joy_8",
-      "label": "RGNX A3 [ps4PadD]",
+      "label": "RSTECS Rot CCW",
       "type": "button",
       "axis": "",
       "role": "",
@@ -346,7 +136,7 @@
     },
     {
       "key": "Joy_9",
-      "label": "RGNX A3 [ps4PadL]",
+      "label": "RSTECS Rot CW",
       "type": "button",
       "axis": "",
       "role": "",
@@ -356,7 +146,7 @@
     },
     {
       "key": "Joy_10",
-      "label": "RGNX A3 Click",
+      "label": "RSTECS Safe",
       "type": "button",
       "axis": "",
       "role": "",
@@ -366,7 +156,7 @@
     },
     {
       "key": "Joy_11",
-      "label": "RGNX A4 [ps4PadU]",
+      "label": "RSTECS #1",
       "type": "button",
       "axis": "",
       "role": "",
@@ -376,7 +166,7 @@
     },
     {
       "key": "Joy_12",
-      "label": "RGNX A4 [ps4PadR]",
+      "label": "RSTECS #2",
       "type": "button",
       "axis": "",
       "role": "",
@@ -386,7 +176,7 @@
     },
     {
       "key": "Joy_13",
-      "label": "RGNX A4 [ps4PadD]",
+      "label": "RSTECS #3",
       "type": "button",
       "axis": "",
       "role": "",
@@ -396,7 +186,7 @@
     },
     {
       "key": "Joy_14",
-      "label": "RGNX A4 [ps4PadL]",
+      "label": "RSTECS #4",
       "type": "button",
       "axis": "",
       "role": "",
@@ -406,7 +196,7 @@
     },
     {
       "key": "Joy_15",
-      "label": "RGNX A4 Click",
+      "label": "RSTECS Armed",
       "type": "button",
       "axis": "",
       "role": "",
@@ -416,7 +206,7 @@
     },
     {
       "key": "Joy_16",
-      "label": "RGNX C1 [ps4PadU]",
+      "label": "RSTECS Rot [ps4PadU]",
       "type": "button",
       "axis": "",
       "role": "",
@@ -426,7 +216,7 @@
     },
     {
       "key": "Joy_17",
-      "label": "RGNX C1 [ps4PadR]",
+      "label": "RSTECS Rot [ps4PadD]",
       "type": "button",
       "axis": "",
       "role": "",
@@ -436,7 +226,7 @@
     },
     {
       "key": "Joy_18",
-      "label": "RGNX C1 [ps4PadD]",
+      "label": "RSTECS Rot [ps4PadR]",
       "type": "button",
       "axis": "",
       "role": "",
@@ -446,7 +236,7 @@
     },
     {
       "key": "Joy_19",
-      "label": "RGNX C1 [ps4PadL]",
+      "label": "RSTECS Rot [ps4PadL]",
       "type": "button",
       "axis": "",
       "role": "",
@@ -456,7 +246,27 @@
     },
     {
       "key": "Joy_20",
-      "label": "RGNX C1 Click",
+      "label": "RSTECS Rot Click",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_21",
+      "label": "RSTECS B1",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_22",
+      "label": "RSTECS Trigger",
       "type": "button",
       "axis": "",
       "role": "",
@@ -466,7 +276,7 @@
     },
     {
       "key": "Joy_23",
-      "label": "RGNX En1 [ps4PadU]",
+      "label": "RSTECS B2",
       "type": "button",
       "axis": "",
       "role": "",
@@ -476,7 +286,7 @@
     },
     {
       "key": "Joy_24",
-      "label": "RGNX En1 [ps4PadD]",
+      "label": "RSTECS Speed Lim [x360LThumb]",
       "type": "button",
       "axis": "",
       "role": "",
@@ -486,7 +296,7 @@
     },
     {
       "key": "Joy_25",
-      "label": "RGNX En2 [ps4PadU]",
+      "label": "RSTECS Speed Lim [ps4PadU]",
       "type": "button",
       "axis": "",
       "role": "",
@@ -496,7 +306,7 @@
     },
     {
       "key": "Joy_26",
-      "label": "RGNX En2 [ps4PadD]",
+      "label": "RSTECS Speed Lim [ps4PadD]",
       "type": "button",
       "axis": "",
       "role": "",
@@ -506,7 +316,7 @@
     },
     {
       "key": "Joy_27",
-      "label": "RGNX F1",
+      "label": "RSTECS PHat [x360LThumb]",
       "type": "button",
       "axis": "",
       "role": "",
@@ -516,7 +326,7 @@
     },
     {
       "key": "Joy_28",
-      "label": "RGNX F2",
+      "label": "RSTECS Hat1 [x360LThumb]",
       "type": "button",
       "axis": "",
       "role": "",
@@ -526,7 +336,7 @@
     },
     {
       "key": "Joy_29",
-      "label": "RGNX F3",
+      "label": "RSTECS PHat [ps4PadU]",
       "type": "button",
       "axis": "",
       "role": "",
@@ -536,7 +346,7 @@
     },
     {
       "key": "Joy_30",
-      "label": "RGNX 30",
+      "label": "RSTECS PHat [ps4PadD]",
       "type": "button",
       "axis": "",
       "role": "",
@@ -546,7 +356,117 @@
     },
     {
       "key": "Joy_31",
-      "label": "RGNX C1 Long Press",
+      "label": "RSTECS PHat [ps4PadR]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_32",
+      "label": "RSTECS PHat [ps4PadL]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_33",
+      "label": "RSTECS Hat1 [ps4PadR]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_34",
+      "label": "RSTECS Hat1 [ps4PadL]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_35",
+      "label": "RSTECS Hat1 [ps4PadD]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_36",
+      "label": "RSTECS Hat1 [ps4PadU]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_37",
+      "label": "RSTECS H1 [ps4PadD]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_38",
+      "label": "RSTECS H1 [ps4PadU]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_39",
+      "label": "RSTECS H1 [x360LThumb]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_40",
+      "label": "RSTECS H2 [ps4PadL]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_41",
+      "label": "RSTECS H2 [ps4PadR]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_42",
+      "label": "RSTECS H2 [x360LThumb]",
       "type": "button",
       "axis": "",
       "role": "",

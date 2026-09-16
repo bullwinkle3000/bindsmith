@@ -1,0 +1,268 @@
+{
+  "id": "T16000MTHROTTLE",
+  "name": "Thrustmaster TWCS Throttle",
+  "vendor": "",
+  "kind": "throttle",
+  "controls": [
+    {
+      "key": "Joy_XAxis",
+      "label": "TWCS Ministick X",
+      "type": "axis",
+      "axis": "X",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_YAxis",
+      "label": "TWCS Ministick Y",
+      "type": "axis",
+      "axis": "Y",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_ZAxis",
+      "label": "TWCS Throttle",
+      "type": "axis",
+      "axis": "Z",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_RXAxis",
+      "label": "TWCS Right Pedal",
+      "type": "axis",
+      "axis": "RX",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_RYAxis",
+      "label": "TWCS Left Pedal",
+      "type": "axis",
+      "axis": "RY",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_RZAxis",
+      "label": "TWCS Paddle",
+      "type": "axis",
+      "axis": "RZ",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_UAxis",
+      "label": "TWCS Tuning Wheel",
+      "type": "axis",
+      "axis": "U",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_VAxis",
+      "label": "TWCS Rudder",
+      "type": "axis",
+      "axis": "V",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_POV1Up",
+      "label": "TWCS Cone [ps4PadU]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_POV1Right",
+      "label": "TWCS Cone [ps4PadR]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_POV1Down",
+      "label": "TWCS Cone [ps4PadD]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_POV1Left",
+      "label": "TWCS Cone [ps4PadL]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_1",
+      "label": "TWCS Thumb Button",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_2",
+      "label": "TWCS Pinkie",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_3",
+      "label": "TWCS Ring Finger",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_4",
+      "label": "TWCS Rocker [ps4PadU]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_5",
+      "label": "TWCS Rocker [ps4PadD]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_6",
+      "label": "TWCS Ministick Click",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_7",
+      "label": "TWCS Saddle [ps4PadU]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_8",
+      "label": "TWCS Saddle [ps4PadR]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_9",
+      "label": "TWCS Saddle [ps4PadD]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_10",
+      "label": "TWCS Saddle [ps4PadL]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_11",
+      "label": "TWCS Castle [ps4PadU]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_12",
+      "label": "TWCS Castle [ps4PadR]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_13",
+      "label": "TWCS Castle [ps4PadD]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_14",
+      "label": "TWCS Castle [ps4PadL]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    }
+  ]
+}

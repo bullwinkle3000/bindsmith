@@ -8,7 +8,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent / "src"))
 
-from bindsmith.parser import load_all_binds
+from bindsmith.parser import load_all_binds, parse_binds
 from bindsmith.devices import load_devices
 from bindsmith.presets import seed_from_binds, instantiate, save
 from bindsmith.audit import audit
@@ -45,14 +45,18 @@ def main() -> int:
     print(rep.render()[:800])
 
     # 4. write the instantiated preset and confirm it parses back
+    #    (single file -> parse_binds; load_all_binds is for directories)
     out = DATA / "presets" / "vkb_gladiator_seed.binds"
     from bindsmith.writer import write
     write(inst, out)
-    reparsed = load_all_binds(out)
-    print(f"4. wrote {out}; reparsed preset '{reparsed and list(reparsed)}' "
-          f"actions={len(list(reparsed.values())[0].actions) if reparsed else 0}")
+    reparsed = parse_binds(out)
+    rep_bound = sum(1 for a in reparsed.actions if a.is_bound)
+    print(f"4. wrote {out}; reparsed '{reparsed.name}' "
+          f"actions={len(reparsed.actions)} bound={rep_bound}")
 
-    ok = (len(layout.assignments) > 20 and inst_bound >= orig_bound * 0.9)
+    ok = (len(layout.assignments) > 20 and inst_bound >= orig_bound * 0.9
+          and len(reparsed.actions) == len(inst.actions)
+          and rep_bound >= orig_bound * 0.9)
     print("\nRESULT:", "PASS" if ok else "NEEDS REVIEW")
     return 0 if ok else 1
 

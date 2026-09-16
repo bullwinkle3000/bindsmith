@@ -18,6 +18,8 @@ from collections import defaultdict
 from .devices import Device
 from .parser import Preset
 
+GENERIC_ID = "GENERIC"  # must match ingest.GENERIC_ID
+
 
 @dataclass
 class AuditReport:
@@ -25,6 +27,8 @@ class AuditReport:
     orphans: list[dict] = field(default_factory=list)       # {action, device, key}
     coverage: dict[str, dict] = field(default_factory=dict)  # dev -> {bound: [key], free: [key]}
     conflicts: list[dict] = field(default_factory=list)      # {key, device, actions: [...]}
+    # unknown device -> keys classified via the generic fallback descriptor
+    fallback_classified: dict[str, list[str]] = field(default_factory=dict)
     ok: bool = False
 
     @property
@@ -38,7 +42,11 @@ class AuditReport:
         if self.unknown_devices:
             lines.append("unknown devices (no descriptor in catalog):")
             for d in sorted(set(self.unknown_devices)):
-                lines.append(f"  {d}")
+                extra = self.fallback_classified.get(d)
+                if extra:
+                    lines.append(f"  {d}  (generic fallback recognises: {', '.join(sorted(extra))})")
+                else:
+                    lines.append(f"  {d}")
         if self.orphans:
             lines.append("orphan keys (device does not define them):")
             for o in self.orphans:
@@ -59,6 +67,8 @@ class AuditReport:
 def audit(preset: Preset, devices: dict[str, Device]) -> AuditReport:
     rep = AuditReport()
     norm = {d.replace(":", ""): d for d in devices}
+    generic = devices.get(GENERIC_ID)
+    generic_keys = {c.key for c in generic.controls} if generic else set()
 
     bound_by_key: dict[tuple[str, str], list[str]] = defaultdict(list)
 
@@ -72,6 +82,9 @@ def audit(preset: Preset, devices: dict[str, Device]) -> AuditReport:
             if dev is None:
                 if b.device not in ("Keyboard", "Mouse"):
                     rep.unknown_devices.append(b.device)
+                    # classify via the generic fallback where it can
+                    if b.key in generic_keys:
+                        rep.fallback_classified.setdefault(b.device, []).append(b.key)
                 continue
             keys = {c.key for c in dev.controls}
             if b.key not in keys:

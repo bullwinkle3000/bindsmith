@@ -1,0 +1,98 @@
+{
+  "id": "3344:01F8",
+  "name": "VPC Rudder Pedals ACE",
+  "vendor": "VPC / VKB",
+  "kind": "throttle",
+  "controls": [
+    {
+      "key": "Joy_UAxis",
+      "label": "Toe Brake Right",
+      "type": "axis",
+      "axis": "U",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_VAxis",
+      "label": "Toe Brake Left",
+      "type": "axis",
+      "axis": "V",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Joy_ZAxis",
+      "label": "[xb1htsRudAx]",
+      "type": "axis",
+      "axis": "Z",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Pos_Joy_UAxis",
+      "label": "Toe Brake Release Right",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Pos_Joy_VAxis",
+      "label": "Toe Brake Release Left",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Pos_Joy_ZAxis",
+      "label": "[xb1htsRudAx+]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Neg_Joy_UAxis",
+      "label": "Toe Brake Push Right",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Neg_Joy_VAxis",
+      "label": "Toe Brake Push Left",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    },
+    {
+      "key": "Neg_Joy_ZAxis",
+      "label": "[xb1htsRudAx-]",
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
+    }
+  ]
+}
