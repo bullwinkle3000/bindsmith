@@ -1,8 +1,8 @@
 {
   "id": "T16000M",
-  "name": "Thrustmaster T.16000M joystick\nFriendly name: T16000M\nUSB VID:044F PID:B10A",
-  "vendor": "ThrustMaster",
-  "kind": "joystick",
+  "name": "T16000M",
+  "vendor": "",
+  "kind": "unknown",
   "controls": [
     {
       "key": "Joy_1",

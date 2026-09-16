@@ -21,6 +21,7 @@ from .devices import load_devices, generate_from_button_map
 from .ingest import ingest_buttonmaps, GENERIC_ID
 from .port import port
 from .audit import audit
+from .wizard import run as wizard_run, suggest_all
 
 DATA_DIR = Path(__file__).resolve().parent.parent.parent / "data"
 
@@ -97,6 +98,26 @@ def cmd_ingest(args: argparse.Namespace) -> None:
           f"{len(summary['updated'])} updated, {len(summary['skipped'])} skipped")
 
 
+def cmd_assign(args: argparse.Namespace) -> None:
+    data_dir = DATA_DIR / "devices"
+    devices = load_devices(data_dir)
+    norm = {d.replace(":", ""): d for d in devices}
+    key = args.device.replace(":", "")
+    if key not in norm:
+        sys.exit(f"device not in catalog: {args.device}; have: {sorted(devices)}")
+    device = devices[norm[key]]
+
+    if args.suggest:
+        rows = suggest_all(device)
+        for k, cur, sug in rows:
+            mark = "" if cur else ("suggested" if sug else "  (none) ")
+            print(f"  {k:<16} {cur or '-':<24} -> {sug or mark}")
+        return
+
+    wizard_run(device, interactive=not args.suggest,
+               out=str(data_dir) if not args.dry_run else None)
+
+
 def cmd_gen_devices(args: argparse.Namespace) -> None:
     src = Path(args.buttonmaps)
     out = []
@@ -152,6 +173,16 @@ def main(argv: list[str] | None = None) -> int:
     g.add_argument("buttonmaps")
     g.add_argument("--data", help="data/devices dir (default: repo data/devices)")
     g.set_defaults(fn=cmd_ingest)
+
+    w = sub.add_parser("assign",
+                       help="walk a device's controls and assign roles "
+                            "(interactive wizard; --suggest previews)")
+    w.add_argument("device", help="device ID, e.g. 231D0200 or T16000M")
+    w.add_argument("--suggest", action="store_true",
+                   help="non-interactive: print suggested roles, save nothing")
+    w.add_argument("--dry-run", action="store_true",
+                   help="run the wizard but write nothing")
+    w.set_defaults(fn=cmd_assign)
 
     g2 = sub.add_parser("gen-devices",
                        help="build device skeletons from ED DeviceButtonMaps")

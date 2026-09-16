@@ -6,31 +6,14 @@ join of the two. A role is deliberately coarse-grained (a "thrust axis", not
 "left stick Y") so that many devices and many players' layouts can be
 expressed.
 
-Roles are grouped by the control's capability class, and each class carries a
-menu of offered roles (what the CLI/website suggests to a user). The class is
-derived from the control:
-
-  * axis, 2-direction capable (any single Joy axis is bidirectional)
-      -> pitch / yaw / roll  (rotation)
-         thrust fwd-aft / left-right  (translation)
-         throttle / rudder / tune  (one-function axes)
-  * axis, 3-axis cluster (X+Y together, or a 3D stick)
-      -> the pitch/yaw/roll pitch/yaw/roll / pitch/roll / yaw/roll combos
-  * single-direction axis (a physical throttle lever, a pedal, a wheel that
-      only goes one way)
-      -> throttle / tune / speed presets
-  * button
-      -> toggle_* / press_* / menu_navigate / wingman_n / power_* / gear /
-         lights / night_vision / cargo / ...
-  * pov (hat / d-pad / 4-way)
-      -> menu_up/down/left/right, wingman_*, power_distribution, ...
-
-The offered menus below implement exactly that: `offered_roles(capability)`
-returns the list of role strings a control of that capability should present.
+The vocabulary below is the one used by the hand-curated device descriptors
+and the VKB seed preset (fire_primary, menu_up, map_galaxy, ...). Roles are
+grouped by the control's capability class; ``offered_roles(capability)``
+returns the menu a wizard/UI should present for a control of that class.
 """
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 
 
 # ---------------------------------------------------------------------------
@@ -59,94 +42,89 @@ class Capability:
 # Role menus per capability
 # ---------------------------------------------------------------------------
 
+# 3D sticks / 2-axis pairs: one axis per function, listed as "axis_role"
+# pairs so the wizard knows both controls come as a set.
+_STICK_COMBOS = [
+    ("X=yaw", "Y=pitch"),          # conventional flight
+    ("X=yaw", "Y=roll"),           # roll on the stick
+    ("X=pitch", "Y=yaw"),
+    ("X=roll", "Y=yaw"),
+    ("X=pitch", "Y=roll"),
+]
+
+# Single bidirectional axis
 _AXIS_ROTATION = ["pitch", "yaw", "roll"]
+_AXIS_THRUST = ["thrust_fwd", "thrust_aft", "thrust_left", "thrust_right",
+                "thrust_up", "thrust_down"]
+_AXIS_SINGLE = ["throttle", "tune", "rudder"]
 
-_AXIS_TRANS_LATERAL = ["thrust_left", "thrust_right"]
-_AXIS_TRANS_VERT = ["thrust_up", "thrust_down"]
-_AXIS_TRANS_FWD = ["thrust_fwd", "thrust_aft"]
-
-_AXIS_ONE_FUNC = [
-    "throttle", "rudder", "tune", "throttle_range",
-    "invert_yaw", "invert_pitch", "invert_roll",
-]
-
-_PITCH_YAW_ROLL_COMBOS = [
-    "pitch/yaw/roll",     # 3-axis stick: X=yaw Y=pitch Z=roll (conventional)
-    "yaw/roll/pitch",
-    "pitch/roll/yaw",
-    "yaw/pitch/roll",
-    "pitch/yaw (Z=free)",
-    "yaw/roll (Y=free)",
-    "pitch/roll (X=free)",
-]
-
-_POV_MENUS = [
-    "menu_navigate (up/down/left/right)",
-    "wingman_commands (4 dirs)",
-    "power_distribution (4 dirs)",
-    "camera_orbit",
-    "target_selection",
-]
+# One-direction axes (levers, wheels, pedals)
+_AXIS_ONE_WAY = ["throttle", "tune", "throttle_range"]
 
 _BUTTON_MENU = [
-    "toggle_gear", "toggle_lights", "toggle_night_vision",
-    "toggle_cargo", "toggle_safe_mode", "toggle_brake",
-    "toggle_landing_gear_locked", "toggle_afterburner",
-    "press_forward", "press_back", "press_up", "press_down",
-    "toggle_boost", "toggle_target", "toggle_map", "toggle_comms",
+    # fire
+    "fire_primary", "fire_secondary",
+    # boost / hyperspace
+    "use_boost", "hyperfuel_toggle", "hyperspace",
+    # gear
+    "toggle_gear", "gear", "toggle_brake", "brake", "toggle_safe_mode",
+    # lights & nav
+    "toggle_lights", "toggle_night_vision", "toggle_cargo",
+    # maps
+    "map_system", "map_galaxy", "map_starmap",
+    # focus panels
+    "focus_target", "focus_fss", "focus_radar", "focus_comms",
+    "focus_right", "focus_left",
+    # menus
     "menu_confirm", "menu_cancel", "menu_back",
-    "wingman_select_1", "wingman_select_2", "wingman_select_3", "wingman_select_4",
+    # misc toggles
+    "toggle_assist", "toggle_freecam", "toggle_afterburner",
+    "deploy_heatsink", "target_next", "target_prev",
+    # wingman / comms
+    "wingman_select_1", "wingman_select_2", "wingman_select_3",
     "wingman_order_follow", "wingman_order_wait", "wingman_order_hold",
-    "power_engine", "power_shields", "power_weapons", "power_all_off",
-    "brake", "reverse", "turret_up", "turret_down", "turret_left", "turret_right",
+    "comms_toggle", "comms_talk",
 ]
+
+_POV_MENU = [
+    "menu_navigate (up/down/left/right)",
+    "camera_orbit",
+    "target_selection",
+    "wingman_commands (4 dirs)",
+    "power_distribution (4 dirs)",
+]
+
+# Roles that a button, POV or axis may carry (for UI validation / menus).
+ROLE_GROUPS: dict[str, list[str]] = {
+    "Rotation": _AXIS_ROTATION,
+    "Translation": _AXIS_THRUST,
+    "Throttle / tune": _AXIS_SINGLE + ["throttle_range", "invert_throttle"],
+    "Stick combos": [a for pair in _STICK_COMBOS for a in
+                     (pair[0].split("=")[1], pair[1].split("=")[1])],
+    "Buttons": _BUTTON_MENU,
+    "POV / hats": ["menu_up", "menu_down", "menu_left", "menu_right",
+                   "camera_orbit", "target_selection"],
+}
 
 
 def offered_roles(cap: Capability) -> list[str]:
     """Return the role menu to offer for a control of this capability."""
     if cap.is_cluster:
-        # 3-axis or 2-axis stick: offer the rotation combos.
+        # A 3D stick (RX/RY/RZ cluster) covers yaw+pitch+roll in one
+        # control; a 2-axis pair covers two of them.
         if cap.axis_count >= 3:
-            return list(_PITCH_YAW_ROLL_COMBOS)
-        # 2-axis (X+Y): pitch/yaw with the Z-free style.
-        return [
-            "yaw (X) / pitch (Y)",
-            "pitch (X) / yaw (Y)",
-            "roll (X) / yaw (Y)",
-            "pitch (X) / roll (Y)",
-        ]
+            return ["yaw/roll/pitch (3-axis stick)",
+                    "pitch/yaw/roll (3-axis stick)"]
+        return list(_STICK_COMBOS)
     if cap.is_axis and cap.direction == "one":
-        # Single-direction: throttle / tune / speed.
-        return ["throttle", "tune", "throttle_up", "throttle_down",
-                "speed_presets", "invert_throttle"]
+        return list(_AXIS_ONE_WAY)
     if cap.is_axis:
-        # A single bidirectional axis: rotation or translation or one-function.
-        return (
-            list(_AXIS_ROTATION)
-            + list(_AXIS_TRANS_LATERAL)
-            + list(_AXIS_TRANS_VERT)
-            + list(_AXIS_TRANS_FWD)
-            + list(_AXIS_ONE_FUNC)
-        )
+        return list(_AXIS_ROTATION) + list(_AXIS_THRUST) + list(_AXIS_SINGLE)
     if cap.kind == "pov":
-        return list(_POV_MENUS)
+        return list(_POV_MENU)
     if cap.kind == "button":
         return list(_BUTTON_MENU)
     return []
-
-
-# ---------------------------------------------------------------------------
-# Role groups — for rendering the UI menu and for preset semantics
-# ---------------------------------------------------------------------------
-
-ROLE_GROUPS: dict[str, list[str]] = {
-    "Rotation": _AXIS_ROTATION,
-    "Translation": _AXIS_TRANS_LATERAL + _AXIS_TRANS_VERT + _AXIS_TRANS_FWD,
-    "One-function axes": _AXIS_ONE_FUNC,
-    "Stick combos": _PITCH_YAW_ROLL_COMBOS,
-    "POV / hats": _POV_MENUS,
-    "Buttons": _BUTTON_MENU,
-}
 
 
 def role_group(role: str) -> str:
@@ -154,3 +132,13 @@ def role_group(role: str) -> str:
         if role in roles:
             return g
     return "Other"
+
+
+def all_roles() -> list[str]:
+    """Every role in the vocabulary (stable order), for UIs and checks."""
+    out: list[str] = []
+    for roles in ROLE_GROUPS.values():
+        for r in roles:
+            if r not in out:
+                out.append(r)
+    return out
