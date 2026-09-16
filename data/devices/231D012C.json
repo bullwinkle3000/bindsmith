@@ -1,0 +1,28 @@
+{
+  "id": "231D:012C",
+  "name": "VKB STECS Modern Throttle Mini Plus",
+  "vendor": "VKB Sim",
+  "kind": "throttle",
+  "controls": [
+    { "key": "Joy_XAxis",   "label": "Throttle Lever",      "type": "axis", "axis": "X",  "role": "throttle", "group": 0 },
+    { "key": "Joy_YAxis",   "label": "OTS Vertical",        "type": "axis", "axis": "Y",  "role": "thrust_up",  "group": 0 },
+    { "key": "Joy_RXAxis",  "label": "OTS Horizontal (L)",  "type": "axis", "axis": "RX", "role": "thrust_left","group": 0 },
+    { "key": "Joy_RYAxis",  "label": "OTS Horizontal (R)",  "type": "axis", "axis": "RY", "role": "thrust_right","group": 0 },
+    { "key": "Joy_ZAxis",   "label": "Scroll Z",            "type": "axis", "axis": "Z",  "role": "tune",       "group": 0 },
+    { "key": "Joy_10", "label": "SAFE",        "type": "button", "role": "toggle_safe_mode" },
+    { "key": "Joy_15", "label": "ARMED",       "type": "button", "role": "toggle_brake" },
+    { "key": "Joy_11", "label": "Map #1",      "type": "button", "role": "map_galaxy" },
+    { "key": "Joy_12", "label": "Map #2",      "type": "button", "role": "map_system" },
+    { "key": "Joy_13", "label": "Map #3",      "type": "button", "role": "map_starmap" },
+    { "key": "Joy_14", "label": "Map #4",      "type": "button", "role": "toggle_freecam" },
+    { "key": "Joy_22", "label": "Front Trig L","type": "button", "role": "hyperspace" },
+    { "key": "Joy_23", "label": "Weapon Select","type": "button","role": "toggle_assist" },
+    { "key": "Joy_30", "label": "Front Trig R","type": "button", "role": "supercruise" },
+    { "key": "Joy_36", "label": "Boost",       "type": "button", "role": "use_boost" },
+    { "key": "Joy_37", "label": "Heat Sink",   "type": "button", "role": "deploy_heatsink" },
+    { "key": "Joy_38", "label": "Gear / BRK U","type": "button", "role": "toggle_cargo" },
+    { "key": "Joy_39", "label": "BRK D",       "type": "button", "role": "toggle_gear" },
+    { "key": "Joy_40", "label": "BRK R",       "type": "button", "role": "toggle_night_vision" },
+    { "key": "Joy_41", "label": "BRK L",       "type": "button", "role": "toggle_lights" }
+  ]
+}

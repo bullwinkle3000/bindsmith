@@ -1,0 +1,177 @@
+{
+  "id": "231d0200",
+  "name": "VKB Gladiator NXT R layout",
+  "description": "",
+  "ed_version": "4.2",
+  "keyboard_defaults": [],
+  "assignments": [
+    {
+      "action": "YawAxisRaw",
+      "role": "yaw",
+      "inverted": false,
+      "deadzone": 0.0,
+      "note": ""
+    },
+    {
+      "action": "RollAxisRaw",
+      "role": "roll",
+      "inverted": false,
+      "deadzone": 0.0,
+      "note": ""
+    },
+    {
+      "action": "PitchAxisRaw",
+      "role": "pitch",
+      "inverted": false,
+      "deadzone": 0.0,
+      "note": ""
+    },
+    {
+      "action": "ThrottleAxis",
+      "role": "roll",
+      "inverted": false,
+      "deadzone": 0.0,
+      "note": ""
+    },
+    {
+      "action": "Hyperspace",
+      "role": "gear",
+      "inverted": false,
+      "deadzone": 0.0,
+      "note": ""
+    },
+    {
+      "action": "TargetNextRouteSystem",
+      "role": "fire_secondary",
+      "inverted": false,
+      "deadzone": 0.0,
+      "note": ""
+    },
+    {
+      "action": "PrimaryFire",
+      "role": "fire_primary",
+      "inverted": false,
+      "deadzone": 0.0,
+      "note": ""
+    },
+    {
+      "action": "SecondaryFire",
+      "role": "gear",
+      "inverted": false,
+      "deadzone": 0.0,
+      "note": ""
+    },
+    {
+      "action": "ExplorationFSSEnter",
+      "role": "fire_primary",
+      "inverted": false,
+      "deadzone": 0.0,
+      "note": ""
+    },
+    {
+      "action": "UI_Select",
+      "role": "fire_primary",
+      "inverted": false,
+      "deadzone": 0.0,
+      "note": ""
+    },
+    {
+      "action": "UI_Toggle",
+      "role": "gear",
+      "inverted": false,
+      "deadzone": 0.0,
+      "note": ""
+    },
+    {
+      "action": "CycleNextPanel",
+      "role": "menu_right",
+      "inverted": false,
+      "deadzone": 0.0,
+      "note": ""
+    },
+    {
+      "action": "CyclePreviousPanel",
+      "role": "menu_left",
+      "inverted": false,
+      "deadzone": 0.0,
+      "note": ""
+    },
+    {
+      "action": "CycleNextPage",
+      "role": "menu_down",
+      "inverted": false,
+      "deadzone": 0.0,
+      "note": ""
+    },
+    {
+      "action": "CyclePreviousPage",
+      "role": "menu_up",
+      "inverted": false,
+      "deadzone": 0.0,
+      "note": ""
+    },
+    {
+      "action": "SteeringAxis",
+      "role": "yaw",
+      "inverted": false,
+      "deadzone": 0.0,
+      "note": ""
+    },
+    {
+      "action": "BuggyRollAxisRaw",
+      "role": "roll",
+      "inverted": false,
+      "deadzone": 0.0,
+      "note": ""
+    },
+    {
+      "action": "BuggyPitchAxis",
+      "role": "pitch",
+      "inverted": false,
+      "deadzone": 0.0,
+      "note": ""
+    },
+    {
+      "action": "VerticalThrustersButton",
+      "role": "thrust_up",
+      "inverted": false,
+      "deadzone": 0.0,
+      "note": ""
+    },
+    {
+      "action": "BuggyPrimaryFireButton",
+      "role": "fire_primary",
+      "inverted": false,
+      "deadzone": 0.0,
+      "note": ""
+    },
+    {
+      "action": "BuggySecondaryFireButton",
+      "role": "gear",
+      "inverted": false,
+      "deadzone": 0.0,
+      "note": ""
+    },
+    {
+      "action": "DriveSpeedAxis",
+      "role": "roll",
+      "inverted": false,
+      "deadzone": 0.0,
+      "note": ""
+    },
+    {
+      "action": "BuggyToggleReverseThrottleInput",
+      "role": "gear",
+      "inverted": false,
+      "deadzone": 0.0,
+      "note": ""
+    },
+    {
+      "action": "ExplorationFSSRadioTuningAbsoluteX",
+      "role": "throttle",
+      "inverted": false,
+      "deadzone": 0.0,
+      "note": ""
+    }
+  ]
+}
