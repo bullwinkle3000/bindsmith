@@ -118,6 +118,9 @@ Role files stay short because the inventory is generated, not typed.
 
 ## License
 
-GPL-3.0-or-later — see [`LICENSE`](LICENSE). Bundled third-party data keeps
-its own license: the control-label maps are MIT. Full attribution in
-[`NOTICE.md`](NOTICE.md).
+MIT — see [`LICENSE`](LICENSE). Do what you like with it: use it, change it,
+ship it, even in closed-source work. The one condition is that the copyright
+notice travels with it.
+
+Bundled third-party data keeps its own license — the control-label maps in
+`data/buttonmaps/` are also MIT. Full attribution in [`NOTICE.md`](NOTICE.md).

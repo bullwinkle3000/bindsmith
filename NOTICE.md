@@ -4,14 +4,9 @@
 
 Copyright (C) 2026 Andrew Langton.
 
-bindsmith is free software: you can redistribute it and/or modify it under
-the terms of the GNU General Public License as published by the Free Software
-Foundation, either version 3 of the License, or (at your option) any later
-version. The full text is in `LICENSE`.
-
-It is distributed in the hope that it will be useful, but WITHOUT ANY
-WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
-A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+bindsmith is released under the MIT License — the full text is in `LICENSE`.
+In short: use it, change it, ship it, sell it; keep the copyright notice, and
+the author is not liable for anything.
 
 ## EliteCustomButtonNames (EDCD)
 
@@ -22,8 +17,8 @@ The `.buttonMap` files in `data/buttonmaps/` are vendored verbatim from:
 > MIT License, Copyright (c) 2025 Richard Buckle.
 
 The full MIT license text lives in the upstream repository (LICENSE.txt) and
-is reproduced here in `NOTICE_LICENSE_EDCD.txt`. MIT is compatible with this
-project's GPL-3.0-or-later licensing; these data files remain under MIT.
+is reproduced here in `NOTICE_LICENSE_EDCD.txt`. These data files are used
+under their original MIT terms, which match this project's own license.
 
 Device labels in `data/devices/*.json` (the `label` field of every control,
 plus the control inventories of the 38 non-curated devices and the
