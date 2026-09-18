@@ -25,7 +25,11 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 from .devices import Device
-from .parser import Preset, Action, Binding, _derive_action
+from .parser import RawChild, Preset, Action, Binding, _derive_action
+
+# ED's own marker for "this action has no binding" — the value the game itself
+# writes, so a blank profile is indistinguishable from one the game saved.
+NO_DEVICE = "{NoDevice}"
 
 
 @dataclass
@@ -198,3 +202,55 @@ def _iter_bindings(action: Action):
         yield e
     for h in action.holds:
         yield h
+
+
+# ---------------------------------------------------------------------------
+# blank profiles
+# ---------------------------------------------------------------------------
+
+_BINDING_TAGS = ("Primary", "Secondary", "Binding")
+
+
+def _clear_child(rc: RawChild) -> None:
+    """Clear one child element of an action, in place.
+
+    Bindings become ``{NoDevice}``; per-control tuning resets to the values
+    the game writes for an unbound action; a held binding (``<Hold>``) is
+    cleared through its own Primary/Secondary/Binding children.
+    """
+    if rc.tag in _BINDING_TAGS:
+        rc.attrs = {"Device": NO_DEVICE, "Key": ""}
+        rc.children = []          # drops any <Modifier> with the binding
+        rc.text = ""
+    elif rc.tag == "Hold":
+        for h in rc.children:
+            _clear_child(h)
+    elif rc.tag == "Inverted":
+        rc.attrs = {"Value": "0"}
+    elif rc.tag == "Deadzone":
+        rc.attrs = {"Value": "0.00000000"}
+    elif rc.tag == "ToggleOn":
+        rc.attrs = {"Value": "0"}
+
+
+def blank_from(template: Preset, name: str = "") -> Preset:
+    """A complete, valid profile with every binding cleared.
+
+    A ``.binds`` file is matched to the game by *action name*, so dropping
+    actions is not the same as unbinding them. A blank profile therefore keeps
+    the template's full action set in its original order and clears each
+    binding to ``{NoDevice}`` — which is exactly how the game writes an action
+    nothing is bound to.
+
+    Root-level settings (mouse sensitivity, yaw-into-roll mode, and so on) are
+    play preferences rather than bindings, so they carry over from the
+    template.
+    """
+    out = copy.deepcopy(template)
+    for action in out.actions:
+        for rc in action.children:
+            _clear_child(rc)
+    out.actions = [_derive_action(a.name, a.children) for a in out.actions]
+    if name:
+        out.name = name
+    return out

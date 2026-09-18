@@ -21,6 +21,7 @@ The page at / is a self-contained single-file editor (no build step).
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 
 from fastapi import FastAPI, HTTPException
@@ -35,6 +36,7 @@ from bindsmith.parser import parse_binds
 from bindsmith.presets import (
     Assignment,
     PresetLayout,
+    blank_from,
     instantiate,
     load,
     save,
@@ -410,6 +412,140 @@ def seed(name: str, body: SeedBody):
     save(layout, _preset_path(name))
     write(binds, _preset_path(name).with_suffix(".binds"))
     return {"ok": True, "name": name, "actions": len(layout.assignments)}
+
+
+# ---------------------------------------------------------------------------
+# profiles: create (blank / copy) and delete
+# ---------------------------------------------------------------------------
+
+class ProfileBody(BaseModel):
+    mode: str = "blank"           # blank | copy | ed
+    source: str | None = None     # preset filename (copy) | ED binds filename (ed)
+    device: str | None = None     # device key, for role seeding in 'ed' mode
+    title: str | None = None
+
+
+def _safe_base(base: str) -> str:
+    """Validate a bare profile name (no directory parts, no extension games)."""
+    b = base[:-5] if base.endswith(".json") else base
+    if (not b or b.startswith(".") or "/" in b or "\\" in b
+            or not re.fullmatch(r"[A-Za-z0-9._-]+", b)):
+        raise HTTPException(400, "profile name may contain letters, digits, "
+                                 "dot, underscore and hyphen only")
+    return b
+
+
+def _template_binds() -> Path:
+    """The blank action set to start from, preferring the shipped template."""
+    shipped = sorted((DATA_DIR / "actions").glob("*.template.binds"))
+    if shipped:
+        return shipped[-1]                      # newest version wins
+    skeletons = sorted(PRESET_DIR.glob("*.binds"))
+    if skeletons:
+        return skeletons[0]
+    if ED_BINDS_DIR.exists():
+        ed = sorted(ED_BINDS_DIR.glob("*.binds"))
+        if ed:
+            return ed[0]
+    raise HTTPException(500, "no template .binds available to start from")
+
+
+@app.post("/api/profiles/{base}")
+def create_profile(base: str, body: ProfileBody):
+    """Create a profile: a .binds plus the layout that drives it.
+
+    blank  start from the full action set with nothing bound
+    copy   duplicate an existing profile in this project
+    ed     copy a config from the game, optionally seeding roles from a device
+    """
+    b = _safe_base(base)
+    json_path = PRESET_DIR / f"{b}.json"
+    binds_path = PRESET_DIR / f"{b}.binds"
+    if json_path.exists() or binds_path.exists():
+        raise HTTPException(409, f"a profile named {b!r} already exists")
+
+    mode = (body.mode or "blank").lower()
+
+    if mode == "blank":
+        blank = blank_from(parse_binds(_template_binds()), name=b)
+        write(blank, binds_path)
+        layout = PresetLayout(
+            id=b, name=body.title or b,
+            description="Blank profile: every action present, nothing bound. "
+                        "Add actions and give them roles to build it up.",
+        )
+        save(layout, json_path)
+        return {"ok": True, "name": json_path.name, "binds": binds_path.name,
+                "mode": mode, "actions": len(blank.actions), "assignments": 0}
+
+    if mode == "copy":
+        src = _preset_path(body.source or "")
+        src_binds = src.with_suffix(".binds")
+        if not src_binds.exists():
+            raise HTTPException(400, f"{src.name} has no .binds to copy")
+        layout = _load_layout(src.name)
+        layout.id = b
+        layout.name = body.title or f"{layout.name} (copy)"
+        save(layout, json_path)
+        write(parse_binds(src_binds), binds_path)
+        return {"ok": True, "name": json_path.name, "binds": binds_path.name,
+                "mode": mode, "actions": len(parse_binds(binds_path).actions),
+                "assignments": len(layout.assignments)}
+
+    if mode == "ed":
+        src = ED_BINDS_DIR / (body.source or "")
+        if not src.exists():
+            raise HTTPException(404, f"no ED binds file {body.source!r}")
+        binds = parse_binds(src)
+        if body.device:
+            _, dev = _get_device(body.device)
+            layout = seed_from_binds(binds, dev)
+            layout.id = b
+            if body.title:
+                layout.name = body.title
+        else:
+            layout = PresetLayout(
+                id=b, name=body.title or b,
+                description=f"Copy of {src.name}, no roles assigned yet.",
+            )
+        save(layout, json_path)
+        write(binds, binds_path)
+        return {"ok": True, "name": json_path.name, "binds": binds_path.name,
+                "mode": mode, "actions": len(binds.actions),
+                "assignments": len(layout.assignments)}
+
+    raise HTTPException(400, "mode must be 'blank', 'copy' or 'ed'")
+
+
+@app.delete("/api/profiles/{base}")
+def delete_profile(base: str):
+    b = _safe_base(base)
+    removed = []
+    for p in (PRESET_DIR / f"{b}.json", PRESET_DIR / f"{b}.binds"):
+        if p.exists():
+            p.unlink()
+            removed.append(p.name)
+    if not removed:
+        raise HTTPException(404, f"no profile named {b!r}")
+    return {"ok": True, "name": b, "removed": removed}
+
+
+@app.get("/api/presets/{name}/actions")
+def preset_actions(name: str):
+    """Every action the profile's .binds knows about, flagged if unassigned.
+
+    The editor uses this to offer actions to add: a blank profile has the full
+    action set and no assignments, so without this there is nothing to add.
+    """
+    skeleton = _binds_skeleton(name)
+    assigned = {a.action for a in _load_layout(name).assignments}
+    return {
+        "count": len(skeleton.actions),
+        "actions": [
+            {"name": a.name, "assigned": a.name in assigned, "bound": a.is_bound}
+            for a in skeleton.actions
+        ],
+    }
 
 
 # ---------------------------------------------------------------------------

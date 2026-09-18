@@ -17,7 +17,6 @@ import { join } from 'node:path';
 const URL_ = process.argv[2] || 'http://127.0.0.1:8770/';
 const CHROME = process.argv[3] ||
   '/home/andy/.cache/ms-playwright/chromium-1234/chrome-linux64/chrome';
-const PORT = 9333;
 const PROFILE = mkdtempSync(join(tmpdir(), 'bs-ui-'));
 const fails = [];
 
@@ -28,20 +27,41 @@ function check(label, cond, detail = '') {
   if (!cond) fails.push(label);
 }
 
-const chrome = spawn(CHROME, [
+let chrome = null;
+function cleanup() {
+  try { if (chrome) chrome.kill('SIGKILL'); } catch (_) { /* already gone */ }
+  try { rmSync(PROFILE, { recursive: true, force: true }); } catch (_) { /* best effort */ }
+}
+// A crashed run must never leave a browser behind: a leftover instance holding
+// a fixed debug port is invisible to the next run, which then silently drives
+// a stale page. Hence port 0 (see below) plus these handlers.
+process.on('exit', cleanup);
+process.on('uncaughtException', (e) => { console.error(e); process.exit(1); });
+
+chrome = spawn(CHROME, [
   '--headless=new', '--disable-gpu', '--no-sandbox', '--no-first-run',
-  '--disable-dev-shm-usage', `--remote-debugging-port=${PORT}`,
+  '--disable-dev-shm-usage', '--remote-debugging-port=0',
   `--user-data-dir=${PROFILE}`, '--window-size=1400,1000', URL_,
 ], { stdio: ['ignore', 'ignore', 'pipe'] });
 
+// Ask Chrome to choose a free port, then read the port it actually chose from
+// its own stderr and talk to that — never a port we guessed.
 let chromeErr = '';
-chrome.stderr.on('data', (d) => { chromeErr += d.toString(); });
+const devtoolsUrl = await new Promise((res, rej) => {
+  const t = setTimeout(() => rej(new Error('no devtools endpoint:\n'
+    + chromeErr.slice(-400))), 25000);
+  chrome.stderr.on('data', (d) => {
+    chromeErr += d.toString();
+    const m = chromeErr.match(/DevTools listening on (ws:\/\/[^\s]+)/);
+    if (m) { clearTimeout(t); res(m[1]); }
+  });
+});
+const DEV = new URL(devtoolsUrl).host;      // 127.0.0.1:<the port it picked>
 
 async function targets() {
   for (let i = 0; i < 60; i++) {
     try {
-      const r = await fetch(`http://127.0.0.1:${PORT}/json/list`);
-      const list = await r.json();
+      const list = await (await fetch(`http://${DEV}/json/list`)).json();
       const page = list.find((t) => t.type === 'page' && t.webSocketDebuggerUrl);
       if (page) return page;
     } catch (_) { /* not up yet */ }
@@ -80,9 +100,13 @@ async function evaluate(expr) {
   const r = await send('Runtime.evaluate', {
     expression: expr, awaitPromise: true, returnByValue: true,
   });
-  if (r.result?.exceptionDetails) {
-    throw new Error(r.result.exceptionDetails.exception?.description
-      || 'evaluate failed');
+  const det = r.result?.exceptionDetails;
+  if (det) {
+    const ex = det.exception || {};
+    const frames = (det.stackTrace?.callFrames || [])
+      .map((f) => `  at ${f.functionName || '(anon)'} :${f.lineNumber + 1}:${f.columnNumber + 1}`)
+      .join('\n');
+    throw new Error(`${ex.description || det.text}\n${frames}`);
   }
   return r.result?.result?.value;
 }
@@ -107,16 +131,14 @@ const status = await evaluate(`(() => ({
   title: document.title,
   version: (document.getElementById('hdr-version')||{}).textContent,
   chips: [...document.querySelectorAll('#status-facts .chip')].map(c=>c.textContent.trim()),
-  seedSrc: [...document.querySelectorAll('#seed-src option')].map(o=>o.textContent),
-  seedDevices: document.getElementById('seed-dev')?.options.length ?? -1,
+  panels: [...document.querySelectorAll('#tab-status .panel h2')].map(h=>h.textContent.trim()),
 }))()`);
 console.log('status:', JSON.stringify(status));
 check('page title', /bindsmith/i.test(status.title || ''), status.title);
 check('version chip populated', /^v\d/.test(status.version || ''), status.version);
 check('status chips rendered', status.chips.length >= 5, status.chips.join(' | '));
-check('seed form lists ED binds', (status.seedSrc || []).length > 0,
-  (status.seedSrc || []).join(', '));
-check('seed form lists devices', status.seedDevices > 0, `${status.seedDevices} options`);
+check('editor explains itself', status.panels.some(p => /how this works/i.test(p)),
+  status.panels.join(' | '));
 
 /* ── devices tab ────────────────────────────────────────────────────── */
 const devList = await evaluate(`(() => {
@@ -212,6 +234,108 @@ const portOut = await evaluate(`(() => ({
 }))()`);
 check('port preview rendered', portOut.chips.length >= 2, portOut.text.replace(/\n/g, ' / '));
 
+/* ── create / copy / delete a profile, and edit assignments ─────────── */
+// Unique per run: a profile left behind by an interrupted run must not make
+// this one fail with a duplicate-name error (which would look like a bug in
+// the app rather than a dirty workspace).
+const TESTPROF = 'zz_ui_' + Date.now().toString(36);
+// Clear anything an earlier interrupted run left behind, so the workspace is
+// self-healing and a dirty directory can never be mistaken for an app bug.
+const APIBASE = URL_.replace(/\/$/, '');
+try {
+  const existing = await (await fetch(`${APIBASE}/api/presets`)).json();
+  for (const p of existing.filter((p) => (p.name || '').startsWith('zz_ui_'))) {
+    await fetch(`${APIBASE}/api/profiles/${encodeURIComponent(p.name)}`,
+                { method: 'DELETE' });
+    console.log('cleaned stale test profile:', p.name);
+  }
+} catch (_) { /* not fatal: the run just may collide */ }
+await evaluate(`window.confirm = () => true;  // headless: auto-accept dialogs`);
+await evaluate(`tab('presets'); loadPresets();`);
+await sleep(1000);
+await evaluate(`showCreateForm()`);
+await sleep(600);
+const form = await evaluate(`(() => ({
+  hasName: !!document.getElementById('np-name'),
+  hasGo: !!document.getElementById('np-go'),
+  modes: [...document.querySelectorAll('input[name=npmode]')].map(r=>r.value),
+  srcHidden: !!document.getElementById('np-src-wrap').hidden,
+}))()`);
+check('create form renders', form.hasName && form.hasGo, JSON.stringify(form));
+check('create form offers three modes',
+  ['blank','copy','ed'].every(m => form.modes.includes(m)), form.modes.join(','));
+check('blank mode hides the source picker', form.srcHidden === true);
+
+// switch modes -> the right pickers appear
+await evaluate(`npMode('copy')`);
+await sleep(400);
+const copyMode = await evaluate(`({ srcHidden: !!document.getElementById('np-src-wrap').hidden,
+  srcOptions: [...document.querySelectorAll('#np-src option')].map(o=>o.value) })`);
+check('copy mode shows project sources', copyMode.srcHidden === false,
+  copyMode.srcOptions.join(', '));
+await evaluate(`npMode('ed')`);
+await sleep(600);
+const edMode = await evaluate(`({ src: [...document.querySelectorAll('#np-src option')].map(o=>o.value),
+  dev: [...document.querySelectorAll('#np-dev option')].map(o=>o.value) })`);
+check('ED mode lists game configs', edMode.src.length > 0, edMode.src.join(', '));
+check('ED mode offers devices for role reading',
+  edMode.dev.some(v => v === '231D0200'), `${edMode.dev.length} options`);
+
+// actually create a blank profile through the UI
+await evaluate(`(() => { npMode('blank');
+  document.getElementById('np-name').value = '${TESTPROF}'; })()`);
+await evaluate(`doCreate()`);
+await sleep(2500);
+const created = await evaluate(`(() => ({
+  out: ((document.getElementById('np-out')||{}).innerText || '').replace(/\\n/g,' '),
+  panelTitle: ((document.querySelector('#pre-main .panel h2')||{}).innerText || '')
+    .replace(/\\n/g,' '),
+  inList: [...document.querySelectorAll('#pre-list li')].some(li =>
+    (li.dataset.name||'').startsWith('${TESTPROF}')),
+  addBar: !!document.getElementById('add-action'),
+  hint: (document.getElementById('add-hint')||{}).textContent,
+  dlSize: document.querySelectorAll('#all-actions option').length,
+}))()`);
+// On success the form is replaced by the new profile's detail view, so the
+// evidence is the list entry + the opened panel, not the form's own output.
+check('creating a blank profile works',
+  created.inList === true && created.panelTitle.includes(TESTPROF),
+  `panel: ${created.panelTitle} | form output: ${created.out || '(form replaced)'}`);
+check('new profile appears in the list', created.inList === true);
+check('new profile opens with the add-action bar', created.addBar === true);
+check('action picker populated', created.dlSize > 300,
+  `${created.dlSize} unassigned — ${created.hint}`);
+
+// add an assignment, then remove it
+await evaluate(`(() => { document.getElementById('add-action').value = 'PitchAxisRaw';
+  document.getElementById('add-role').value = 'pitch'; })()`);
+await evaluate(`addAssignment()`);
+await sleep(2200);
+const added = await evaluate(`(() => ({
+  rows: document.querySelectorAll('#pre-main tbody tr').length,
+  hasPitch: [...document.querySelectorAll('#pre-main tbody tr td.a')]
+    .some(td => td.textContent === 'PitchAxisRaw'),
+}))()`);
+check('assignment added through the UI', added.hasPitch === true,
+  `${added.rows} rows`);
+
+await evaluate(`removeAssignment('PitchAxisRaw')`);
+await sleep(2200);
+const removed = await evaluate(`(() => ({
+  hasPitch: [...document.querySelectorAll('#pre-main tbody tr td.a')]
+    .some(td => td.textContent === 'PitchAxisRaw'),
+  rows: document.querySelectorAll('#pre-main tbody tr').length,
+}))()`);
+check('assignment removed through the UI', removed.hasPitch === false,
+  `${removed.rows} rows left`);
+
+// delete the throwaway profile
+await evaluate(`deleteProfile()`);
+await sleep(2200);
+const deleted = await evaluate(`({ inList: [...document.querySelectorAll('#pre-list li')]
+  .some(li => (li.dataset.name||'').startsWith('${TESTPROF}')) })`);
+check('profile deleted through the UI', deleted.inList === false);
+
 /* ── console errors ─────────────────────────────────────────────────── */
 check('no uncaught JS errors', consoleErrors.length === 0,
   consoleErrors.slice(0, 3).join(' ;; ') || 'clean');
@@ -224,6 +348,5 @@ if (fails.length) {
 }
 
 ws.close();
-chrome.kill('SIGKILL');
-rmSync(PROFILE, { recursive: true, force: true });
+cleanup();
 process.exit(fails.length ? 1 : 0);

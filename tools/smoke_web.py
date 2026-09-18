@@ -109,6 +109,55 @@ def main() -> int:
           f"remapped={len(prt.get('remapped') or [])} "
           f"unmapped={len(prt.get('unmapped') or [])} unchanged={prt.get('unchanged')}")
 
+    # ---- profiles: create blank / copy / guards / delete -----------------
+    st, made = call("POST", "/api/profiles/zz_blank", {"mode": "blank"})
+    check("POST create blank profile", st == 200 and made.get("actions", 0) > 100,
+          f"{made.get('actions')} actions, {made.get('assignments')} assignments")
+
+    st, acts = call("GET", "/api/presets/zz_blank.json/actions")
+    check("blank profile exposes the full action set",
+          st == 200 and acts["count"] > 100,
+          f"{acts['count']} actions")
+    check("blank profile starts unassigned",
+          not any(a["assigned"] for a in acts["actions"]))
+
+    st, _ = call("PUT", "/api/presets/zz_blank.json",
+                 {"assignments": [{"action": "PitchAxisRaw", "role": "pitch",
+                                   "inverted": True, "deadzone": 0.0, "note": "test"}]})
+    check("add an assignment to a blank profile", st == 200)
+    st, acts2 = call("GET", "/api/presets/zz_blank.json/actions")
+    got = next((a for a in acts2["actions"] if a["name"] == "PitchAxisRaw"), None)
+    check("assignment shows as assigned", bool(got and got["assigned"]))
+
+    st, _ = call("PUT", "/api/presets/zz_blank.json",
+                 {"assignments": [{"action": "PitchAxisRaw", "role": None}]})
+    st, acts3 = call("GET", "/api/presets/zz_blank.json/actions")
+    got = next((a for a in acts3["actions"] if a["name"] == "PitchAxisRaw"), None)
+    check("removing an assignment unbinds it", bool(got and not got["assigned"]))
+
+    st, cp = call("POST", "/api/profiles/zz_copy",
+                  {"mode": "copy", "source": "zz_blank.json"})
+    check("POST copy a profile", st == 200 and cp.get("actions", 0) > 100,
+          f"{cp.get('actions')} actions")
+
+    st, _ = call("POST", "/api/profiles/zz_blank", {"mode": "blank"})
+    check("duplicate profile name -> 409", st == 409)
+
+    st, _ = call("POST", "/api/profiles/..%2Fevil",
+                 {"mode": "blank"})
+    check("path traversal in name -> 400/404", st in (400, 404), f"got {st}")
+
+    st, _ = call("POST", "/api/profiles/zz_badmode", {"mode": "bogus"})
+    check("unknown mode -> 400", st == 400)
+
+    st, d1 = call("DELETE", "/api/profiles/zz_blank")
+    check("DELETE profile removes both files",
+          st == 200 and len(d1.get("removed", [])) == 2, str(d1.get("removed")))
+    st, _ = call("DELETE", "/api/profiles/zz_copy")
+    check("DELETE the copy", st == 200)
+    st, _ = call("DELETE", "/api/profiles/zz_blank")
+    check("DELETE missing profile -> 404", st == 404)
+
     st, _ = call("GET", "/")
     check("GET / serves the editor", st == 200)
 

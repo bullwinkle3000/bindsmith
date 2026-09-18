@@ -40,29 +40,33 @@ def render(preset: Preset, indent: str = "\t") -> bytes:
             child = ET.SubElement(ael, rc.tag, dict(rc.attrs))
             _emit_raw(rc, child)
 
-    # ED's files are tab-indented with a CRLF-flavoured look; we emit 2-space
-    # pretty + trailing newline. ED tolerates any valid XML; the indentation
-    # is not load-bearing (the parser proved it).
+    # ED's files are tab-indented; we reproduce that. The indentation is not
+    # load-bearing (ED parses any valid XML) but it keeps generated files
+    # diffable against the game's own output.
     _indent_xml(root, indent)
     return (
         '<?xml version="1.0" encoding="UTF-8" ?>\n'
-        + ET.tostring(root, encoding="unicode")
+        + ET.tostring(root, encoding="unicode").rstrip("\n")
         + "\n"
     ).encode("utf-8")
 
 
 def _indent_xml(elem: ET.Element, indent: str) -> None:
-    # Minimal pretty-printer (no external dep).
+    # Minimal pretty-printer (no external dep). Two details matter:
+    #   * a parent's .text puts its FIRST child on a fresh line, otherwise the
+    #     first child is emitted straight after the opening tag;
+    #   * the LAST child's tail uses the parent's indent, so the closing tag
+    #     lines up with the opening tag instead of over-indenting.
     def _walk(e: ET.Element, level: int) -> None:
         pad = indent * level
         if len(e):
-            for i, c in enumerate(e):
+            e.text = "\n" + pad + indent
+            for c in e:
                 _walk(c, level + 1)
-                if i < len(e) - 1:
-                    c.tail = "\n" + pad + indent
-            e.tail = "\n" + pad
-        else:
-            e.tail = "\n" + pad
+            last = len(e) - 1
+            for i, c in enumerate(e):
+                c.tail = ("\n" + pad + indent) if i < last else ("\n" + pad)
+        e.tail = "\n" + pad
     _walk(elem, 0)
 
 

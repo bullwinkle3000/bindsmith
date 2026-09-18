@@ -45,6 +45,9 @@ Early, but the engine works end to end against a real 700-hour VKB setup:
 - ships a web editor: assign roles per control from a capability-aware menu,
   edit a preset's assignments, resolve it onto a device, audit it, and port it
   to other hardware — all backed by the same library the CLI uses
+- creates profiles: blank (the full action set, nothing bound), a copy of
+  another profile, or a copy of a config from the game with roles read off a
+  chosen device — plus delete
 
 Not built yet: mode-aware conflict checks (flight / SRV / on-foot), a packaged
 release, and CI.
@@ -66,14 +69,18 @@ src/bindsmith/     engine (stdlib only)
   cli.py           parse / audit / port / ingest / assign / serve / gen-devices
 data/
   buttonmaps/      38 control-label maps (see ATTRIBUTION.md)
+  actions/         <version>.template.binds — the blank action set
   devices/         descriptors: full inventory + curated roles
-  presets/         role-based layouts
+  presets/         profiles: a role-based layout + its .binds
 web/index.html     self-contained editor (no build step)
 tools/
   reingest.py      refresh descriptors from button maps
+  make_template.py regenerate the blank action set from a real config
   check_coverage.py  report controls ED's maps have no label for
   smoke_web.py     exercise every API endpoint
   ui_check.mjs     drive the editor headlessly, catch JS errors
+  shot.mjs         capture the editor's views as PNGs
+  check_pngs.py    verify captures are real renders, not blank pages
 ```
 
 ## Usage

@@ -120,25 +120,21 @@
         <div class="pad" id="status-facts"><span class="muted">loading…</span></div>
       </div>
       <div class="panel">
-        <h2>Seed a preset from an existing config</h2>
-        <div class="pad">
-          <p class="small muted" style="margin-top:0">
-            Reads an Elite Dangerous <code>.binds</code> file, works out what role each
-            bound control plays on the chosen device, and saves it as a portable,
-            hardware-independent preset.
-          </p>
-          <div class="row" style="align-items:flex-end">
-            <div class="field"><label for="seed-name">New preset filename</label>
-              <input id="seed-name" placeholder="my_layout.json" size="22"></div>
-            <div class="field"><label for="seed-src">ED binds file</label>
-              <select id="seed-src"></select></div>
-            <div class="field"><label for="seed-dev">Roles belong to device</label>
-              <select id="seed-dev"></select></div>
-            <div class="field"><label for="seed-title">Title (optional)</label>
-              <input id="seed-title" placeholder="My VKB layout" size="18"></div>
-            <button class="primary" id="seed-go" onclick="doSeed()">Seed</button>
-          </div>
-          <div id="seed-out" class="small" style="margin-top:10px"></div>
+        <h2>How this works</h2>
+        <div class="pad small">
+          <p style="margin-top:0">A <b>profile</b> is two files that always travel together:</p>
+          <ul style="margin:6px 0 12px;padding-left:18px;line-height:1.7">
+            <li><span class="k">name.binds</span> — the config the game reads: every action,
+              and what control is bound to it.</li>
+            <li><span class="k">name.json</span> — the layout: what each bound control
+              <em>means</em>, written as roles rather than device keys.</li>
+          </ul>
+          <p>Roles are the trick. A binding says <span class="a">231D0200 · Joy_YAxis</span>,
+          which is meaningless on any other stick. A role says <span class="role">pitch</span>,
+          which every joystick can satisfy. So a layout can be moved to new hardware —
+          which is what <b>Port</b> does.</p>
+          <p style="margin-bottom:0">Start in <b>Devices</b> to describe your hardware,
+          then <b>Profiles</b> to build and move layouts.</p>
         </div>
       </div>
     </div>
@@ -164,7 +160,8 @@
   <section id="tab-presets" hidden>
     <div class="grid">
       <div class="panel">
-        <h2>Presets</h2>
+        <h2>Profiles
+          <span class="right"><button onclick="showCreateForm()">+ new</button></span></h2>
         <ul class="list" id="pre-list"><li class="empty">loading…</li></ul>
       </div>
       <div id="pre-main">
@@ -204,6 +201,7 @@ const PUT  = (u, body) => j(u, {method:'PUT', headers:{'Content-Type':'applicati
                                 body: JSON.stringify(body)});
 const POST = (u, body) => j(u, {method:'POST', headers:{'Content-Type':'application/json'},
                                 body: JSON.stringify(body)});
+const DEL  = (u) => j(u, {method:'DELETE'});
 
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g,
   c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -239,13 +237,8 @@ async function loadStatus() {
       <div class="chips">${
         (h.ed_binds_files||[]).map(f => `<span class="chip">${esc(f)}</span>`).join('')
         || '<span class="muted small">none</span>'}</div>`;
-    // seed form
-    $('seed-src').innerHTML = (h.ed_binds_files||[])
-      .map(f => `<option>${esc(f)}</option>`).join('') || '<option value="">—</option>';
+    STATE.edBinds = h.ed_binds_files || [];
     await ensureDevices();
-    $('seed-dev').innerHTML = STATE.devices
-      .map(d => `<option value="${esc(d.key)}">${esc(d.name)} · ${esc(d.id)}</option>`)
-      .join('');
   } catch (e) { toast('Status failed: ' + e.message, true); }
 }
 
@@ -254,26 +247,131 @@ async function ensureDevices() {
   return STATE.devices;
 }
 
-async function doSeed() {
-  const name  = $('seed-name').value.trim();
-  const binds = $('seed-src').value;
-  const dev   = $('seed-dev').value;
-  const title = $('seed-title').value.trim();
-  if (!name.endsWith('.json')) return toast('Preset filename must end in .json', true);
-  if (!binds) return toast('No ED binds file selected', true);
-  $('seed-go').disabled = true; $('seed-out').textContent = 'seeding…';
+/* ─────────────────── create / copy / delete a profile ─────────────────── */
+
+let CREATE = {mode: 'blank'};
+
+function showCreateForm() {
+  tab('presets');
+  for (const li of document.querySelectorAll('#pre-list li')) li.classList.remove('on');
+  $('pre-main').innerHTML = `
+    <div class="panel">
+      <h2 class="norm">New profile</h2>
+      <div class="pad">
+        <div class="row" style="align-items:flex-end">
+          <div class="field"><label for="np-name">Name</label>
+            <input id="np-name" placeholder="my_hotas" size="20"
+                   oninput="npPreview()"></div>
+          <div class="field"><label for="np-title">Title (optional)</label>
+            <input id="np-title" placeholder="My HOTAS layout" size="22"></div>
+        </div>
+        <div class="small muted" style="margin-top:6px" id="np-files"></div>
+
+        <div style="margin-top:16px">
+          <label class="small muted" style="text-transform:uppercase;
+                 letter-spacing:.5px;font-size:11px">Start from</label>
+          <div style="margin-top:6px;display:flex;flex-direction:column;gap:6px">
+            <label class="small"><input type="radio" name="npmode" value="blank"
+              checked onchange="npMode('blank')"> <b>Blank</b> — every action present,
+              nothing bound. Build a layout from scratch.</label>
+            <label class="small"><input type="radio" name="npmode" value="copy"
+              onchange="npMode('copy')"> <b>Copy a profile</b> — duplicate one you
+              already have, then change what you like.</label>
+            <label class="small"><input type="radio" name="npmode" value="ed"
+              onchange="npMode('ed')"> <b>Copy a config from Elite Dangerous</b> —
+              and optionally read roles off a device.</label>
+          </div>
+        </div>
+
+        <div class="row" style="align-items:flex-end;margin-top:14px">
+          <div class="field" id="np-src-wrap" hidden><label for="np-src">Source</label>
+            <select id="np-src" style="min-width:280px"></select></div>
+          <div class="field" id="np-dev-wrap" hidden><label for="np-dev">Read roles
+            from device</label>
+            <select id="np-dev" style="min-width:280px"></select></div>
+        </div>
+        <div class="row" style="margin-top:16px">
+          <button class="primary" id="np-go" onclick="doCreate()">Create profile</button>
+          <span class="muted small">creates <span class="k" id="np-hint">name</span>.binds
+            + .json</span>
+        </div>
+        <div id="np-out" class="small" style="margin-top:10px"></div>
+      </div>
+    </div>`;
+  npMode('blank');
+  npPreview();
+}
+
+function npPreview() {
+  const n = ($('np-name').value.trim() || 'name')
+    .replace(/\.json$/, '').replace(/[^A-Za-z0-9._-]/g, '_');
+  $('np-hint').textContent = n;
+}
+
+function npMode(mode) {
+  CREATE.mode = mode;
+  const srcWrap = $('np-src-wrap'), devWrap = $('np-dev-wrap');
+  srcWrap.hidden = (mode === 'blank');
+  devWrap.hidden = (mode !== 'ed');
+  if (mode === 'copy') {
+    const opts = (STATE.presets || []).filter(p => p.has_binds)
+      .map(p => `<option value="${esc(p.name)}">${esc(p.title || p.name)}</option>`);
+    $('np-src').innerHTML = opts.join('') ||
+      '<option value="">no profile has a .binds to copy</option>';
+  } else if (mode === 'ed') {
+    $('np-src').innerHTML = (STATE.edBinds || []).map(f =>
+      `<option>${esc(f)}</option>`).join('') || '<option value="">none found</option>';
+    ensureDevices().then(() => {
+      $('np-dev').innerHTML =
+        '<option value="">— none (copy bindings without roles) —</option>' +
+        STATE.devices.map(d =>
+          `<option value="${esc(d.key)}">${esc(d.name)} · ${esc(d.id)}</option>`).join('');
+    });
+  }
+}
+
+async function doCreate() {
+  const name = ($('np-name').value.trim() || '').replace(/\.json$/, '');
+  if (!name) return toast('Give the profile a name', true);
+  const body = {mode: CREATE.mode, title: ($('np-title').value.trim() || null)};
+  if (CREATE.mode !== 'blank') body.source = $('np-src').value;
+  if (CREATE.mode === 'ed') body.device = $('np-dev').value || null;
+
+  // Grab the button now: on success we navigate to the new profile, which
+  // replaces this form, so the element is gone by the time the finally runs.
+  const go = $('np-go');
+  const out = $('np-out');
+  if (go) go.disabled = true;
+  if (out) out.innerHTML = '<span class="muted small">creating…</span>';
   try {
-    const r = await POST('/api/seed/' + encodeURIComponent(name),
-                         {ed_binds: binds, device: dev, title: title || null});
-    $('seed-out').innerHTML =
-      `<span class="chip good">created <b>${esc(r.name)}</b></span>
-       <span class="chip">roles <b>${r.actions}</b></span>`;
-    toast(`Seeded ${r.name} (${r.actions} role assignments)`);
+    const r = await POST('/api/profiles/' + encodeURIComponent(name), body);
+    if (out) out.innerHTML = `
+      <span class="chip good">created <b>${esc(r.name)}</b></span>
+      <span class="chip">actions <b>${r.actions}</b></span>
+      <span class="chip">assigned roles <b>${r.assignments}</b></span>`;
+    toast(`Created ${r.name} (${r.actions} actions, ${r.assignments} roles)`);
     STATE.presets = [];
+    await loadPresets();
+    selectPreset(r.name);
   } catch (e) {
-    $('seed-out').innerHTML = `<span class="chip bad">${esc(e.message)}</span>`;
-    toast('Seed failed: ' + e.message, true);
-  } finally { $('seed-go').disabled = false; }
+    if (out) out.innerHTML = `<span class="chip bad">${esc(e.message)}</span>`;
+    toast('Create failed: ' + e.message, true);
+  } finally { if (go) go.disabled = false; }
+}
+
+async function deleteProfile() {
+  const p = STATE.curPreset;
+  if (!p) return;
+  if (!confirm(`Delete "${p.name}" and its .binds file? This cannot be undone.`)) return;
+  try {
+    const r = await DEL('/api/profiles/' + encodeURIComponent(p.name));
+    toast(`Deleted ${r.removed.join(' + ')}`);
+    STATE.curPreset = null;
+    STATE.presets = [];
+    await loadPresets();
+    $('pre-main').innerHTML =
+      '<div class="panel"><div class="empty">Profile deleted.</div></div>';
+  } catch (e) { toast('Delete failed: ' + e.message, true); }
 }
 
 /* ─────────────────────────── devices ─────────────────────────── */
@@ -418,6 +516,8 @@ function renderPreset(p) {
       <td><input type="number" min="0" max="0.9" step="0.01" style="width:70px"
            data-dz="${esc(a.action)}" value="${a.deadzone||0}"></td>
       <td><input data-note="${esc(a.action)}" value="${esc(a.note||'')}" size="16"></td>
+      <td><button class="danger" title="remove this assignment"
+            onclick="removeAssignment('${esc(a.action)}')">×</button></td>
     </tr>`).join('');
   $('pre-main').innerHTML = `
     <div class="panel">
@@ -426,12 +526,25 @@ function renderPreset(p) {
           <span class="tag">${esc(p.ed_version)}</span>
           <span class="tag">${p.assignments.length} actions</span>
           <button class="primary" onclick="savePreset()">Save</button>
+          <button class="danger" onclick="deleteProfile()">Delete</button>
         </span></h2>
       ${p.description ? `<div class="pad small muted">${esc(p.description)}</div>` : ''}
+      <div class="pad row" style="align-items:flex-end;border-bottom:1px solid var(--line)">
+        <div class="field"><label for="add-action">Add an action</label>
+          <input id="add-action" list="all-actions" placeholder="type to filter…"
+                 size="24"></div>
+        <div class="field"><label for="add-role">Role</label>
+          <input id="add-role" placeholder="pitch" size="12"></div>
+        <button onclick="addAssignment()">Add</button>
+        <span class="muted small" id="add-hint"></span>
+        <datalist id="all-actions"></datalist>
+      </div>
       <div class="scroll"><table>
         <thead><tr><th>Action</th><th>Role</th><th>Inv</th><th>Deadzone</th>
-          <th>Note</th></tr></thead>
-        <tbody>${rows || '<tr><td colspan="5" class="empty">no assignments</td></tr>'}</tbody>
+          <th>Note</th><th></th></tr></thead>
+        <tbody>${rows || '<tr><td colspan="6" class="empty">nothing assigned yet — ' +
+          'add an action above, or use the device editor to give controls roles' +
+          '</td></tr>'}</tbody>
       </table></div>
     </div>
 
@@ -478,6 +591,43 @@ function renderPreset(p) {
       const el = $(id); if (el) el.innerHTML = opts;
     }
   });
+  loadAvailableActions(p.name);
+}
+
+/* ── add / remove single assignments ── */
+
+async function loadAvailableActions(name) {
+  try {
+    const r = await GET(`/api/presets/${encodeURIComponent(name)}/actions`);
+    const free = r.actions.filter(a => !a.assigned);
+    const dl = $('all-actions');
+    if (dl) dl.innerHTML = free.map(a =>
+      `<option value="${esc(a.name)}"></option>`).join('');
+    const hint = $('add-hint');
+    if (hint) hint.textContent = `${free.length} of ${r.count} actions unassigned`;
+  } catch (e) { /* the picker is a convenience; failing it is not fatal */ }
+}
+
+async function addAssignment() {
+  const action = ($('add-action').value || '').trim();
+  const role = ($('add-role').value || '').trim();
+  if (!action) return toast('Pick an action to add', true);
+  if (!role) return toast('Give it a role', true);
+  try {
+    await PUT('/api/presets/' + encodeURIComponent(STATE.curPreset.name),
+              {assignments: [{action, role}]});
+    toast(`Added ${action} → ${role}`);
+    selectPreset(STATE.curPreset.name);
+  } catch (e) { toast('Add failed: ' + e.message, true); }
+}
+
+async function removeAssignment(action) {
+  try {
+    await PUT('/api/presets/' + encodeURIComponent(STATE.curPreset.name),
+              {assignments: [{action, role: null}]});
+    toast(`Removed ${action}`);
+    selectPreset(STATE.curPreset.name);
+  } catch (e) { toast('Remove failed: ' + e.message, true); }
 }
 
 async function savePreset() {
