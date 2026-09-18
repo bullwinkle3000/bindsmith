@@ -27,28 +27,7 @@ jobs:
         with:
           python-version: "3.11"
       - name: Confirm the engine has no third-party dependencies
-        run: |
-          python3 - <<'PY'
-          import ast, pathlib, sys
-          allowed = {"bindsmith"}
-          bad = []
-          for f in pathlib.Path("src/bindsmith").glob("*.py"):
-              if f.name in {"server.py"}:      # the optional web layer
-                  continue
-              for node in ast.walk(ast.parse(f.read_text())):
-                  mods = []
-                  if isinstance(node, ast.Import):
-                      mods = [a.name.split(".")[0] for a in node.names]
-                  elif isinstance(node, ast.ImportFrom) and node.level == 0:
-                      mods = [(node.module or "").split(".")[0]]
-                  for m in mods:
-                      if m and m not in sys.stdlib_module_names and m not in allowed:
-                          bad.append(f"{f.name}: {m}")
-          if bad:
-              print("engine imports non-stdlib modules:", *bad, sep="\n  ")
-              sys.exit(1)
-          print("engine is standard library only")
-          PY
+        run: python3 tools/check_stdlib_only.py
       - name: Smoke test
         run: python3 test_smoke.py
 
