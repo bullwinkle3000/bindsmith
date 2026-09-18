@@ -1,0 +1,38 @@
+<!-- VKB STECS Space Throttle Grip Mini (Left) -->
+<Root>
+	<Joy_RXAxis>STECS SpaceBrake</Joy_RXAxis>
+	<Joy_RYAxis>STECS Laser Power</Joy_RYAxis>
+	<Joy_XAxis>STECS [x52prox]</Joy_XAxis>
+	<Joy_YAxis>STECS [x52proy]</Joy_YAxis>
+	<Joy_ZAxis>STECS [x52z]</Joy_ZAxis>
+	<Joy_1>STECS Sys</Joy_1>
+	<Joy_2>STECS Start</Joy_2>
+	<Joy_3>STECS Mode 1</Joy_3>
+	<Joy_4>STECS Mode 2</Joy_4>
+	<Joy_5>STECS Mode 3</Joy_5>
+	<Joy_6>STECS Mode 4</Joy_6>
+	<Joy_7>STECS Mode 5</Joy_7>
+	<Joy_8>STECS B1</Joy_8>
+	<Joy_9>STECS Trigger</Joy_9>
+	<Joy_10>STECS B2</Joy_10>
+	<Joy_11>STECS Speed Lim [x360LThumb]</Joy_11>
+	<Joy_12>STECS Speed Lim [ps4PadU]</Joy_12>
+	<Joy_13>STECS Speed Lim [ps4PadD]</Joy_13>
+	<Joy_14>STECS PHat [x360LThumb]</Joy_14>
+	<Joy_15>STECS Hat1 [x360LThumb]</Joy_15>
+	<Joy_16>STECS PHat [ps4PadU]</Joy_16>
+	<Joy_17>STECS PHat [ps4PadD]</Joy_17>
+	<Joy_18>STECS PHat [ps4PadL]</Joy_18>
+	<Joy_19>STECS PHat [ps4PadR]</Joy_19>
+	<Joy_20>STECS Hat1 [ps4PadL]</Joy_20>
+	<Joy_21>STECS Hat1 [ps4PadR]</Joy_21>
+	<Joy_22>STECS Hat1 [ps4PadD]</Joy_22>
+	<Joy_23>STECS Hat1 [ps4PadU]</Joy_23>
+	<Joy_24>STECS H1 [ps4PadD]</Joy_24>
+	<Joy_25>STECS H1 [ps4PadU]</Joy_25>
+	<Joy_26>STECS H1 [x360LThumb]</Joy_26>
+	<Joy_27>STECS H2 [ps4PadL]</Joy_27>
+	<Joy_28>STECS H2 [ps4PadR]</Joy_28>
+	<Joy_29>STECS H2 [x360LThumb]</Joy_29>
+	
+</Root>

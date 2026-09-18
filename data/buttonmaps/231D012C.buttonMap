@@ -1,0 +1,43 @@
+<!-- VKB STECS Regular Throttle System Mini Plus (Left) -->
+<Root>
+	<Joy_RXAxis>LSTECS OTS Vertical [x52prox]</Joy_RXAxis>
+	<Joy_RYAxis>LSTECS OTS Horizontal [x52proy]</Joy_RYAxis>
+	<Joy_XAxis>LSTECS Right [xb1htsThr]</Joy_XAxis>
+	<Joy_YAxis>LSTECS Left [xb1htsThr]</Joy_YAxis>
+	<Joy_ZAxis>LSTECS Scoll Z [xb1htsThr]</Joy_ZAxis>
+	<Joy_1>LSTECS SYS [x360Back]</Joy_1>
+	<Joy_2>LSTECS START [ps4Circle]</Joy_2>
+	<Joy_3>LSTECS Mode 1</Joy_3>
+	<Joy_4>LSTECS Mode 2</Joy_4>
+	<Joy_5>LSTECS Mode 3</Joy_5>
+	<Joy_6>LSTECS Mode 4</Joy_6>
+	<Joy_7>LSTECS Mode 5</Joy_7>
+	<Joy_8>LSTECS PUSH CCW</Joy_8>
+	<Joy_9>LSTECS PUSH CW</Joy_9>
+	<Joy_10>LSTECS SAFE [ps4Circle]</Joy_10>
+	<Joy_11>LSTECS #1 [hts4Square]</Joy_11>
+	<Joy_12>LSTECS #2 [hts4Square]</Joy_12>
+	<Joy_13>LSTECS #3 [hts4Square]</Joy_13>
+	<Joy_14>LSTECS #4 [hts4Square]</Joy_14>
+	<Joy_15>LSTECS ARMED [ps4Circle]</Joy_15>
+	<Joy_21>LSTECS Back Trig L [x360LBump]</Joy_21>
+	<Joy_22>LSTECS Front Trig L [x360LThumb]</Joy_22>
+	<Joy_23>LSTECS Weapon Select [ps4Circle]</Joy_23>
+	<Joy_24>LSTECS RST</Joy_24>
+	<Joy_25>LSTECS Enc1 [xb1PadU]</Joy_25>
+	<Joy_26>LSTECS Enc1 [xb1PadD]</Joy_26>
+	<Joy_27>LSTECS Enc2 [xb1PadU]</Joy_27>
+	<Joy_28>LSTECS Enc2 [xb1PadD]</Joy_28>
+	<Joy_29>LSTECS Back Trig R [x360RBump]</Joy_29>
+	<Joy_30>LSTECS Front Trig R [x360RThumb]</Joy_30>
+	<Joy_31>LSTECS ENT</Joy_31>
+	<Joy_33>LSTECS BRK [hts4HatSwitch]</Joy_33>
+	<Joy_34>LSTECS MB1</Joy_34>
+	<Joy_35>LSTECS RADIO</Joy_35>
+	<Joy_36>LSTECS MB2</Joy_36>
+	<Joy_37>LSTECS OP EXEC [x360LThumb]</Joy_37>
+	<Joy_38>LSTECS BRK [ps4PadL]</Joy_38>
+	<Joy_39>LSTECS BRK [ps4PadD]</Joy_39>
+	<Joy_40>LSTECS BRK [ps4PadR]</Joy_40>
+	<Joy_41>LSTECS BRK [ps4PadU]</Joy_41>
+</Root>

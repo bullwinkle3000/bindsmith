@@ -1,0 +1,58 @@
+<!-- VKB Gladiator NXT EVO Space Combat Grip Premium (Right) -->
+<Root>
+	<Joy_RXAxis>RGNX Thumbstick X</Joy_RXAxis>
+	<Joy_RYAxis>RGNX Thumbstick Y</Joy_RYAxis>
+	<Joy_RZAxis>RGNX [x52prorz]</Joy_RZAxis>
+	<Joy_UAxis>RGNX UAxis</Joy_UAxis>
+	<Joy_VAxis>RGNX VAxis</Joy_VAxis>
+	<Joy_XAxis>RGNX [x52prox]</Joy_XAxis>
+	<Joy_YAxis>RGNX [x52proy]</Joy_YAxis>
+	<Joy_ZAxis>RGNX Throttle</Joy_ZAxis>
+	<Joy_POV1Up>RGNX A1 [ps4PadU]</Joy_POV1Up>
+	<Joy_POV1Right>RGNX A1 [ps4PadR]</Joy_POV1Right>
+	<Joy_POV1Down>RGNX A1 [ps4PadD]</Joy_POV1Down>
+	<Joy_POV1Left>RGNX A1 [ps4PadL]</Joy_POV1Left>
+	<Joy_POV2Up>RGNX A4 [ps4PadU]</Joy_POV2Up>
+	<Joy_POV2Right>RGNX A4 [ps4PadR]</Joy_POV2Right>
+	<Joy_POV2Down>RGNX A4 [ps4PadD]</Joy_POV2Down>
+	<Joy_POV2Left>RGNX A4 [ps4PadL]</Joy_POV2Left>
+	<Joy_POV3Up>RGNX A3 [ps4PadU]</Joy_POV3Up>
+	<Joy_POV3Right>RGNX A3 [ps4PadR]</Joy_POV3Right>
+	<Joy_POV3Down>RGNX A3 [ps4PadD]</Joy_POV3Down>
+	<Joy_POV3Left>RGNX A3 [ps4PadL]</Joy_POV3Left>
+	<Joy_POV4Up>RGNX C1 [ps4PadU]</Joy_POV4Up>
+	<Joy_POV4Right>RGNX C1 [ps4PadR]</Joy_POV4Right>
+	<Joy_POV4Down>RGNX C1 [ps4PadD]</Joy_POV4Down>
+	<Joy_POV4Left>RGNX C1 [ps4PadL]</Joy_POV4Left>
+	<Joy_1>RGNX Fire 1</Joy_1>
+	<Joy_2>RGNX Fire 2</Joy_2>
+	<Joy_3>RGNX A2 (thumb red)</Joy_3>
+	<Joy_4>RGNX B1 (right side)</Joy_4>
+	<Joy_5>RGNX D1 (pinky)</Joy_5>
+	<Joy_6>RGNX A3 [ps4PadU]</Joy_6>
+	<Joy_7>RGNX A3 [ps4PadR]</Joy_7>
+	<Joy_8>RGNX A3 [ps4PadD]</Joy_8>
+	<Joy_9>RGNX A3 [ps4PadL]</Joy_9>
+	<Joy_10>RGNX A3 Click</Joy_10>
+	<Joy_11>RGNX A4 [ps4PadU]</Joy_11>
+	<Joy_12>RGNX A4 [ps4PadR]</Joy_12>
+	<Joy_13>RGNX A4 [ps4PadD]</Joy_13>
+	<Joy_14>RGNX A4 [ps4PadL]</Joy_14>
+	<Joy_15>RGNX A4 Click</Joy_15>
+	<Joy_16>RGNX C1 [ps4PadU]</Joy_16>
+	<Joy_17>RGNX C1 [ps4PadR]</Joy_17>
+	<Joy_18>RGNX C1 [ps4PadD]</Joy_18>
+	<Joy_19>RGNX C1 [ps4PadL]</Joy_19>
+	<Joy_20>RGNX C1 Click</Joy_20>
+	<Joy_21>RGNX Push Brake</Joy_21>
+	<Joy_22>RGNX Pull Brake</Joy_22>
+	<Joy_23>RGNX En1 [ps4PadU]</Joy_23>
+	<Joy_24>RGNX En1 [ps4PadD]</Joy_24>
+	<Joy_25>RGNX En2 [ps4PadU]</Joy_25>
+	<Joy_26>RGNX En2 [ps4PadD]</Joy_26>
+	<Joy_27>RGNX F1</Joy_27>
+	<Joy_28>RGNX F2</Joy_28>
+	<Joy_29>RGNX F3</Joy_29>
+	<Joy_30>RGNX 30</Joy_30>
+	<Joy_31>RGNX C1 Long Press</Joy_31>
+</Root>

@@ -1,408 +1,234 @@
 {
-  "id": "231D:012C",
-  "name": "VKB STECS Modern Throttle Mini Plus",
+  "id": "231D012C",
+  "name": "VKB STECS Regular Throttle System Mini Plus (Left)",
   "vendor": "VKB Sim",
   "kind": "throttle",
+  "source": "buttonmap+roles",
   "controls": [
     {
-      "key": "Joy_XAxis",
-      "label": "Throttle Lever",
-      "type": "axis",
-      "axis": "X",
-      "role": "throttle",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_YAxis",
-      "label": "OTS Vertical",
-      "type": "axis",
-      "axis": "Y",
-      "role": "thrust_up",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
       "key": "Joy_RXAxis",
-      "label": "OTS Horizontal (L)",
+      "label": "LSTECS OTS Vertical [x52prox]",
       "type": "axis",
       "axis": "RX",
-      "role": "thrust_left",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
+      "role": "thrust_left"
     },
     {
       "key": "Joy_RYAxis",
-      "label": "OTS Horizontal (R)",
+      "label": "LSTECS OTS Horizontal [x52proy]",
       "type": "axis",
       "axis": "RY",
-      "role": "thrust_right",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
+      "role": "thrust_right"
+    },
+    {
+      "key": "Joy_XAxis",
+      "label": "LSTECS Right [xb1htsThr]",
+      "type": "axis",
+      "axis": "X",
+      "role": "throttle"
+    },
+    {
+      "key": "Joy_YAxis",
+      "label": "LSTECS Left [xb1htsThr]",
+      "type": "axis",
+      "axis": "Y",
+      "role": "thrust_up"
     },
     {
       "key": "Joy_ZAxis",
-      "label": "Scroll Z",
+      "label": "LSTECS Scoll Z [xb1htsThr]",
       "type": "axis",
       "axis": "Z",
-      "role": "tune",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_10",
-      "label": "SAFE",
-      "type": "button",
-      "axis": "",
-      "role": "toggle_safe_mode",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_15",
-      "label": "ARMED",
-      "type": "button",
-      "axis": "",
-      "role": "toggle_brake",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_11",
-      "label": "Map #1",
-      "type": "button",
-      "axis": "",
-      "role": "map_galaxy",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_12",
-      "label": "Map #2",
-      "type": "button",
-      "axis": "",
-      "role": "map_system",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_13",
-      "label": "Map #3",
-      "type": "button",
-      "axis": "",
-      "role": "map_starmap",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_14",
-      "label": "Map #4",
-      "type": "button",
-      "axis": "",
-      "role": "toggle_freecam",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_22",
-      "label": "Front Trig L",
-      "type": "button",
-      "axis": "",
-      "role": "hyperspace",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_23",
-      "label": "Weapon Select",
-      "type": "button",
-      "axis": "",
-      "role": "toggle_assist",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_30",
-      "label": "Front Trig R",
-      "type": "button",
-      "axis": "",
-      "role": "supercruise",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_36",
-      "label": "Boost",
-      "type": "button",
-      "axis": "",
-      "role": "use_boost",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_37",
-      "label": "Heat Sink",
-      "type": "button",
-      "axis": "",
-      "role": "deploy_heatsink",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_38",
-      "label": "Gear / BRK U",
-      "type": "button",
-      "axis": "",
-      "role": "toggle_cargo",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_39",
-      "label": "BRK D",
-      "type": "button",
-      "axis": "",
-      "role": "toggle_gear",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_40",
-      "label": "BRK R",
-      "type": "button",
-      "axis": "",
-      "role": "toggle_night_vision",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
-    },
-    {
-      "key": "Joy_41",
-      "label": "BRK L",
-      "type": "button",
-      "axis": "",
-      "role": "toggle_lights",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
+      "role": "tune"
     },
     {
       "key": "Joy_1",
       "label": "LSTECS SYS [x360Back]",
-      "type": "button",
-      "axis": "",
-      "role": "",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
+      "type": "button"
     },
     {
       "key": "Joy_2",
       "label": "LSTECS START [ps4Circle]",
-      "type": "button",
-      "axis": "",
-      "role": "",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
+      "type": "button"
     },
     {
       "key": "Joy_3",
       "label": "LSTECS Mode 1",
-      "type": "button",
-      "axis": "",
-      "role": "",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
+      "type": "button"
     },
     {
       "key": "Joy_4",
       "label": "LSTECS Mode 2",
-      "type": "button",
-      "axis": "",
-      "role": "",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
+      "type": "button"
     },
     {
       "key": "Joy_5",
       "label": "LSTECS Mode 3",
-      "type": "button",
-      "axis": "",
-      "role": "",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
+      "type": "button"
     },
     {
       "key": "Joy_6",
       "label": "LSTECS Mode 4",
-      "type": "button",
-      "axis": "",
-      "role": "",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
+      "type": "button"
     },
     {
       "key": "Joy_7",
       "label": "LSTECS Mode 5",
-      "type": "button",
-      "axis": "",
-      "role": "",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
+      "type": "button"
     },
     {
       "key": "Joy_8",
       "label": "LSTECS PUSH CCW",
-      "type": "button",
-      "axis": "",
-      "role": "",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
+      "type": "button"
     },
     {
       "key": "Joy_9",
       "label": "LSTECS PUSH CW",
+      "type": "button"
+    },
+    {
+      "key": "Joy_10",
+      "label": "LSTECS SAFE [ps4Circle]",
       "type": "button",
-      "axis": "",
-      "role": "",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
+      "role": "toggle_safe_mode"
+    },
+    {
+      "key": "Joy_11",
+      "label": "LSTECS #1 [hts4Square]",
+      "type": "button",
+      "role": "map_galaxy"
+    },
+    {
+      "key": "Joy_12",
+      "label": "LSTECS #2 [hts4Square]",
+      "type": "button",
+      "role": "map_system"
+    },
+    {
+      "key": "Joy_13",
+      "label": "LSTECS #3 [hts4Square]",
+      "type": "button",
+      "role": "map_starmap"
+    },
+    {
+      "key": "Joy_14",
+      "label": "LSTECS #4 [hts4Square]",
+      "type": "button",
+      "role": "toggle_freecam"
+    },
+    {
+      "key": "Joy_15",
+      "label": "LSTECS ARMED [ps4Circle]",
+      "type": "button",
+      "role": "toggle_brake"
     },
     {
       "key": "Joy_21",
       "label": "LSTECS Back Trig L [x360LBump]",
+      "type": "button"
+    },
+    {
+      "key": "Joy_22",
+      "label": "LSTECS Front Trig L [x360LThumb]",
       "type": "button",
-      "axis": "",
-      "role": "",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
+      "role": "hyperspace"
+    },
+    {
+      "key": "Joy_23",
+      "label": "LSTECS Weapon Select [ps4Circle]",
+      "type": "button",
+      "role": "toggle_assist"
     },
     {
       "key": "Joy_24",
       "label": "LSTECS RST",
-      "type": "button",
-      "axis": "",
-      "role": "",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
+      "type": "button"
     },
     {
       "key": "Joy_25",
       "label": "LSTECS Enc1 [xb1PadU]",
-      "type": "button",
-      "axis": "",
-      "role": "",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
+      "type": "button"
     },
     {
       "key": "Joy_26",
       "label": "LSTECS Enc1 [xb1PadD]",
-      "type": "button",
-      "axis": "",
-      "role": "",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
+      "type": "button"
     },
     {
       "key": "Joy_27",
       "label": "LSTECS Enc2 [xb1PadU]",
-      "type": "button",
-      "axis": "",
-      "role": "",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
+      "type": "button"
     },
     {
       "key": "Joy_28",
       "label": "LSTECS Enc2 [xb1PadD]",
-      "type": "button",
-      "axis": "",
-      "role": "",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
+      "type": "button"
     },
     {
       "key": "Joy_29",
       "label": "LSTECS Back Trig R [x360RBump]",
+      "type": "button"
+    },
+    {
+      "key": "Joy_30",
+      "label": "LSTECS Front Trig R [x360RThumb]",
       "type": "button",
-      "axis": "",
-      "role": "",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
+      "role": "supercruise"
     },
     {
       "key": "Joy_31",
       "label": "LSTECS ENT",
-      "type": "button",
-      "axis": "",
-      "role": "",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
+      "type": "button"
     },
     {
       "key": "Joy_33",
       "label": "LSTECS BRK [hts4HatSwitch]",
-      "type": "button",
-      "axis": "",
-      "role": "",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
+      "type": "button"
     },
     {
       "key": "Joy_34",
       "label": "LSTECS MB1",
-      "type": "button",
-      "axis": "",
-      "role": "",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
+      "type": "button"
     },
     {
       "key": "Joy_35",
       "label": "LSTECS RADIO",
+      "type": "button"
+    },
+    {
+      "key": "Joy_36",
+      "label": "LSTECS MB2",
       "type": "button",
-      "axis": "",
-      "role": "",
-      "group": 0,
-      "deadzone": 0.0,
-      "inverted": false
+      "role": "use_boost"
+    },
+    {
+      "key": "Joy_37",
+      "label": "LSTECS OP EXEC [x360LThumb]",
+      "type": "button",
+      "role": "deploy_heatsink"
+    },
+    {
+      "key": "Joy_38",
+      "label": "LSTECS BRK [ps4PadL]",
+      "type": "button",
+      "role": "toggle_cargo"
+    },
+    {
+      "key": "Joy_39",
+      "label": "LSTECS BRK [ps4PadD]",
+      "type": "button",
+      "role": "toggle_gear"
+    },
+    {
+      "key": "Joy_40",
+      "label": "LSTECS BRK [ps4PadR]",
+      "type": "button",
+      "role": "toggle_night_vision"
+    },
+    {
+      "key": "Joy_41",
+      "label": "LSTECS BRK [ps4PadU]",
+      "type": "button",
+      "role": "toggle_lights"
     }
   ]
 }

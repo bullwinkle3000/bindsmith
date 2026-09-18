@@ -1,0 +1,44 @@
+<!-- WINCTRL CarrierAce PTO 2 -->
+<Root>
+	<Joy_1>PTO2 PUSH TO JETT</Joy_1>
+	<Joy_2>PTO2 MASTER CAUTION</Joy_2>
+	<Joy_3>PTO2 LAUNCH BAR retract</Joy_3>
+	<Joy_4>PTO2 LAUNCH BAR extend</Joy_4>
+	<Joy_5>PTO2 FLAP auto</Joy_5>
+	<Joy_6>PTO2 FLAP half</Joy_6>
+	<Joy_7>PTO2 FLAP full</Joy_7>
+	<Joy_8>PTO2 LDG TAXI LT on</Joy_8>
+	<Joy_9>PTO2 LDG TAXI LT off</Joy_9>
+	<Joy_10>PTO2 ANTI SKID on</Joy_10>
+	<Joy_11>PTO2 ANTI SKID off</Joy_11>
+	<Joy_12>PTO2 HOOK BYPASS field</Joy_12>
+	<Joy_13>PTO2 HOOK BYPASS carrier</Joy_13>
+	<Joy_14>PTO2 PROBE extend</Joy_14>
+	<Joy_15>PTO2 PROBE retract</Joy_15>
+	<Joy_16>PTO2 PROBE emerg extd</Joy_16>
+	<Joy_17>PTO2 SELECT JETT l fus msl</Joy_17>
+	<Joy_18>PTO2 SELECT JETT safe</Joy_18>
+	<Joy_19>PTO2 SELECT JETT r fus msl</Joy_19>
+	<Joy_20>PTO2 SELECT JETT rack lchr</Joy_20>
+	<Joy_21>PTO2 SELECT JETT stores</Joy_21>
+	<Joy_22>PTO2 JETT</Joy_22>
+	<Joy_23>PTO2 CTR</Joy_23>
+	<Joy_24>PTO2 LI</Joy_24>
+	<Joy_25>PTO2 RI</Joy_25>
+	<Joy_26>PTO2 LO</Joy_26>
+	<Joy_27>PTO2 RO</Joy_27>
+	<Joy_28>PTO2 WING fold</Joy_28>
+	<Joy_29>PTO2 WING hold</Joy_29>
+	<Joy_30>PTO2 WING spread</Joy_30>
+	<Joy_31>PTO2 WING lock</Joy_31>
+	<Joy_32>PTO2 HOOK up</Joy_32>
+	<Joy_33>PTO2 HOOK ctr</Joy_33>
+	<Joy_34>PTO2 HOOK dn</Joy_34>
+	<Joy_35>PTO2 LDG GEAR up</Joy_35>
+	<Joy_36>PTO2 LDG GEAR ctr</Joy_36>
+	<Joy_37>PTO2 LDG GEAR dn</Joy_37>
+	<Joy_38>PTO2 PARK BRK push</Joy_38>
+	<Joy_39>PTO2 PARK BRK pull</Joy_39>
+	<Joy_40>PTO2 PARK BRK lt</Joy_40>
+	<Joy_41>PTO2 PARK BRK rt</Joy_41>
+</Root>

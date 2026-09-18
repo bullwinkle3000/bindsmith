@@ -1,0 +1,270 @@
+{
+  "devices": [
+    {
+      "id": "054C0CE6",
+      "name": "Sony DualSense",
+      "file": "054C0CE6.buttonMap",
+      "controls": 25,
+      "has_roles": false
+    },
+    {
+      "id": "054C0DF2",
+      "name": "Sony DualSense Edge",
+      "file": "054C0DF2.buttonMap",
+      "controls": 25,
+      "has_roles": false
+    },
+    {
+      "id": "09111844",
+      "name": "Footcontrol USB [VendorID: 0911, ProductID: 1844]\n\n\tThis is generic 3 button footcontrol I had lying around. These are typically is used for dictation works, \n\tbut now I finally found good use for it with Elite Dangerous; currently using it for FA toggle\n\tand cargo scoop; had the third button bound to silent running at one time, but I did misclick a couple of times\n\twith not to good result, ie. its not good to disable shields during combat :D",
+      "file": "09111844.buttonMap",
+      "controls": 3,
+      "has_roles": false
+    },
+    {
+      "id": "10F57055",
+      "name": "TurtleBeach VelocityOne FlightStick",
+      "file": "10F57055.buttonMap",
+      "controls": 34,
+      "has_roles": false
+    },
+    {
+      "id": "231D0126",
+      "name": "VKB Gunfighter Space Combat Grip Premium (Right)",
+      "file": "231D0126.buttonMap",
+      "controls": 31,
+      "has_roles": false
+    },
+    {
+      "id": "231D012C",
+      "name": "VKB STECS Regular Throttle System Mini Plus (Left)",
+      "file": "231D012C.buttonMap",
+      "controls": 40,
+      "has_roles": true
+    },
+    {
+      "id": "231D012D",
+      "name": "VKB STECS Modern Throttle System Standard",
+      "file": "231D012D.buttonMap",
+      "controls": 67,
+      "has_roles": false
+    },
+    {
+      "id": "231D0136",
+      "name": "VKB STECS Space Throttle Grip Mini (Left)",
+      "file": "231D0136.buttonMap",
+      "controls": 34,
+      "has_roles": false
+    },
+    {
+      "id": "231D0137",
+      "name": "VKB STECS Space Throttle Grip Mini Plus (Left)",
+      "file": "231D0137.buttonMap",
+      "controls": 47,
+      "has_roles": false
+    },
+    {
+      "id": "231D0138",
+      "name": "VKB STECS Space Throttle Grip Standard (Left)",
+      "file": "231D0138.buttonMap",
+      "controls": 58,
+      "has_roles": false
+    },
+    {
+      "id": "231D0139",
+      "name": "VKB STECS Space Throttle Grip Max (Left) [VendorID: 231D, ProductID: 0139]\n\n\tI've tried to adhere to notation used on the official binding templates from VKB which\n\tcan be found here https://www.vkbcontrollers.com/pages/downloads\n\n\tNote that productID changes depending on which modules are connected to the STECS bus.\n\tThis means that your bindings may break if you add or remove modules to your VKB setup.\n\tATEM seems to become a part of the STECS it self and does no function as a separate module\n\tunlike the STEM module.",
+      "file": "231D0139.buttonMap",
+      "controls": 71,
+      "has_roles": false
+    },
+    {
+      "id": "231D013A",
+      "name": "VKB STECS Space Throttle Grip Mini (Right)",
+      "file": "231D013A.buttonMap",
+      "controls": 34,
+      "has_roles": false
+    },
+    {
+      "id": "231D013B",
+      "name": "VKB STECS Space Throttle Grip Mini Plus (Right)",
+      "file": "231D013B.buttonMap",
+      "controls": 47,
+      "has_roles": false
+    },
+    {
+      "id": "231D013C",
+      "name": "VKB STECS Space Throttle Grip Standard (Right)",
+      "file": "231D013C.buttonMap",
+      "controls": 58,
+      "has_roles": false
+    },
+    {
+      "id": "231D0200",
+      "name": "VKB Gladiator NXT EVO Space Combat Grip Premium (Right)",
+      "file": "231D0200.buttonMap",
+      "controls": 55,
+      "has_roles": true
+    },
+    {
+      "id": "231D0201",
+      "name": "VKB Gladiator NXT EVO Space Combat Grip Premium (Left)",
+      "file": "231D0201.buttonMap",
+      "controls": 55,
+      "has_roles": false
+    },
+    {
+      "id": "231D0220",
+      "name": "VKB Gladiator NXT EVO Space Combat Grip Premium (Right) + GNX FSM-GA module [VendorID: 231D, ProductID: 0220]\n\n\tThis is based on the awesome work already done 231D0200.buttonMap (thx) but corrected for changed\n\tintroduced by FSM-GA module. I've tried to adhere to notation used on the official binding templates\n\tfrom VKB which can be found here https://www.vkbcontrollers.com/pages/downloads\n\n\tNote that productID changes depending on which modules are connected to the GNX (base) bus.\n\tThis means that your bindings may break if you add or remove modules to your VKB setup.\n\tSCG seems to become a part of the GNX it self and does not function as a separate module.",
+      "file": "231D0220.buttonMap",
+      "controls": 77,
+      "has_roles": false
+    },
+    {
+      "id": "231D3200",
+      "name": "VKB Gladiator NXT EVO Space Combat Grip Premium OmniThrottle (Right)",
+      "file": "231D3200.buttonMap",
+      "controls": 55,
+      "has_roles": false
+    },
+    {
+      "id": "231D3201",
+      "name": "VKB Gladiator NXT EVO Space Combat Grip Premium OmniThrottle (Left)",
+      "file": "231D3201.buttonMap",
+      "controls": 55,
+      "has_roles": false
+    },
+    {
+      "id": "334400D4",
+      "name": "VPC WarBRD Constellation Alpha Prime (Right)",
+      "file": "334400D4.buttonMap",
+      "controls": 56,
+      "has_roles": false
+    },
+    {
+      "id": "334401F8",
+      "name": "VPC Rudder Pedals ACE",
+      "file": "334401F8.buttonMap",
+      "controls": 9,
+      "has_roles": false
+    },
+    {
+      "id": "3344025A",
+      "name": "Virpil Universal Control Panel #2",
+      "file": "3344025A.buttonMap",
+      "controls": 42,
+      "has_roles": false
+    },
+    {
+      "id": "33440388",
+      "name": "VPC Stick MT-50CM3 with Constellation Alpha (Right)",
+      "file": "33440388.buttonMap",
+      "controls": 49,
+      "has_roles": false
+    },
+    {
+      "id": "3344425C",
+      "name": "RIGHT VPC Control Panel 3",
+      "file": "3344425C.buttonMap",
+      "controls": 59,
+      "has_roles": false
+    },
+    {
+      "id": "334443F5",
+      "name": "RIGHT VPC Stick WarBRD-D with Constellation Alpha Prime (Right)",
+      "file": "334443F5.buttonMap",
+      "controls": 50,
+      "has_roles": false
+    },
+    {
+      "id": "33448196",
+      "name": "LEFT VPC VMAX Prime Throttle",
+      "file": "33448196.buttonMap",
+      "controls": 70,
+      "has_roles": false
+    },
+    {
+      "id": "334483F4",
+      "name": "LEFT VPC Stick WarBRD-D with Constellation Alpha Prime (Left)",
+      "file": "334483F4.buttonMap",
+      "controls": 50,
+      "has_roles": false
+    },
+    {
+      "id": "4098BD64",
+      "name": "Winwing WINCTRL Orion Throttle Base II + F15EX HANDLE L + F15EX HANDLE",
+      "file": "4098BD64.buttonMap",
+      "controls": 108,
+      "has_roles": false
+    },
+    {
+      "id": "4098BEE1",
+      "name": "Winwing/Winctrl MFD 1",
+      "file": "4098BEE1.buttonMap",
+      "controls": 50,
+      "has_roles": false
+    },
+    {
+      "id": "4098BEE2",
+      "name": "Winwing/Winctrl MFD 1",
+      "file": "4098BEE2.buttonMap",
+      "controls": 50,
+      "has_roles": false
+    },
+    {
+      "id": "4098BF05",
+      "name": "WINCTRL CarrierAce PTO 2",
+      "file": "4098BF05.buttonMap",
+      "controls": 41,
+      "has_roles": false
+    },
+    {
+      "id": "CHProThrottle1",
+      "name": "CH Products Pro Throttle USB\nFriendly name: CHProThrottle1\nUSB VID:068E PID:00F1",
+      "file": "CHProThrottle1.buttonMap",
+      "controls": 22,
+      "has_roles": false
+    },
+    {
+      "id": "Generic",
+      "name": "Template for a generic joystick",
+      "file": "Generic.buttonMap",
+      "controls": 72,
+      "has_roles": false
+    },
+    {
+      "id": "SaitekX56Joystick",
+      "name": "Stick Buttons",
+      "file": "SaitekX56Joystick.buttonMap",
+      "controls": 30,
+      "has_roles": false
+    },
+    {
+      "id": "SaitekX56Throttle",
+      "name": "Thumb Buttons",
+      "file": "SaitekX56Throttle.buttonMap",
+      "controls": 45,
+      "has_roles": false
+    },
+    {
+      "id": "T16000M",
+      "name": "Thrustmaster T.16000M joystick\nFriendly name: T16000M\nUSB VID:044F PID:B10A",
+      "file": "T16000M.buttonMap",
+      "controls": 24,
+      "has_roles": false
+    },
+    {
+      "id": "T16000MTHROTTLE",
+      "name": "Thrustmaster TWCS Throttle",
+      "file": "T16000MTHROTTLE.buttonMap",
+      "controls": 26,
+      "has_roles": false
+    },
+    {
+      "id": "VPCThrottle",
+      "name": "VPC Throttle MT-50CM3 (Left)",
+      "file": "VPCThrottle.buttonMap",
+      "controls": 84,
+      "has_roles": false
+    }
+  ]
+}

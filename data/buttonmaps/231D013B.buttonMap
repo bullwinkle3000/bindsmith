@@ -1,0 +1,51 @@
+<!-- VKB STECS Space Throttle Grip Mini Plus (Right) -->
+<Root>
+	<Joy_RXAxis>RSTECS SpaceBrake</Joy_RXAxis>
+	<Joy_RYAxis>RSTECS Laser Power</Joy_RYAxis>
+	<Joy_XAxis>RSTECS [x52prox]</Joy_XAxis>
+	<Joy_YAxis>RSTECS [x52proy]</Joy_YAxis>
+	<Joy_ZAxis>RSTECS Throttle</Joy_ZAxis>
+	<Joy_1>RSTECS Sys</Joy_1>
+	<Joy_2>RSTECS Start</Joy_2>
+	<Joy_3>RSTECS Mode 1</Joy_3>
+	<Joy_4>RSTECS Mode 2</Joy_4>
+	<Joy_5>RSTECS Mode 3</Joy_5>
+	<Joy_6>RSTECS Mode 4</Joy_6>
+	<Joy_7>RSTECS Mode 5</Joy_7>
+	<Joy_8>RSTECS Rot CCW</Joy_8>
+	<Joy_9>RSTECS Rot CW</Joy_9>
+	<Joy_10>RSTECS Safe</Joy_10>
+	<Joy_11>RSTECS #1</Joy_11>
+	<Joy_12>RSTECS #2</Joy_12>
+	<Joy_13>RSTECS #3</Joy_13>
+	<Joy_14>RSTECS #4</Joy_14>
+	<Joy_15>RSTECS Armed</Joy_15>
+	<Joy_16>RSTECS Rot [ps4PadU]</Joy_16>
+	<Joy_17>RSTECS Rot [ps4PadD]</Joy_17>
+	<Joy_18>RSTECS Rot [ps4PadR]</Joy_18>
+	<Joy_19>RSTECS Rot [ps4PadL]</Joy_19>
+	<Joy_20>RSTECS Rot Click</Joy_20>
+	<Joy_21>RSTECS B1</Joy_21>
+	<Joy_22>RSTECS Trigger</Joy_22>
+	<Joy_23>RSTECS B2</Joy_23>
+	<Joy_24>RSTECS Speed Lim [x360LThumb]</Joy_24>
+	<Joy_25>RSTECS Speed Lim [ps4PadU]</Joy_25>
+	<Joy_26>RSTECS Speed Lim [ps4PadD]</Joy_26>
+	<Joy_27>RSTECS PHat [x360LThumb]</Joy_27>
+	<Joy_28>RSTECS Hat1 [x360LThumb]</Joy_28>
+	<Joy_29>RSTECS PHat [ps4PadU]</Joy_29>
+	<Joy_30>RSTECS PHat [ps4PadD]</Joy_30>
+	<Joy_31>RSTECS PHat [ps4PadR]</Joy_31>
+	<Joy_32>RSTECS PHat [ps4PadL]</Joy_32>
+	<Joy_33>RSTECS Hat1 [ps4PadR]</Joy_33>
+	<Joy_34>RSTECS Hat1 [ps4PadL]</Joy_34>
+	<Joy_35>RSTECS Hat1 [ps4PadD]</Joy_35>
+	<Joy_36>RSTECS Hat1 [ps4PadU]</Joy_36>
+	<Joy_37>RSTECS H1 [ps4PadD]</Joy_37>
+	<Joy_38>RSTECS H1 [ps4PadU]</Joy_38>
+	<Joy_39>RSTECS H1 [x360LThumb]</Joy_39>
+	<Joy_40>RSTECS H2 [ps4PadL]</Joy_40>
+	<Joy_41>RSTECS H2 [ps4PadR]</Joy_41>
+	<Joy_42>RSTECS H2 [x360LThumb]</Joy_42>
+	
+</Root>

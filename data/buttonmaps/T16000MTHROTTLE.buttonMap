@@ -1,0 +1,29 @@
+<!-- Thrustmaster TWCS Throttle -->
+<Root>
+	<Joy_XAxis>TWCS Ministick X</Joy_XAxis>
+	<Joy_YAxis>TWCS Ministick Y</Joy_YAxis>
+	<Joy_ZAxis>TWCS Throttle</Joy_ZAxis>
+	<Joy_RXAxis>TWCS Right Pedal</Joy_RXAxis>
+	<Joy_RYAxis>TWCS Left Pedal</Joy_RYAxis>
+	<Joy_RZAxis>TWCS Paddle</Joy_RZAxis>
+	<Joy_UAxis>TWCS Tuning Wheel</Joy_UAxis>
+	<Joy_VAxis>TWCS Rudder</Joy_VAxis>
+	<Joy_POV1Up>TWCS Cone [ps4PadU]</Joy_POV1Up>
+	<Joy_POV1Right>TWCS Cone [ps4PadR]</Joy_POV1Right>
+	<Joy_POV1Down>TWCS Cone [ps4PadD]</Joy_POV1Down>
+	<Joy_POV1Left>TWCS Cone [ps4PadL]</Joy_POV1Left>
+	<Joy_1>TWCS Thumb Button</Joy_1>
+	<Joy_2>TWCS Pinkie</Joy_2>
+	<Joy_3>TWCS Ring Finger</Joy_3>
+	<Joy_4>TWCS Rocker [ps4PadU]</Joy_4>
+	<Joy_5>TWCS Rocker [ps4PadD]</Joy_5>
+	<Joy_6>TWCS Ministick Click</Joy_6>
+	<Joy_7>TWCS Saddle [ps4PadU]</Joy_7>
+	<Joy_8>TWCS Saddle [ps4PadR]</Joy_8>
+	<Joy_9>TWCS Saddle [ps4PadD]</Joy_9>
+	<Joy_10>TWCS Saddle [ps4PadL]</Joy_10>
+	<Joy_11>TWCS Castle [ps4PadU]</Joy_11>
+	<Joy_12>TWCS Castle [ps4PadR]</Joy_12>
+	<Joy_13>TWCS Castle [ps4PadD]</Joy_13>
+	<Joy_14>TWCS Castle [ps4PadL]</Joy_14>
+</Root>

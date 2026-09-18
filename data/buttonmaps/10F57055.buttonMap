@@ -1,0 +1,37 @@
+<!-- TurtleBeach VelocityOne FlightStick -->
+<Root>
+	<Joy_RXAxis>VOneFS H2 X</Joy_RXAxis>
+	<Joy_RYAxis>VOneFS H2 Y</Joy_RYAxis>
+	<Joy_RZAxis>VOneFS LThrottle</Joy_RZAxis>
+	<Joy_UAxis>VOneFS UAxis</Joy_UAxis>
+	<Joy_Slider2>VOneFS VAxis</Joy_Slider2>
+	<Joy_XAxis>VOneFS [x52prox]</Joy_XAxis>
+	<Joy_YAxis>VOneFS [x52proy]</Joy_YAxis>
+	<Joy_ZAxis>VOneFS [x52prorz]</Joy_ZAxis>
+	<Joy_POV1Up>VOneFS H1 [ps4PadU]</Joy_POV1Up>
+	<Joy_POV1Right>VOneFS H1 [ps4PadR]</Joy_POV1Right>
+	<Joy_POV1Down>VOneFS H1 [ps4PadD]</Joy_POV1Down>
+	<Joy_POV1Left>VOneFS H1 [ps4PadL]</Joy_POV1Left>
+	<Joy_1>VOneFS B1</Joy_1>
+	<Joy_2>VOneFS B2</Joy_2>
+	<Joy_3>VOneFS B3</Joy_3>
+	<Joy_4>VOneFS B4</Joy_4>
+	<Joy_5>VOneFS B5</Joy_5>
+	<Joy_6>VOneFS B6</Joy_6>
+	<Joy_7>VOneFS B7</Joy_7>
+	<Joy_8>VOneFS B8</Joy_8>
+	<Joy_9>VOneFS B9 LTOGA</Joy_9>
+	<Joy_10>VOneFS B10 LFULL REV</Joy_10>
+	<Joy_11>VOneFS B11 RTOGA</Joy_11>
+	<Joy_12>VOneFS B12 RFULL REV</Joy_12>
+	<Joy_13>VOneFS En [ps4PadU]</Joy_13>
+	<Joy_14>VOneFS En [ps4PadD]</Joy_14>
+	<Joy_15>VOneFS En Click</Joy_15>
+	<Joy_16>VOneFS B16</Joy_16>
+	<Joy_17>VOneFS B17</Joy_17>
+	<Joy_18>VOneFS Trigger</Joy_18>
+	<Joy_19>VOneFS H2 Click</Joy_19>
+	<Joy_20>VOneFS Xbox</Joy_20>
+	<Joy_21>VOneFS [xb1Back]</Joy_21>
+	<Joy_22>VOneFS [xb1Start]</Joy_22>
+</Root>

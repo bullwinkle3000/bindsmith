@@ -118,6 +118,16 @@ def cmd_assign(args: argparse.Namespace) -> None:
                out=str(data_dir) if not args.dry_run else None)
 
 
+def cmd_serve(args: argparse.Namespace) -> None:
+    """Run the web app (FastAPI) — a thin presentation layer over the library."""
+    try:
+        import uvicorn
+    except ImportError:
+        sys.exit("uvicorn is required for `bindsmith serve` (pip install uvicorn fastapi)")
+    uvicorn.run("bindsmith.server:app", host=args.host, port=args.port,
+                reload=args.reload)
+
+
 def cmd_gen_devices(args: argparse.Namespace) -> None:
     src = Path(args.buttonmaps)
     out = []
@@ -183,6 +193,12 @@ def main(argv: list[str] | None = None) -> int:
     w.add_argument("--dry-run", action="store_true",
                    help="run the wizard but write nothing")
     w.set_defaults(fn=cmd_assign)
+
+    s = sub.add_parser("serve", help="run the web app (FastAPI) over the library")
+    s.add_argument("--host", default="127.0.0.1")
+    s.add_argument("--port", type=int, default=8321)
+    s.add_argument("--reload", action="store_true", help="auto-reload (dev only)")
+    s.set_defaults(fn=cmd_serve)
 
     g2 = sub.add_parser("gen-devices",
                        help="build device skeletons from ED DeviceButtonMaps")

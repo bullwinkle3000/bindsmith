@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- VKB STECS Space Throttle Grip Standard (Right) -->
+<Root>
+	<Joy_1>STECS - Base Sys</Joy_1>
+	<Joy_2>STECS - Base Start</Joy_2>
+	<Joy_3>STECS - Base Mode 1</Joy_3>
+	<Joy_4>STECS - Base Mode 2</Joy_4>
+	<Joy_5>STECS - Base Mode 3</Joy_5>
+	<Joy_6>STECS - Base Mode 4</Joy_6>
+	<Joy_7>STECS - Base Mode 5</Joy_7>
+
+	<Joy_8>STECS - B1</Joy_8>
+	<Joy_9>STECS - Trigger</Joy_9>
+	<Joy_10>STECS - B2</Joy_10>
+	<Joy_11>STECS - Speed Push</Joy_11>
+	<Joy_12>STECS - Speed Up</Joy_12>
+	<Joy_13>STECS - Speed Down</Joy_13>
+	<Joy_14>STECS - Index Push</Joy_14>
+	<Joy_15>STECS - HAT1 Push</Joy_15>
+	<Joy_16>STECS - Index Fore</Joy_16>
+	<Joy_17>STECS - Index Back</Joy_17>
+	<Joy_18>STECS - Index Right</Joy_18>
+	<Joy_19>STECS - Index Left</Joy_19>
+	<Joy_20>STECS - HAT1 Back</Joy_20>
+	<Joy_21>STECS - HAT1 Fore</Joy_21>
+	<Joy_22>STECS - HAT1 Down</Joy_22>
+	<Joy_23>STECS - HAT1 Up</Joy_23>
+	<Joy_24>STECS - H1 Down</Joy_24>
+	<Joy_25>STECS - H1 Up</Joy_25>
+	<Joy_26>STECS - H1 Push</Joy_26>
+	<Joy_27>STECS - H2 Back</Joy_27>
+	<Joy_28>STECS - H2 Fore</Joy_28>
+	<Joy_29>STECS - H2 Push</Joy_29>
+
+	<Joy_30>STECS - STEM A1</Joy_30>
+	<Joy_31>STECS - STEM A2</Joy_31>
+	<Joy_32>STECS - STEM C1</Joy_32>
+	<Joy_33>STECS - STEM B1</Joy_33>
+	<Joy_34>STECS - STEM B2</Joy_34>
+	<Joy_35>STECS - STEM B3</Joy_35>
+	<Joy_36>STECS - STEM B4</Joy_36>
+	<Joy_37>STECS - STEM B5</Joy_37>
+	<Joy_38>STECS - STEM Sw1 Up</Joy_38>
+	<Joy_39>STECS - STEM Sw1 Mid</Joy_39>
+	<Joy_40>STECS - STEM Sw1 Down</Joy_40>
+	<Joy_41>STECS - STEM Sw2 Up</Joy_41>
+	<Joy_42>STECS - STEM Sw2 Mid</Joy_42>
+	<Joy_43>STECS - STEM Sw2 Down</Joy_43>
+	<Joy_44>STECS - STEM Tgl Up</Joy_44>
+	<Joy_45>STECS - STEM Tgl Down</Joy_45>
+	<Joy_46>STECS - STEM Enc1 CCW</Joy_46>
+	<Joy_47>STECS - STEM Enc1 CW</Joy_47>
+	<Joy_48>STECS - STEM Enc2 CCW</Joy_48>
+	<Joy_49>STECS - STEM Enc2 CW</Joy_49>
+	<Joy_50>STECS - STEM Enc1 Push</Joy_50>
+	<Joy_51>STECS - STEM Enc2 Push</Joy_51>
+	<Joy_52>STECS - STEM Flap Up</Joy_52>
+	<Joy_53>STECS - STEM Flap Down</Joy_53>
+
+	<Joy_XAxis>STECS - [x52prox]</Joy_XAxis>
+	<Joy_YAxis>STECS - [x52proy]</Joy_YAxis>
+	<Joy_ZAxis>STECS - [x52z]</Joy_ZAxis>
+	<Joy_RXAxis>STECS - Space Brake</Joy_RXAxis>
+	<Joy_RYAxis>STECS - Laser Power</Joy_RYAxis>
+</Root>
