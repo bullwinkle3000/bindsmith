@@ -1,6 +1,6 @@
 {
   "id": "CHProThrottle1",
-  "name": "CH Products Pro Throttle USB\nFriendly name: CHProThrottle1\nUSB VID:068E PID:00F1",
+  "name": "CH Products Pro Throttle USB",
   "vendor": "CH Products",
   "kind": "throttle",
   "controls": [

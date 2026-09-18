@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>bindsmith — Elite Dangerous controller bindings</title>
+<style>
+  :root{
+    --bg:#0e1116; --panel:#161a21; --panel2:#1c212a; --line:#2a3140;
+    --fg:#e6e9ef; --dim:#8b95a7; --acc:#ffb454; --acc2:#5bd1a0;
+    --bad:#ff6b6b; --warn:#ffd166; --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--fg);
+       font:14px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+  header{display:flex;align-items:baseline;gap:14px;padding:14px 20px;
+         border-bottom:1px solid var(--line);background:var(--panel);
+         position:sticky;top:0;z-index:10}
+  header h1{margin:0;font-size:17px;letter-spacing:.2px}
+  header h1 span{color:var(--acc)}
+  header .sub{color:var(--dim);font-size:12px}
+  header .right{margin-left:auto;display:flex;gap:10px;align-items:center}
+  nav{display:flex;gap:2px;padding:10px 20px 0}
+  nav button{background:none;border:1px solid transparent;border-bottom:none;
+             color:var(--dim);padding:7px 14px;cursor:pointer;font-size:13px;
+             border-radius:6px 6px 0 0}
+  nav button:hover{color:var(--fg)}
+  nav button.on{background:var(--panel);border-color:var(--line);color:var(--fg)}
+  main{padding:18px 20px 60px}
+  .grid{display:grid;grid-template-columns:290px 1fr;gap:16px;align-items:start}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:8px;
+         overflow:hidden}
+  .panel > h2{margin:0;padding:10px 14px;font-size:12px;text-transform:uppercase;
+              letter-spacing:.7px;color:var(--dim);border-bottom:1px solid var(--line);
+              background:var(--panel2);display:flex;align-items:center;gap:8px}
+  .panel > h2 .right{margin-left:auto;display:flex;gap:8px}
+  h2.norm{text-transform:none;letter-spacing:.2px;font-size:14px;font-weight:600}
+  .pad{padding:12px 14px}
+  ul.list{list-style:none;margin:0;padding:0;max-height:70vh;overflow:auto}
+  ul.list li{padding:9px 14px;border-bottom:1px solid var(--line);cursor:pointer;
+             display:flex;gap:8px;align-items:baseline}
+  ul.list li:last-child{border-bottom:none}
+  ul.list li:hover{background:var(--panel2)}
+  ul.list li.on{background:var(--panel2);box-shadow:inset 3px 0 0 var(--acc)}
+  ul.list li .name{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;
+                   white-space:nowrap}
+  ul.list li .meta{color:var(--dim);font-size:11px;font-family:var(--mono)}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--line);
+        vertical-align:middle}
+  th{color:var(--dim);font-size:11px;text-transform:uppercase;letter-spacing:.6px;
+     background:var(--panel2);position:sticky;top:0}
+  tr:hover td{background:#1a1f27}
+  .k{font-family:var(--mono);font-size:12px;color:var(--acc2)}
+  .a{font-family:var(--mono);font-size:12px}
+  .role{color:var(--acc)}
+  select,input,button{font:inherit;color:var(--fg);background:var(--panel2);
+                      border:1px solid var(--line);border-radius:5px;padding:5px 8px}
+  select:focus,input:focus{outline:1px solid var(--acc);border-color:var(--acc)}
+  button{cursor:pointer}
+  button:hover{border-color:var(--acc)}
+  button.primary{background:var(--acc);color:#1a1300;border-color:var(--acc);
+                 font-weight:600}
+  button.danger:hover{border-color:var(--bad);color:var(--bad)}
+  button:disabled{opacity:.45;cursor:not-allowed}
+  .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .field{display:flex;flex-direction:column;gap:4px}
+  .field label{font-size:11px;color:var(--dim);text-transform:uppercase;
+               letter-spacing:.5px}
+  .chips{display:flex;gap:6px;flex-wrap:wrap}
+  .chip{background:var(--panel2);border:1px solid var(--line);border-radius:99px;
+        padding:2px 10px;font-size:11.5px;color:var(--dim)}
+  .chip b{color:var(--fg);font-weight:600}
+  .chip.good b{color:var(--acc2)} .chip.bad b{color:var(--bad)}
+  pre{background:#0b0e13;border:1px solid var(--line);border-radius:6px;
+      padding:12px;overflow:auto;max-height:420px;font-size:12px;
+      font-family:var(--mono);color:#c8d2e0;margin:0}
+  .muted{color:var(--dim)}
+  .small{font-size:12px}
+  .empty{padding:26px 14px;color:var(--dim);text-align:center}
+  #toast{position:fixed;right:18px;bottom:18px;display:flex;flex-direction:column;
+         gap:8px;z-index:50}
+  .toast{background:var(--panel2);border:1px solid var(--line);border-left:3px solid var(--acc2);
+         border-radius:6px;padding:9px 14px;max-width:420px;box-shadow:0 6px 22px #0009;
+         animation:in .16s ease-out}
+  .toast.bad{border-left-color:var(--bad)}
+  @keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  .tag{font-size:10.5px;padding:1px 7px;border-radius:4px;background:var(--panel2);
+       border:1px solid var(--line);color:var(--dim);font-family:var(--mono)}
+  .tag.axis{color:var(--acc)} .tag.pov{color:var(--acc2)}
+  details{border:1px solid var(--line);border-radius:7px;margin-bottom:10px}
+  summary{padding:10px 14px;cursor:pointer;font-size:12px;text-transform:uppercase;
+          letter-spacing:.6px;color:var(--dim)}
+  details[open] summary{border-bottom:1px solid var(--line)}
+  .scroll{overflow:auto;max-height:72vh}
+</style>
+</head>
+<body>
+<header>
+  <h1>bind<span>smith</span></h1>
+  <div class="sub" id="hdr-sub">Elite Dangerous controller bindings</div>
+  <div class="right">
+    <span class="chip" id="hdr-version">…</span>
+    <button onclick="loadStatus()">refresh</button>
+  </div>
+</header>
+
+<nav>
+  <button data-tab="status"  class="on" onclick="tab('status')">Status</button>
+  <button data-tab="devices"           onclick="tab('devices')">Devices</button>
+  <button data-tab="presets"           onclick="tab('presets')">Presets</button>
+</nav>
+
+<main>
+  <!-- ───────────────────────── STATUS ───────────────────────── -->
+  <section id="tab-status">
+    <div class="grid">
+      <div class="panel">
+        <h2>Environment</h2>
+        <div class="pad" id="status-facts"><span class="muted">loading…</span></div>
+      </div>
+      <div class="panel">
+        <h2>Seed a preset from an existing config</h2>
+        <div class="pad">
+          <p class="small muted" style="margin-top:0">
+            Reads an Elite Dangerous <code>.binds</code> file, works out what role each
+            bound control plays on the chosen device, and saves it as a portable,
+            hardware-independent preset.
+          </p>
+          <div class="row" style="align-items:flex-end">
+            <div class="field"><label for="seed-name">New preset filename</label>
+              <input id="seed-name" placeholder="my_layout.json" size="22"></div>
+            <div class="field"><label for="seed-src">ED binds file</label>
+              <select id="seed-src"></select></div>
+            <div class="field"><label for="seed-dev">Roles belong to device</label>
+              <select id="seed-dev"></select></div>
+            <div class="field"><label for="seed-title">Title (optional)</label>
+              <input id="seed-title" placeholder="My VKB layout" size="18"></div>
+            <button class="primary" id="seed-go" onclick="doSeed()">Seed</button>
+          </div>
+          <div id="seed-out" class="small" style="margin-top:10px"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── DEVICES ───────────────────────── -->
+  <section id="tab-devices" hidden>
+    <div class="grid">
+      <div class="panel">
+        <h2>Devices <span class="right" id="dev-count"></span></h2>
+        <ul class="list" id="dev-list"><li class="empty">loading…</li></ul>
+      </div>
+      <div class="panel">
+        <h2><span id="dev-title">Select a device</span>
+          <span class="right" id="dev-progress"></span></h2>
+        <div id="dev-body"><div class="empty">Pick a device to assign roles to its
+          controls.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── PRESETS ───────────────────────── -->
+  <section id="tab-presets" hidden>
+    <div class="grid">
+      <div class="panel">
+        <h2>Presets</h2>
+        <ul class="list" id="pre-list"><li class="empty">loading…</li></ul>
+      </div>
+      <div id="pre-main">
+        <div class="panel"><div class="empty">Select a preset.</div></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="toast"></div>
+
+<script>
+/* ─────────────────────────── plumbing ─────────────────────────── */
+
+function toast(msg, bad) {
+  const el = document.createElement('div');
+  el.className = 'toast' + (bad ? ' bad' : '');
+  el.textContent = msg;
+  document.getElementById('toast').appendChild(el);
+  setTimeout(() => el.remove(), bad ? 7000 : 3500);
+}
+
+async function j(url, opts) {
+  const r = await fetch(url, opts);
+  const txt = await r.text();
+  let data = null;
+  try { data = txt ? JSON.parse(txt) : null; } catch (_) { data = { raw: txt }; }
+  if (!r.ok) {
+    let msg = (data && (data.detail || data.error)) || r.statusText;
+    if (typeof msg !== 'string') msg = JSON.stringify(msg);
+    throw new Error(`${r.status} ${msg}`);
+  }
+  return data;
+}
+const GET  = (u) => j(u);
+const PUT  = (u, body) => j(u, {method:'PUT', headers:{'Content-Type':'application/json'},
+                                body: JSON.stringify(body)});
+const POST = (u, body) => j(u, {method:'POST', headers:{'Content-Type':'application/json'},
+                                body: JSON.stringify(body)});
+
+const esc = (s) => String(s ?? '').replace(/[&<>"']/g,
+  c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const $ = (id) => document.getElementById(id);
+
+let STATE = { devices: [], presets: [], roles: [], health: null };
+
+function tab(name) {
+  for (const b of document.querySelectorAll('nav button'))
+    b.classList.toggle('on', b.dataset.tab === name);
+  for (const s of ['status','devices','presets'])
+    $('tab-' + s).hidden = (s !== name);
+  if (name === 'devices' && !STATE.devices.length) loadDevices();
+  if (name === 'presets' && !STATE.presets.length) loadPresets();
+}
+
+/* ─────────────────────────── status ─────────────────────────── */
+
+async function loadStatus() {
+  try {
+    const [h, roles] = await Promise.all([GET('/api/health'), GET('/api/roles')]);
+    STATE.health = h; STATE.roles = roles.roles || [];
+    $('hdr-version').textContent = 'v' + h.version;
+    $('status-facts').innerHTML = `
+      <div class="chips">
+        <span class="chip ${h.ok?'good':'bad'}">server <b>${h.ok?'ok':'down'}</b></span>
+        <span class="chip">devices <b>${h.devices}</b></span>
+        <span class="chip">presets <b>${h.presets}</b></span>
+        <span class="chip">roles <b>${STATE.roles.length}</b></span>
+        <span class="chip ${h.ed_binds_dir?'good':'bad'}">ED config <b>${h.ed_binds_dir?'found':'missing'}</b></span>
+      </div>
+      <p class="small muted" style="margin-bottom:4px">Elite Dangerous binds found:</p>
+      <div class="chips">${
+        (h.ed_binds_files||[]).map(f => `<span class="chip">${esc(f)}</span>`).join('')
+        || '<span class="muted small">none</span>'}</div>`;
+    // seed form
+    $('seed-src').innerHTML = (h.ed_binds_files||[])
+      .map(f => `<option>${esc(f)}</option>`).join('') || '<option value="">—</option>';
+    await ensureDevices();
+    $('seed-dev').innerHTML = STATE.devices
+      .map(d => `<option value="${esc(d.key)}">${esc(d.name)} · ${esc(d.id)}</option>`)
+      .join('');
+  } catch (e) { toast('Status failed: ' + e.message, true); }
+}
+
+async function ensureDevices() {
+  if (!STATE.devices.length) STATE.devices = await GET('/api/devices');
+  return STATE.devices;
+}
+
+async function doSeed() {
+  const name  = $('seed-name').value.trim();
+  const binds = $('seed-src').value;
+  const dev   = $('seed-dev').value;
+  const title = $('seed-title').value.trim();
+  if (!name.endsWith('.json')) return toast('Preset filename must end in .json', true);
+  if (!binds) return toast('No ED binds file selected', true);
+  $('seed-go').disabled = true; $('seed-out').textContent = 'seeding…';
+  try {
+    const r = await POST('/api/seed/' + encodeURIComponent(name),
+                         {ed_binds: binds, device: dev, title: title || null});
+    $('seed-out').innerHTML =
+      `<span class="chip good">created <b>${esc(r.name)}</b></span>
+       <span class="chip">roles <b>${r.actions}</b></span>`;
+    toast(`Seeded ${r.name} (${r.actions} role assignments)`);
+    STATE.presets = [];
+  } catch (e) {
+    $('seed-out').innerHTML = `<span class="chip bad">${esc(e.message)}</span>`;
+    toast('Seed failed: ' + e.message, true);
+  } finally { $('seed-go').disabled = false; }
+}
+
+/* ─────────────────────────── devices ─────────────────────────── */
+
+async function loadDevices() {
+  try {
+    STATE.devices = await GET('/api/devices');
+    $('dev-count').innerHTML = `<span class="tag">${STATE.devices.length}</span>`;
+    $('dev-list').innerHTML = STATE.devices.length ? STATE.devices.map(d => `
+      <li onclick="selectDevice('${esc(d.key)}')" data-key="${esc(d.key)}">
+        <span class="name">${esc(d.name)}</span>
+        <span class="meta">${d.roled}/${d.control_count}</span>
+      </li>`).join('') : '<li class="empty">no devices in catalog</li>';
+  } catch (e) {
+    $('dev-list').innerHTML = `<li class="empty">${esc(e.message)}</li>`;
+  }
+}
+
+async function selectDevice(key) {
+  for (const li of document.querySelectorAll('#dev-list li'))
+    li.classList.toggle('on', li.dataset.key === key);
+  $('dev-body').innerHTML = '<div class="empty">loading…</div>';
+  try {
+    const d = await GET('/api/devices/' + encodeURIComponent(key));
+    STATE.curDevice = d;
+    $('dev-title').textContent = d.name;
+    $('dev-progress').innerHTML =
+      `<span class="tag">${esc(d.id)}</span><span class="tag">${esc(d.kind)}</span>`;
+    renderControls(d);
+  } catch (e) { $('dev-body').innerHTML = `<div class="empty">${esc(e.message)}</div>`; }
+}
+
+function renderControls(d) {
+  const roled = d.controls.filter(c => c.role).length;
+  const rows = d.controls.map(c => {
+    const isAxis = c.type === 'axis';
+    return `<tr>
+      <td class="k">${esc(c.key)}</td>
+      <td>${esc(c.label)}</td>
+      <td><span class="tag ${esc(c.type)}">${esc(c.type)}${c.axis?' '+esc(c.axis):''}${
+        c.group&&c.type==='pov'?' g'+c.group:''}</span></td>
+      <td><select data-ckey="${esc(c.key)}" onchange="setRole('${esc(c.key)}', this.value)">
+            <option value=""${!c.role?' selected':''}>— none —</option>
+          </select></td>
+      <td>${isAxis ? `<input type="checkbox" data-inv="${esc(c.key)}"
+             ${c.inverted?'checked':''} onchange="setTuning('${esc(c.key)}')">` : ''}</td>
+      <td>${isAxis ? `<input type="number" min="0" max="0.9" step="0.01" size="4"
+             style="width:72px" data-dz="${esc(c.key)}" value="${c.deadzone||0}"
+             onchange="setTuning('${esc(c.key)}')">` : ''}</td>
+    </tr>`;
+  }).join('');
+  $('dev-body').innerHTML = `
+    <div class="pad small muted">${roled} of ${d.controls.length} controls carry a role.
+      Roles describe what a control <em>means</em>, so a layout can move to other
+      hardware.</div>
+    <div class="scroll"><table>
+      <thead><tr><th>Key</th><th>Label</th><th>Type</th><th>Role</th>
+        <th>Inv</th><th>Deadzone</th></tr></thead>
+      <tbody>${rows}</tbody></table></div>`;
+  // fill each role <select> from the capability-driven menu
+  d.controls.forEach(c => fillMenu(d.key, c.key));
+}
+
+async function fillMenu(devKey, ckey) {
+  const sel = document.querySelector(`#dev-body select[data-ckey="${ckey}"]`);
+  if (!sel) return;
+  try {
+    const m = await GET(`/api/devices/${encodeURIComponent(devKey)}` +
+                        `/controls/${encodeURIComponent(ckey)}/roles`);
+    const cur = m.role || '';
+    const opts = (m.menu || []).slice();
+    if (cur && !opts.includes(cur)) opts.unshift(cur);
+    sel.innerHTML = `<option value=""${!cur?' selected':''}>— none —</option>` +
+      opts.map(o => `<option value="${esc(o)}"${o===cur?' selected':''}>${esc(o)}</option>`)
+          .join('');
+  } catch (e) { /* leave the placeholder option */ }
+}
+
+async function setRole(ckey, role) {
+  try {
+    await PUT(`/api/devices/${encodeURIComponent(STATE.curDevice.key)}` +
+              `/controls/${encodeURIComponent(ckey)}`, {role: role || null});
+    toast(`${ckey} → ${role || 'unassigned'}`);
+    const c = STATE.curDevice.controls.find(x => x.key === ckey);
+    if (c) c.role = role;
+    const roled = STATE.curDevice.controls.filter(x => x.role).length;
+    const li = document.querySelector(`#dev-list li[data-key="${STATE.curDevice.key}"] .meta`);
+    if (li) li.textContent = `${roled}/${STATE.curDevice.controls.length}`;
+    STATE.devices = [];
+  } catch (e) { toast('Save failed: ' + e.message, true); }
+}
+
+async function setTuning(ckey) {
+  const inv = document.querySelector(`#dev-body input[data-inv="${ckey}"]`);
+  const dz  = document.querySelector(`#dev-body input[data-dz="${ckey}"]`);
+  const c = STATE.curDevice.controls.find(x => x.key === ckey);
+  const body = {role: c ? (c.role || null) : null};
+  if (inv) body.inverted = inv.checked;
+  if (dz)  body.deadzone = parseFloat(dz.value) || 0;
+  try {
+    await PUT(`/api/devices/${encodeURIComponent(STATE.curDevice.key)}` +
+              `/controls/${encodeURIComponent(ckey)}`, body);
+    toast(`${ckey} tuning saved`);
+  } catch (e) { toast('Save failed: ' + e.message, true); }
+}
+
+/* ─────────────────────────── presets ─────────────────────────── */
+
+async function loadPresets() {
+  try {
+    STATE.presets = await GET('/api/presets');
+    $('pre-list').innerHTML = STATE.presets.length ? STATE.presets.map(p => `
+      <li onclick="selectPreset('${esc(p.name)}')" data-name="${esc(p.name)}">
+        <span class="name">${esc(p.title || p.name)}${
+          p.error ? ' ⚠' : ''}</span>
+        <span class="meta">${p.actions ?? '?'}${p.has_binds ? ' +binds' : ''}</span>
+      </li>`).join('') : '<li class="empty">no presets yet</li>';
+  } catch (e) {
+    $('pre-list').innerHTML = `<li class="empty">${esc(e.message)}</li>`;
+  }
+}
+
+async function selectPreset(name) {
+  for (const li of document.querySelectorAll('#pre-list li'))
+    li.classList.toggle('on', li.dataset.name === name);
+  $('pre-main').innerHTML = '<div class="panel"><div class="empty">loading…</div></div>';
+  try {
+    const p = await GET('/api/presets/' + encodeURIComponent(name));
+    STATE.curPreset = p;
+    renderPreset(p);
+  } catch (e) {
+    $('pre-main').innerHTML = `<div class="panel"><div class="empty">${esc(e.message)}</div></div>`;
+  }
+}
+
+function renderPreset(p) {
+  const rows = p.assignments.map(a => `
+    <tr data-action="${esc(a.action)}">
+      <td class="a">${esc(a.action)}</td>
+      <td><input data-role="${esc(a.action)}" value="${esc(a.role||'')}" size="18"></td>
+      <td><input type="checkbox" data-inv="${esc(a.action)}" ${a.inverted?'checked':''}></td>
+      <td><input type="number" min="0" max="0.9" step="0.01" style="width:70px"
+           data-dz="${esc(a.action)}" value="${a.deadzone||0}"></td>
+      <td><input data-note="${esc(a.action)}" value="${esc(a.note||'')}" size="16"></td>
+    </tr>`).join('');
+  $('pre-main').innerHTML = `
+    <div class="panel">
+      <h2 class="norm">${esc(p.title || p.name)}
+        <span class="right">
+          <span class="tag">${esc(p.ed_version)}</span>
+          <span class="tag">${p.assignments.length} actions</span>
+          <button class="primary" onclick="savePreset()">Save</button>
+        </span></h2>
+      ${p.description ? `<div class="pad small muted">${esc(p.description)}</div>` : ''}
+      <div class="scroll"><table>
+        <thead><tr><th>Action</th><th>Role</th><th>Inv</th><th>Deadzone</th>
+          <th>Note</th></tr></thead>
+        <tbody>${rows || '<tr><td colspan="5" class="empty">no assignments</td></tr>'}</tbody>
+      </table></div>
+    </div>
+
+    <details open style="margin-top:14px">
+      <summary>Bindings for a device</summary>
+      <div class="pad">
+        <div class="row">
+          <div class="field"><label>Device</label>
+            <select id="bind-dev"></select></div>
+          <button onclick="loadBindings()">Resolve</button>
+          <span class="muted small">resolves the layout's roles onto that device's
+            controls</span>
+        </div>
+        <div id="bind-out" style="margin-top:10px"></div>
+      </div>
+    </details>
+
+    <details style="margin-top:10px">
+      <summary>Audit</summary>
+      <div class="pad">
+        <div class="row"><button onclick="loadAudit()">Run audit</button>
+          <span class="muted small">unknown devices · unlabelled controls · coverage</span></div>
+        <div id="audit-out" style="margin-top:10px"></div>
+      </div>
+    </details>
+
+    <details style="margin-top:10px">
+      <summary>Port to other hardware</summary>
+      <div class="pad">
+        <div class="row" style="align-items:flex-end">
+          <div class="field"><label>From</label><select id="port-from"></select></div>
+          <div class="field"><label>To</label><select id="port-to"></select></div>
+          <button onclick="previewPort()">Preview</button>
+          <button class="primary" onclick="writePort()">Port &amp; write</button>
+        </div>
+        <div id="port-out" style="margin-top:10px"></div>
+      </div>
+    </details>`;
+
+  ensureDevices().then(() => {
+    const opts = STATE.devices.map(d =>
+      `<option value="${esc(d.key)}">${esc(d.name)} · ${esc(d.id)}</option>`).join('');
+    for (const id of ['bind-dev','port-from','port-to']) {
+      const el = $(id); if (el) el.innerHTML = opts;
+    }
+  });
+}
+
+async function savePreset() {
+  const p = STATE.curPreset;
+  const assignments = p.assignments.map(a => ({
+    action: a.action,
+    role: ($(`[data-role="${CSS.escape(a.action)}"]`) || {}).value || null,
+    inverted: ($(`[data-inv="${CSS.escape(a.action)}"]`) || {}).checked ?? false,
+    deadzone: parseFloat(($(`[data-dz="${CSS.escape(a.action)}"]`) || {}).value) || 0,
+    note: ($(`[data-note="${CSS.escape(a.action)}"]`) || {}).value || '',
+  }));
+  try {
+    const r = await PUT('/api/presets/' + encodeURIComponent(p.name),
+                        {assignments});
+    toast(`Saved ${r.name} — ${r.actions} actions`);
+    selectPreset(p.name);
+  } catch (e) { toast('Save failed: ' + e.message, true); }
+}
+
+async function loadBindings() {
+  const dev = $('bind-dev').value;
+  $('bind-out').innerHTML = '<span class="muted small">resolving…</span>';
+  try {
+    const r = await GET(`/api/presets/${encodeURIComponent(STATE.curPreset.name)}` +
+                        `/bindings?device=${encodeURIComponent(dev)}`);
+    $('bind-out').innerHTML = `
+      <div class="chips" style="margin-bottom:8px">
+        <span class="chip">device <b>${esc(r.device)}</b></span>
+        <span class="chip good">bound <b>${r.count}</b></span></div>
+      <div class="scroll"><table><thead><tr><th>Action</th><th>Key</th><th>Control</th>
+        <th>Role</th></tr></thead><tbody>${r.bindings.map(b => `<tr>
+          <td class="a">${esc(b.action)}</td><td class="k">${esc(b.key)}</td>
+          <td>${esc(b.label)}</td><td class="role">${esc(b.role)}</td></tr>`).join('')}
+      </tbody></table></div>`;
+  } catch (e) { $('bind-out').innerHTML = `<span class="chip bad">${esc(e.message)}</span>`; }
+}
+
+async function loadAudit() {
+  $('audit-out').innerHTML = '<span class="muted small">auditing…</span>';
+  try {
+    const r = await GET('/api/audit/' + encodeURIComponent(STATE.curPreset.name));
+    const orphans = Object.entries(r.orphans || {});
+    const nOrph = orphans.reduce((n, [, v]) => n + (Array.isArray(v) ? v.length : 1), 0);
+    $('audit-out').innerHTML = `
+      <div class="chips" style="margin-bottom:8px">
+        <span class="chip ${r.clean?'good':'bad'}">clean <b>${r.clean}</b></span>
+        <span class="chip ${(r.unknown_devices||[]).length?'bad':''}">
+          unknown devices <b>${(r.unknown_devices||[]).length}</b></span>
+        <span class="chip ${nOrph?'bad':''}">unlabelled controls <b>${nOrph}</b></span>
+      </div>
+      <pre>${esc(r.render || '')}</pre>`;
+  } catch (e) { $('audit-out').innerHTML = `<span class="chip bad">${esc(e.message)}</span>`; }
+}
+
+async function previewPort() {
+  const frm = $('port-from').value, to = $('port-to').value;
+  $('port-out').innerHTML = '<span class="muted small">previewing…</span>';
+  try {
+    const r = await GET(`/api/port/${encodeURIComponent(STATE.curPreset.name)}` +
+                        `?frm=${encodeURIComponent(frm)}&to=${encodeURIComponent(to)}`);
+    $('port-out').innerHTML = `
+      <div class="chips">
+        <span class="chip good">remapped <b>${(r.remapped||[]).length}</b></span>
+        <span class="chip ${(r.unmapped||[]).length?'bad':''}">
+          unmapped <b>${(r.unmapped||[]).length}</b></span>
+        <span class="chip">unchanged <b>${r.unchanged ?? 0}</b></span></div>
+      ${(r.unmapped||[]).length ? `<p class="small muted" style="margin:10px 0 4px">
+        Controls with no counterpart on the target device:</p>
+        <pre>${esc(JSON.stringify(r.unmapped, null, 2))}</pre>` : ''}`;
+  } catch (e) { $('port-out').innerHTML = `<span class="chip bad">${esc(e.message)}</span>`; }
+}
+
+async function writePort() {
+  const frm = $('port-from').value, to = $('port-to').value;
+  if (!confirm(`Port "${STATE.curPreset.name}" from ${frm} to ${to} and write the `
+               + `.binds file?`)) return;
+  $('port-out').innerHTML = '<span class="muted small">porting…</span>';
+  try {
+    const r = await POST('/api/port/' + encodeURIComponent(STATE.curPreset.name),
+                         {from_device: frm, to_device: to});
+    $('port-out').innerHTML = `<span class="chip good">written</span>
+      <div class="small muted" style="margin-top:6px">${esc(r.written)}</div>
+      <div class="chips" style="margin-top:6px">
+        <span class="chip">remapped <b>${r.remapped}</b></span>
+        <span class="chip">unmapped <b>${r.unmapped}</b></span></div>`;
+    toast('Ported and written');
+  } catch (e) { $('port-out').innerHTML = `<span class="chip bad">${esc(e.message)}</span>`; }
+}
+
+/* ─────────────────────────── boot ─────────────────────────── */
+loadStatus();
+loadDevices();
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') document.getElementById('toast').innerHTML = '';
+});
+</script>
+</body>
+</html>

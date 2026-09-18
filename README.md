@@ -32,7 +32,7 @@ preset  (PitchAxisRaw -> role "pitch")     # hardware-independent
 
 ## Status
 
-Early. The engine works end to end against a real 700-hour VKB setup:
+Early, but the engine works end to end against a real 700-hour VKB setup:
 
 - parses a `.binds` file faithfully (422 actions, raw structure preserved)
 - re-emits a valid `.binds` that the game's own reader accepts
@@ -42,9 +42,12 @@ Early. The engine works end to end against a real 700-hour VKB setup:
   289 bound actions preserved
 - audits a config for unknown devices, unlabelled controls, and coverage
 - ports bindings between devices by role, falling back to index
+- ships a web editor: assign roles per control from a capability-aware menu,
+  edit a preset's assignments, resolve it onto a device, audit it, and port it
+  to other hardware — all backed by the same library the CLI uses
 
-Not built yet: the web UI, mode-aware conflict checks (flight / SRV / on-foot),
-and a packaged release.
+Not built yet: mode-aware conflict checks (flight / SRV / on-foot), a packaged
+release, and CI.
 
 ## Layout
 
@@ -53,32 +56,42 @@ src/bindsmith/     engine (stdlib only)
   parser.py        .binds -> model, structure preserved
   writer.py        model -> .binds, ED's own format
   devices.py       descriptors, generation from button maps
+  ingest.py        button maps -> descriptors (merging, idempotent)
   roles.py         the role vocabulary and capability menus
   presets.py       role-based layouts: seed, instantiate, save
   port.py          remap between devices (role, then index)
   audit.py         coverage, unknowns, conflicts
-  cli.py           parse / audit / port / gen-devices
+  wizard.py        interactive role assignment
+  server.py        FastAPI layer (optional extra)
+  cli.py           parse / audit / port / ingest / assign / serve / gen-devices
 data/
   buttonmaps/      38 control-label maps (see ATTRIBUTION.md)
-  roles/           hand-authored roles, one small file per device
-  devices/         generated descriptors (full inventory + roles)
+  devices/         descriptors: full inventory + curated roles
   presets/         role-based layouts
-tools/             ingest + coverage-report helpers
-web/               (next) thin presentation layer over the same engine
+web/index.html     self-contained editor (no build step)
+tools/
+  reingest.py      refresh descriptors from button maps
+  check_coverage.py  report controls ED's maps have no label for
+  smoke_web.py     exercise every API endpoint
+  ui_check.mjs     drive the editor headlessly, catch JS errors
 ```
 
 ## Usage
 
 ```bash
+pip install -e ".[web]"          # engine needs nothing; web is the extra
+
 # what's this config made of?
-PYTHONPATH=src python3 -m bindsmith.cli parse ~/.steam/.../Bindings
+bindsmith parse ~/.steam/.../Bindings
 
 # check it against the device catalog
-PYTHONPATH=src python3 -m bindsmith.cli audit config.binds --data data
+bindsmith audit config.binds
 
 # move a layout onto different hardware
-PYTHONPATH=src python3 -m bindsmith.cli port config.binds \
-    --src 231D0200 --dst 231D012C --out ported.binds
+bindsmith port config.binds --src 231D0200 --dst 231D012C --out ported.binds
+
+# the editor
+bindsmith serve                  # then open http://127.0.0.1:8770
 ```
 
 ## Contributing a device

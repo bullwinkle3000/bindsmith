@@ -3,332 +3,556 @@
   "name": "VKB Gladiator NXT EVO Space Combat Grip Premium (Right)",
   "vendor": "VKB Sim",
   "kind": "joystick",
-  "source": "buttonmap+roles",
   "controls": [
     {
       "key": "Joy_RXAxis",
       "label": "RGNX Thumbstick X",
       "type": "axis",
-      "axis": "RX"
+      "axis": "RX",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
     },
     {
       "key": "Joy_RYAxis",
       "label": "RGNX Thumbstick Y",
       "type": "axis",
-      "axis": "RY"
+      "axis": "RY",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
     },
     {
       "key": "Joy_RZAxis",
       "label": "RGNX [x52prorz]",
       "type": "axis",
       "axis": "RZ",
-      "role": "yaw"
+      "role": "yaw",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
     },
     {
       "key": "Joy_UAxis",
       "label": "RGNX UAxis",
       "type": "axis",
       "axis": "U",
-      "role": "tune"
+      "role": "tune",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
     },
     {
       "key": "Joy_VAxis",
       "label": "RGNX VAxis",
       "type": "axis",
-      "axis": "V"
+      "axis": "V",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
     },
     {
       "key": "Joy_XAxis",
       "label": "RGNX [x52prox]",
       "type": "axis",
       "axis": "X",
-      "role": "roll"
+      "role": "roll",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
     },
     {
       "key": "Joy_YAxis",
       "label": "RGNX [x52proy]",
       "type": "axis",
       "axis": "Y",
-      "role": "pitch"
+      "role": "pitch",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
     },
     {
       "key": "Joy_ZAxis",
       "label": "RGNX Throttle",
       "type": "axis",
       "axis": "Z",
-      "role": "throttle"
+      "role": "throttle",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
     },
     {
       "key": "Joy_POV1Up",
       "label": "RGNX A1 [ps4PadU]",
       "type": "pov",
+      "axis": "",
+      "role": "menu_up",
       "group": 1,
-      "role": "menu_up"
+      "deadzone": 0.0,
+      "inverted": false
     },
     {
       "key": "Joy_POV1Right",
       "label": "RGNX A1 [ps4PadR]",
       "type": "pov",
+      "axis": "",
+      "role": "menu_right",
       "group": 1,
-      "role": "menu_right"
+      "deadzone": 0.0,
+      "inverted": false
     },
     {
       "key": "Joy_POV1Down",
       "label": "RGNX A1 [ps4PadD]",
       "type": "pov",
+      "axis": "",
+      "role": "menu_down",
       "group": 1,
-      "role": "menu_down"
+      "deadzone": 0.0,
+      "inverted": false
     },
     {
       "key": "Joy_POV1Left",
       "label": "RGNX A1 [ps4PadL]",
       "type": "pov",
+      "axis": "",
+      "role": "menu_left",
       "group": 1,
-      "role": "menu_left"
+      "deadzone": 0.0,
+      "inverted": false
     },
     {
       "key": "Joy_POV2Up",
       "label": "RGNX A4 [ps4PadU]",
       "type": "pov",
+      "axis": "",
+      "role": "menu_up",
       "group": 2,
-      "role": "menu_up"
+      "deadzone": 0.0,
+      "inverted": false
     },
     {
       "key": "Joy_POV2Right",
       "label": "RGNX A4 [ps4PadR]",
       "type": "pov",
+      "axis": "",
+      "role": "menu_right",
       "group": 2,
-      "role": "menu_right"
+      "deadzone": 0.0,
+      "inverted": false
     },
     {
       "key": "Joy_POV2Down",
       "label": "RGNX A4 [ps4PadD]",
       "type": "pov",
+      "axis": "",
+      "role": "menu_down",
       "group": 2,
-      "role": "menu_down"
+      "deadzone": 0.0,
+      "inverted": false
     },
     {
       "key": "Joy_POV2Left",
       "label": "RGNX A4 [ps4PadL]",
       "type": "pov",
+      "axis": "",
+      "role": "menu_left",
       "group": 2,
-      "role": "menu_left"
+      "deadzone": 0.0,
+      "inverted": false
     },
     {
       "key": "Joy_POV3Up",
       "label": "RGNX A3 [ps4PadU]",
       "type": "pov",
+      "axis": "",
+      "role": "menu_up",
       "group": 3,
-      "role": "menu_up"
+      "deadzone": 0.0,
+      "inverted": false
     },
     {
       "key": "Joy_POV3Right",
       "label": "RGNX A3 [ps4PadR]",
       "type": "pov",
+      "axis": "",
+      "role": "menu_right",
       "group": 3,
-      "role": "menu_right"
+      "deadzone": 0.0,
+      "inverted": false
     },
     {
       "key": "Joy_POV3Down",
       "label": "RGNX A3 [ps4PadD]",
       "type": "pov",
+      "axis": "",
+      "role": "menu_down",
       "group": 3,
-      "role": "menu_down"
+      "deadzone": 0.0,
+      "inverted": false
     },
     {
       "key": "Joy_POV3Left",
       "label": "RGNX A3 [ps4PadL]",
       "type": "pov",
+      "axis": "",
+      "role": "menu_left",
       "group": 3,
-      "role": "menu_left"
+      "deadzone": 0.0,
+      "inverted": false
     },
     {
       "key": "Joy_POV4Up",
       "label": "RGNX C1 [ps4PadU]",
       "type": "pov",
+      "axis": "",
+      "role": "menu_up",
       "group": 4,
-      "role": "menu_up"
+      "deadzone": 0.0,
+      "inverted": false
     },
     {
       "key": "Joy_POV4Right",
       "label": "RGNX C1 [ps4PadR]",
       "type": "pov",
+      "axis": "",
+      "role": "menu_right",
       "group": 4,
-      "role": "menu_right"
+      "deadzone": 0.0,
+      "inverted": false
     },
     {
       "key": "Joy_POV4Down",
       "label": "RGNX C1 [ps4PadD]",
       "type": "pov",
+      "axis": "",
+      "role": "menu_down",
       "group": 4,
-      "role": "menu_down"
+      "deadzone": 0.0,
+      "inverted": false
     },
     {
       "key": "Joy_POV4Left",
       "label": "RGNX C1 [ps4PadL]",
       "type": "pov",
+      "axis": "",
+      "role": "menu_left",
       "group": 4,
-      "role": "menu_left"
+      "deadzone": 0.0,
+      "inverted": false
     },
     {
       "key": "Joy_1",
       "label": "RGNX Fire 1",
       "type": "button",
-      "role": "fire_primary"
+      "axis": "",
+      "role": "fire_primary",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
     },
     {
       "key": "Joy_2",
       "label": "RGNX Fire 2",
       "type": "button",
-      "role": "fire_secondary"
+      "axis": "",
+      "role": "fire_secondary",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
     },
     {
       "key": "Joy_3",
       "label": "RGNX A2 (thumb red)",
       "type": "button",
-      "role": "thrust_up"
+      "axis": "",
+      "role": "thrust_up",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
     },
     {
       "key": "Joy_4",
       "label": "RGNX B1 (right side)",
-      "type": "button"
+      "type": "button",
+      "axis": "",
+      "role": null,
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
     },
     {
       "key": "Joy_5",
       "label": "RGNX D1 (pinky)",
-      "type": "button"
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
     },
     {
       "key": "Joy_6",
       "label": "RGNX A3 [ps4PadU]",
-      "type": "button"
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
     },
     {
       "key": "Joy_7",
       "label": "RGNX A3 [ps4PadR]",
-      "type": "button"
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
     },
     {
       "key": "Joy_8",
       "label": "RGNX A3 [ps4PadD]",
-      "type": "button"
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
     },
     {
       "key": "Joy_9",
       "label": "RGNX A3 [ps4PadL]",
-      "type": "button"
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
     },
     {
       "key": "Joy_10",
       "label": "RGNX A3 Click",
-      "type": "button"
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
     },
     {
       "key": "Joy_11",
       "label": "RGNX A4 [ps4PadU]",
-      "type": "button"
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
     },
     {
       "key": "Joy_12",
       "label": "RGNX A4 [ps4PadR]",
-      "type": "button"
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
     },
     {
       "key": "Joy_13",
       "label": "RGNX A4 [ps4PadD]",
-      "type": "button"
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
     },
     {
       "key": "Joy_14",
       "label": "RGNX A4 [ps4PadL]",
-      "type": "button"
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
     },
     {
       "key": "Joy_15",
       "label": "RGNX A4 Click",
-      "type": "button"
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
     },
     {
       "key": "Joy_16",
       "label": "RGNX C1 [ps4PadU]",
-      "type": "button"
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
     },
     {
       "key": "Joy_17",
       "label": "RGNX C1 [ps4PadR]",
-      "type": "button"
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
     },
     {
       "key": "Joy_18",
       "label": "RGNX C1 [ps4PadD]",
-      "type": "button"
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
     },
     {
       "key": "Joy_19",
       "label": "RGNX C1 [ps4PadL]",
-      "type": "button"
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
     },
     {
       "key": "Joy_20",
       "label": "RGNX C1 Click",
-      "type": "button"
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
     },
     {
       "key": "Joy_21",
       "label": "RGNX Push Brake",
       "type": "button",
-      "role": "brake"
+      "axis": "",
+      "role": "brake",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
     },
     {
       "key": "Joy_22",
       "label": "RGNX Pull Brake",
       "type": "button",
-      "role": "gear"
+      "axis": "",
+      "role": "gear",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
     },
     {
       "key": "Joy_23",
       "label": "RGNX En1 [ps4PadU]",
-      "type": "button"
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
     },
     {
       "key": "Joy_24",
       "label": "RGNX En1 [ps4PadD]",
-      "type": "button"
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
     },
     {
       "key": "Joy_25",
       "label": "RGNX En2 [ps4PadU]",
-      "type": "button"
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
     },
     {
       "key": "Joy_26",
       "label": "RGNX En2 [ps4PadD]",
-      "type": "button"
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
     },
     {
       "key": "Joy_27",
       "label": "RGNX F1",
-      "type": "button"
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
     },
     {
       "key": "Joy_28",
       "label": "RGNX F2",
-      "type": "button"
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
     },
     {
       "key": "Joy_29",
       "label": "RGNX F3",
-      "type": "button"
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
     },
     {
       "key": "Joy_30",
       "label": "RGNX 30",
-      "type": "button"
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
     },
     {
       "key": "Joy_31",
       "label": "RGNX C1 Long Press",
-      "type": "button"
+      "type": "button",
+      "axis": "",
+      "role": "",
+      "group": 0,
+      "deadzone": 0.0,
+      "inverted": false
     }
   ]
 }

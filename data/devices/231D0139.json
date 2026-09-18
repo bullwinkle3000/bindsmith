@@ -1,6 +1,6 @@
 {
   "id": "231D:0139",
-  "name": "VKB STECS Space Throttle Grip Max (Left) [VendorID: 231D, ProductID: 0139]\n\n\tI've tried to adhere to notation used on the official binding templates from VKB which\n\tcan be found here https://www.vkbcontrollers.com/pages/downloads\n\n\tNote that productID changes depending on which modules are connected to the STECS bus.\n\tThis means that your bindings may break if you add or remove modules to your VKB setup.\n\tATEM seems to become a part of the STECS it self and does no function as a separate module\n\tunlike the STEM module.",
+  "name": "VKB STECS Space Throttle Grip Max (Left) [VendorID: 231D, ProductID: 0139]",
   "vendor": "VKB Sim",
   "kind": "throttle",
   "controls": [

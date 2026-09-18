@@ -19,6 +19,12 @@ classifiers = [
 [project.scripts]
 bindsmith = "bindsmith.cli:main"
 
+# The engine is standard-library only. The web layer (bindsmith serve) is the
+# one optional extra; install with:  pip install -e ".[web]"
+[project.optional-dependencies]
+web = ["fastapi>=0.110", "uvicorn>=0.29"]
+dev = ["fastapi>=0.110", "uvicorn>=0.29"]
+
 [tool.setuptools]
 package-dir = { "" = "src" }
 

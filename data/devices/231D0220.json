@@ -1,6 +1,6 @@
 {
   "id": "231D:0220",
-  "name": "VKB Gladiator NXT EVO Space Combat Grip Premium (Right) + GNX FSM-GA module [VendorID: 231D, ProductID: 0220]\n\n\tThis is based on the awesome work already done 231D0200.buttonMap (thx) but corrected for changed\n\tintroduced by FSM-GA module. I've tried to adhere to notation used on the official binding templates\n\tfrom VKB which can be found here https://www.vkbcontrollers.com/pages/downloads\n\n\tNote that productID changes depending on which modules are connected to the GNX (base) bus.\n\tThis means that your bindings may break if you add or remove modules to your VKB setup.\n\tSCG seems to become a part of the GNX it self and does not function as a separate module.",
+  "name": "VKB Gladiator NXT EVO Space Combat Grip Premium (Right) + GNX FSM-GA module [VendorID: 231D, ProductID: 0220]",
   "vendor": "VKB Sim",
   "kind": "throttle",
   "controls": [

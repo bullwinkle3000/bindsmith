@@ -82,10 +82,16 @@ def _kind_for(dev: Device) -> str:
 
 
 def _header_name(text: str) -> str:
-    """'<!-- VKB Gladiator NXT EVO ... -->' -> the name inside the comment."""
+    """'<!-- VKB Gladiator NXT EVO ... -->' -> the name inside the comment.
+
+    Some maps carry a multi-line comment (a description, part numbers, the
+    contributor's notes). Only the first line is the device name; taking the
+    whole comment puts newlines and prose into every place the name is shown.
+    """
     m = re.search(r"<!--\s*(.+?)\s*-->", text, re.S)
     if m:
-        return m.group(1).strip()
+        head = m.group(1).strip().splitlines()
+        return head[0].strip() if head else ""
     return ""
 
 
@@ -161,9 +167,15 @@ def ingest_buttonmaps(
 
         if path.exists():
             raw = json.loads(path.read_text(encoding="utf-8"))
+            # Repair names that were captured from a multi-line header comment
+            # before the header parser was fixed: a newline or tab in a device
+            # name is never intentional and leaks prose into every UI surface.
+            raw_name = (raw.get("name") or "").strip()
+            if not raw_name or "\n" in raw_name or "\t" in raw_name:
+                raw_name = fresh.name
             merged = Device(
                 id=raw["id"],
-                name=raw.get("name") or fresh.name,
+                name=raw_name or fresh.name,
                 vendor=raw.get("vendor") or fresh.vendor,
                 kind=raw.get("kind") or _kind_for(fresh),
                 controls=[Control(**c) for c in raw.get("controls", [])],
