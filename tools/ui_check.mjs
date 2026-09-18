@@ -10,13 +10,29 @@
  * failure. Uses only Node built-ins (WebSocket is global in Node >= 22).
  */
 import { spawn } from 'node:child_process';
-import { rmSync, mkdtempSync } from 'node:fs';
-import { tmpdir } from 'node:os';
+import { existsSync, mkdtempSync, readdirSync, rmSync } from 'node:fs';
+import { homedir, tmpdir } from 'node:os';
 import { join } from 'node:path';
 
 const URL_ = process.argv[2] || 'http://127.0.0.1:8770/';
-const CHROME = process.argv[3] ||
-  '/home/andy/.cache/ms-playwright/chromium-1234/chrome-linux64/chrome';
+
+/** A Chromium to drive: $CHROME, else a Playwright download, else $PATH. */
+function findChrome() {
+  if (process.env.CHROME) return process.env.CHROME;
+  const cache = join(homedir(), '.cache', 'ms-playwright');
+  if (existsSync(cache)) {
+    const dirs = readdirSync(cache)
+      .filter((d) => d.startsWith('chromium-'))
+      .sort((a, b) => Number(b.split('-')[1]) - Number(a.split('-')[1]));
+    for (const d of dirs) {
+      const p = join(cache, d, 'chrome-linux64', 'chrome');
+      if (existsSync(p)) return p;
+    }
+  }
+  return 'chrome';               // hope it is on $PATH
+}
+
+const CHROME = process.argv[3] || findChrome();
 const PROFILE = mkdtempSync(join(tmpdir(), 'bs-ui-'));
 const fails = [];
 

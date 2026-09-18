@@ -65,7 +65,7 @@ _BUTTON_MENU = [
     # fire
     "fire_primary", "fire_secondary",
     # boost / hyperspace
-    "use_boost", "hyperfuel_toggle", "hyperspace",
+    "use_boost", "hyperfuel_toggle", "hyperspace", "supercruise",
     # gear
     "toggle_gear", "gear", "toggle_brake", "brake", "toggle_safe_mode",
     # lights & nav

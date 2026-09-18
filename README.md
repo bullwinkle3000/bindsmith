@@ -111,7 +111,13 @@ Role files stay short because the inventory is generated, not typed.
 
 ## Credits
 
-- Control-label maps from [EDCD/EliteCustomButtonNames](https://github.com/EDCD/EliteCustomButtonNames) (MIT, (c) 2025 Richard Buckle) — see `data/buttonmaps/ATTRIBUTION.md`.
+- Control-label maps from [EDCD/EliteCustomButtonNames](https://github.com/EDCD/EliteCustomButtonNames) (MIT, (c) 2025 Richard Buckle) — see `data/buttonmaps/ATTRIBUTION.md` and `NOTICE.md`.
 - Elite Dangerous is a trademark of Frontier Developments plc. This tool
   reads and writes the game's config files; it is not affiliated with or
   endorsed by Frontier.
+
+## License
+
+GPL-3.0-or-later — see [`LICENSE`](LICENSE). Bundled third-party data keeps
+its own license: the control-label maps are MIT. Full attribution in
+[`NOTICE.md`](NOTICE.md).

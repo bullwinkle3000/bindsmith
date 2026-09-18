@@ -7,13 +7,30 @@
  * Writes PNGs to outDir (default /tmp) and prints their paths.
  */
 import { spawn } from 'node:child_process';
-import { writeFileSync, mkdtempSync, rmSync } from 'node:fs';
-import { tmpdir } from 'node:os';
+import { existsSync, writeFileSync, mkdtempSync, readdirSync, rmSync } from 'node:fs';
+import { homedir, tmpdir } from 'node:os';
 import { join } from 'node:path';
 
 const URL_ = process.argv[2] || 'http://127.0.0.1:8770/';
 const OUT = process.argv[3] || '/tmp';
-const CHROME = '/home/andy/.cache/ms-playwright/chromium-1234/chrome-linux64/chrome';
+
+/** A Chromium to drive: $CHROME, else a Playwright download, else $PATH. */
+function findChrome() {
+  if (process.env.CHROME) return process.env.CHROME;
+  const cache = join(homedir(), '.cache', 'ms-playwright');
+  if (existsSync(cache)) {
+    const dirs = readdirSync(cache)
+      .filter((d) => d.startsWith('chromium-'))
+      .sort((a, b) => Number(b.split('-')[1]) - Number(a.split('-')[1]));
+    for (const d of dirs) {
+      const p = join(cache, d, 'chrome-linux64', 'chrome');
+      if (existsSync(p)) return p;
+    }
+  }
+  return 'chrome';
+}
+
+const CHROME = findChrome();
 const PROFILE = mkdtempSync(join(tmpdir(), 'bs-shot-'));
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 

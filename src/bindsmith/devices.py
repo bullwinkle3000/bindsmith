@@ -173,10 +173,12 @@ def save_device(dev: Device, data_dir: str | Path) -> Path:
 
 if __name__ == "__main__":
     import sys
-    src = sys.argv[1] if len(sys.argv) > 1 else \
-        "/home/andy/.steam/debian-installation/steamapps/compatdata/359320/pfx/" \
-        "drive_c/users/steamuser/AppData/Local/Frontier Developments/" \
-        "Elite Dangerous/Options/DeviceButtonMaps"
+    from .paths import buttonmaps_dir
+    src = Path(sys.argv[1]) if len(sys.argv) > 1 else buttonmaps_dir()
+    if src is None:
+        print("No Elite Dangerous button maps found. Pass a directory of "
+              "*.buttonMap files (or set $BINDSMITH_ED_BINDS).")
+        raise SystemExit(2)
     n = 0
     for f in sorted(Path(src).glob("*.buttonMap")):
         dev = generate_from_button_map(f)

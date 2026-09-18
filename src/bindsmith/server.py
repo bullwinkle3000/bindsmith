@@ -29,7 +29,7 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
-from bindsmith import __version__
+from bindsmith import __version__, paths
 from bindsmith.audit import audit
 from bindsmith.devices import Device, load_devices, save_device
 from bindsmith.parser import parse_binds
@@ -52,11 +52,7 @@ PRESET_DIR = DATA_DIR / "presets"
 DEVICES_DIR = DATA_DIR / "devices"
 WEB_DIR = REPO / "web"
 
-ED_BINDS_DIR = (
-    Path.home() / ".steam/debian-installation/steamapps/compatdata/359320/pfx/"
-    "drive_c/users/steamuser/AppData/Local/Frontier Developments/"
-    "Elite Dangerous/Options/Bindings"
-)
+ED_BINDS_DIR = paths.binds_dir()   # None when the game/config isn't installed
 
 app = FastAPI(title="bindsmith", version=__version__)
 
@@ -120,9 +116,10 @@ def health():
         "version": __version__,
         "presets": len(list(PRESET_DIR.glob("*.json"))),
         "devices": len([d for d in devs if d != "GENERIC"]),
-        "ed_binds_dir": ED_BINDS_DIR.exists(),
+        "ed_binds_dir": ED_BINDS_DIR is not None,
+        "ed_binds_path": str(ED_BINDS_DIR) if ED_BINDS_DIR else None,
         "ed_binds_files": sorted(f.name for f in ED_BINDS_DIR.glob("*.binds"))
-        if ED_BINDS_DIR.exists() else [],
+        if ED_BINDS_DIR else [],
     }
 
 
@@ -401,6 +398,9 @@ def seed(name: str, body: SeedBody):
         raise HTTPException(400, "preset name must be a bare *.json filename")
     if _preset_path(name).exists():
         raise HTTPException(409, f"preset {name} already exists")
+    if ED_BINDS_DIR is None:
+        raise HTTPException(404, "no Elite Dangerous config found on this "
+                                 f"machine (set ${paths.ENV_OVERRIDE})")
     src = ED_BINDS_DIR / body.ed_binds
     if not src.exists():
         raise HTTPException(404, f"no ED binds file {body.ed_binds!r} in {ED_BINDS_DIR}")
@@ -493,6 +493,9 @@ def create_profile(base: str, body: ProfileBody):
                 "assignments": len(layout.assignments)}
 
     if mode == "ed":
+        if ED_BINDS_DIR is None:
+            raise HTTPException(404, "no Elite Dangerous config found on this "
+                                     f"machine (set ${paths.ENV_OVERRIDE})")
         src = ED_BINDS_DIR / (body.source or "")
         if not src.exists():
             raise HTTPException(404, f"no ED binds file {body.source!r}")

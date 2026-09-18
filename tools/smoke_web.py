@@ -49,8 +49,12 @@ def main() -> int:
     st, h = call("GET", "/api/health")
     check("GET /api/health", st == 200 and h.get("ok"), f"v{h.get('version')} "
           f"devices={h.get('devices')} presets={h.get('presets')}")
-    check("health lists ED binds", bool(h.get("ed_binds_files")),
-          ", ".join(h.get("ed_binds_files") or []))
+    if h.get("ed_binds_dir"):
+        check("health lists ED binds", bool(h.get("ed_binds_files")),
+              ", ".join(h.get("ed_binds_files") or []))
+    else:
+        print("[SKIP] no Elite Dangerous install on this machine "
+              "(set $BINDSMITH_ED_BINDS to test against one)")
 
     st, roles = call("GET", "/api/roles")
     check("GET /api/roles", st == 200 and len(roles.get("roles", [])) > 20,

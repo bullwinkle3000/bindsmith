@@ -208,10 +208,12 @@ def load_all_binds(bindings_dir: str | Path) -> dict[str, Preset]:
 
 if __name__ == "__main__":
     import sys
-    target = sys.argv[1] if len(sys.argv) > 1 else \
-        "/home/andy/.steam/debian-installation/steamapps/compatdata/359320/pfx/" \
-        "drive_c/users/steamuser/AppData/Local/Frontier Developments/" \
-        "Elite Dangerous/Options/Bindings"
+    from .paths import binds_dir
+    target = Path(sys.argv[1]) if len(sys.argv) > 1 else binds_dir()
+    if target is None:
+        print("No Elite Dangerous config found. Pass a path to a .binds file "
+              "or a Bindings directory (or set $BINDSMITH_ED_BINDS).")
+        raise SystemExit(2)
     if Path(target).is_dir():
         presets = load_all_binds(target)
         print(f"{len(presets)} presets parsed:")

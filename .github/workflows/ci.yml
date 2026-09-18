@@ -1,0 +1,80 @@
+name: CI
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  data:
+    name: Data files
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Validate button maps, binds, descriptors and profiles
+        run: python3 tools/validate_data.py
+
+  engine:
+    name: Engine (stdlib only)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Confirm the engine has no third-party dependencies
+        run: |
+          python3 - <<'PY'
+          import ast, pathlib, sys
+          allowed = {"bindsmith"}
+          bad = []
+          for f in pathlib.Path("src/bindsmith").glob("*.py"):
+              if f.name in {"server.py"}:      # the optional web layer
+                  continue
+              for node in ast.walk(ast.parse(f.read_text())):
+                  mods = []
+                  if isinstance(node, ast.Import):
+                      mods = [a.name.split(".")[0] for a in node.names]
+                  elif isinstance(node, ast.ImportFrom) and node.level == 0:
+                      mods = [(node.module or "").split(".")[0]]
+                  for m in mods:
+                      if m and m not in sys.stdlib_module_names and m not in allowed:
+                          bad.append(f"{f.name}: {m}")
+          if bad:
+              print("engine imports non-stdlib modules:", *bad, sep="\n  ")
+              sys.exit(1)
+          print("engine is standard library only")
+          PY
+      - name: Smoke test
+        run: python3 test_smoke.py
+
+  api:
+    name: Web API
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install the web extra
+        run: pip install -e ".[web]"
+      - name: Start the server
+        run: |
+          nohup python3 -m uvicorn bindsmith.server:app \
+            --host 127.0.0.1 --port 8770 > /tmp/server.log 2>&1 &
+          for i in $(seq 1 30); do
+            if curl -sf http://127.0.0.1:8770/api/health > /dev/null; then
+              echo "server up"; exit 0
+            fi
+            sleep 1
+          done
+          echo "server failed to start"; cat /tmp/server.log; exit 1
+      - name: Exercise every endpoint
+        run: python3 tools/smoke_web.py
+      - name: Server log on failure
+        if: failure()
+        run: cat /tmp/server.log
